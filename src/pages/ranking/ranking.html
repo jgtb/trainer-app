@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="darklight" hideBackButton>
+  	<ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Ranking</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-segment [(ngModel)]="tab" color="secondary">
+	  <ion-segment-button value="atual">
+	    Atual
+	  </ion-segment-button>
+	  <ion-segment-button value="anterior">
+	    Anterior
+	  </ion-segment-button>
+	</ion-segment>
+	<div [ngSwitch]="tab">
+		<div *ngSwitchCase="'atual'">
+			<ion-item-divider>Grupo 1</ion-item-divider>
+			<ion-item-divider>Grupo 2</ion-item-divider>
+			<ion-item-divider>Grupo 3</ion-item-divider>
+			<ion-item-divider>Grupo 4</ion-item-divider>
+		</div>
+		<div *ngSwitchCase="'anterior'">
+			<ion-item-divider>Grupo 1</ion-item-divider>
+			<ion-item-divider>Grupo 2</ion-item-divider>
+			<ion-item-divider>Grupo 3</ion-item-divider>
+			<ion-item-divider>Grupo 4</ion-item-divider>
+		</div>
+	</div>
+</ion-content>
+	

@@ -1,0 +1,101 @@
+$ionfitness-font-path: $font-path !default;
+
+$ionfitness-weightlifting: "\e900";
+$ionfitness-step-up: "\e902";
+$ionfitness-wall-sit: "\e901";
+$ionfitness-run: "\e903";
+$ionfitness-jump: "\e904";
+$ionfitness-flexions: "\e905";
+$ionfitness-calories: "\e906";
+$ionfitness-beats: "\e907";
+$ionfitness-dumbbells: "\e908";
+$ionfitness-duration: "\e909";
+$ionfitness-workouts: "\e90a";
+$ionfitness-workouts-time: "\e90b";
+
+@font-face {
+  font-family: 'ionfitness';
+  src:
+    url('#{$ionfitness-font-path}/ionfitness.ttf?lx33pr') format('truetype'),
+    url('#{$ionfitness-font-path}/ionfitness.woff?lx33pr') format('woff'),
+    url('#{$ionfitness-font-path}/ionfitness.svg?lx33pr#ionfitness') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ionfitness' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ionfitness-weightlifting {
+  &:before {
+    content: $ionfitness-weightlifting;
+  }
+}
+.ionfitness-wall-sit {
+  &:before {
+    content: $ionfitness-wall-sit;
+  }
+}
+.ionfitness-step-up {
+  &:before {
+    content: $ionfitness-step-up;
+  }
+}
+.ionfitness-run {
+  &:before {
+    content: $ionfitness-run;
+  }
+}
+.ionfitness-jump {
+  &:before {
+    content: $ionfitness-jump;
+  }
+}
+.ionfitness-flexions {
+  &:before {
+    content: $ionfitness-flexions;
+  }
+}
+.ionfitness-calories {
+  &:before {
+    content: $ionfitness-calories;
+  }
+}
+.ionfitness-beats {
+  &:before {
+    content: $ionfitness-beats;
+  }
+}
+.ionfitness-dumbbells {
+  &:before {
+    content: $ionfitness-dumbbells;
+  }
+}
+.ionfitness-duration {
+  &:before {
+    content: $ionfitness-duration;
+  }
+}
+.ionfitness-workouts {
+  &:before {
+    content: $ionfitness-workouts;
+  }
+}
+.ionfitness-workouts-time {
+  &:before {
+    content: $ionfitness-workouts-time;
+  }
+}
+

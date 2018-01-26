@@ -1,0 +1,39 @@
+.ios, .md, .wp {
+	page-aula {
+    	ion-item-divider {
+    		background-color: map-get($colors, dark);
+    		border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+	      	color: lighten(map-get($colors, darklight), 18%);
+	      	font-size: 1.4rem;
+      		&.item-block {
+		        .item-inner {
+		        	border-bottom: 0;
+		        }
+		        &:first-child {
+		          border-top: 1px solid darken(map-get($colors, dark), 2%);
+		        }
+		        &:last-child {
+		          border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+		        }
+      		}
+    	}
+    	ion-item {
+    		background-color: map-get($colors, darklight);
+    		border-bottom: 1px solid darken(map-get($colors, darklight), 2%);
+	      	color: lighten(map-get($colors, darklight), 18%);
+	      	font-size: 1.4rem;
+      		&.item-block {
+		        .item-inner {
+		        	border-bottom: 0;
+		        }
+		        &:first-child {
+		          border-top: 1px solid darken(map-get($colors, dark), 2%);
+		        }
+		        &:last-child {
+		          border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+		        }
+      		}
+    	}
+	}
+}
+

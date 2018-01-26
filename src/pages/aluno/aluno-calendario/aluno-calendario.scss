@@ -1,0 +1,56 @@
+.ios, .md, .wp {
+	page-aluno-calendario {
+		ion-list {
+			margin-bottom: 0;
+    	ion-item {
+    		border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+      	color: lighten(map-get($colors, darklight), 18%);
+      	font-size: 1.4rem;
+    		&:nth-child(odd) {
+        	background-color: map-get($colors, dark);
+      	}
+      	&:nth-child(even) {
+        	background-color: map-get($colors, darklight);
+      	}
+    		&.item-block {
+	        .item-inner {
+	        	border-bottom: 0;
+	        }
+	        &:first-child {
+	          border-top: 1px solid darken(map-get($colors, dark), 2%);
+	        }
+	        &:last-child {
+	          border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+	        }
+    		}
+	    }
+			&.event-detail-container {
+				margin-top: 20px;
+				margin-bottom: 20px;
+				border-top: none;
+			}
+		}
+		.calendar-title {
+			color: lighten(map-get($colors, darklight), 18%);
+			text-transform: capitalize;
+		}
+		.monthview-datetable thead tr th small, .monthview-datetable tbody tr td {
+			color: lighten(map-get($colors, darklight), 18%);
+		}
+		.table-bordered, .table-bordered thead tr th, .table-bordered tbody tr td {
+			border-color: darken(map-get($colors, dark), 2%) !important;
+		}
+		.monthview-primary-with-event {
+			background: darken(map-get($colors, dark), 2%);
+		}
+		.monthview-secondary-with-event {
+			background: darken(map-get($colors, dark), 2%);
+		}
+		.monthview-selected {
+			background: lighten(map-get($colors, secondary), 30%) !important;
+		}
+		.monthview-current {
+			background: lighten(map-get($colors, secondary), 20%);
+		}
+	}
+}

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="darklight">
+    <ion-title>Calendário</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only class="btn-circle" (click)="create()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="{{ aluno.img }}">
+      </ion-avatar>
+      <h2>{{ aluno.name }}</h2>
+    </ion-item>
+	</ion-list>
+  <ion-grid padding>
+    <h3 class="calendar-title">{{ title }}</h3>
+    <calendar [eventSource]="eventSource"
+      [calendarMode]="calendar.mode"
+      [currentDate]="calendar.currentDate"
+      [locale]="calendar.locale"
+      [noEventsLabel]="calendar.noEventsLabel"
+      [formatDayHeader]="calendar.formatDayHeader"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      (onEventSelected)="onEventSelected($event)" step="30">
+    </calendar>
+  </ion-grid>
+</ion-content>

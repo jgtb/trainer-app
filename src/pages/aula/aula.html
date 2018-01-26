@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="darklight" hideBackButton>
+  	<ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Aulas</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only class="btn-circle" (click)="create()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group *ngFor="let item of items;">
+    <ion-item-divider color="light">{{ item.description }}</ion-item-divider>
+    <ion-item *ngFor="let aula of item.aulas" (click)="open(aula)">
+      <h2 item-start>{{ aula.description}}</h2>
+      <p item-end>09:00 ás 12:00</p>
+    </ion-item>
+  </ion-item-group>
+</ion-content>

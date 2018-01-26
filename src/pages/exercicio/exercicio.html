@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="darklight" hideBackButton>
+  	<ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Exercícios</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only class="btn-circle" (click)="create()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-searchbar (ionInput)="search($event)" placeholder="Pesquisar..."></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item *ngFor="let item of items | exercicioFilter: searchTerm">
+      <ion-thumbnail item-start (click)="open(item)">
+        <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
+      </ion-thumbnail>
+      <ion-item item-end class="bg-clean">
+        <ion-label item-start>{{ item.description}}</ion-label>
+        <ion-toggle item-end></ion-toggle>
+      </ion-item>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="infinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

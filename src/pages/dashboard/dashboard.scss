@@ -1,0 +1,63 @@
+.ios, .md, .wp {
+	page-dashboard {
+		ion-content {
+			background-color: map-get($colors, dark);
+	      	.data-logo {
+		        text-align: center;
+		        margin-top: 25px;
+		        margin-bottom: 25px;
+		        img {
+		          width: 140px;
+		          height: 140px;
+		        }
+	      	}
+			.data-info {
+				ion-grid {
+					background-color: map-get($colors, darklight);
+					text-align: center;
+					padding: 10px 5px;
+					ion-row {
+						ion-col {
+							h2 {
+								color: lighten( map-get($colors, darklight) , 25%);
+								font-size: 2rem;
+								font-weight: 400;
+								margin: 0;
+							}
+							p {
+								color: lighten( map-get($colors, darklight) , 15%);
+								margin: 0;
+							}
+						}
+					}
+				}
+			}
+			.data-menu {
+				ion-grid {
+	          		margin-top: 10px;
+					ion-row {
+						ion-col {
+							ion-card {
+								background-color: map-get($colors, darklight);
+								margin: 0;
+								text-align: center;
+								width: 100%;
+								h2 {
+									color: map-get($colors, secondary);
+									font-size: 2.4rem;
+								}
+								small {
+									color: lighten( map-get($colors, darklight) , 15%);
+									font-weight: 600;
+								}
+							}
+						}
+					}
+				}
+			}
+			.odd-last-menu-item {
+    			margin-left: 25%;
+  			}
+		}
+	}
+}

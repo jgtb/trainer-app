@@ -1,0 +1,51 @@
+<ion-content>
+
+  <div class="data-logo">
+    <img src="http://fit.nexur.com.br/logos/1.png" alt="Company">
+  </div>
+
+	<div class="data-info">
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<h2>550</h2>
+					<p>Alunos</p>
+				</ion-col>
+				<ion-col>
+					<h2>15</h2>
+					<p>Avaliações</p>
+				</ion-col>
+				<ion-col *ngIf="show">
+					<h2>9</h2>
+					<p>Aulas</p>
+				</ion-col>
+        <ion-col>
+					<h2>320</h2>
+					<p>Exercícios</p>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+
+	<div class="data-menu">
+    <ion-grid>
+			<ion-row>
+        <ion-col col-6 *ngFor="let item of menu" class="{{ item.class }}" (click)="open(item.component)">
+					<ion-card>
+						<ion-card-content>
+							<small>{{ item.title }}</small>
+							<h2><ion-icon name="{{ item.icon }}"></ion-icon></h2>
+						</ion-card-content>
+					</ion-card>
+				</ion-col>
+      </ion-row>
+    </ion-grid>
+	</div>
+
+  <ion-fab top right>
+		<button ion-fab icon-only mini color="darklight">
+			<ion-icon name="md-log-out"></ion-icon>
+		</button>
+  </ion-fab>
+
+</ion-content>

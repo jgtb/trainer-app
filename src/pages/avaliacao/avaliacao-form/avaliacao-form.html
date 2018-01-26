@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar color="darklight">
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-slides padding spaceBetween="20" slidesPerView="2" centeredSlides="false">
+	  <ion-slide *ngFor="let item of slides">
+	    <ion-card>
+			<ion-card-content>
+				<small>{{ item.title }}</small>
+				<h2><ion-icon name="{{ item.icon }}"></ion-icon></h2>
+			</ion-card-content>
+		</ion-card>
+	  </ion-slide>
+	</ion-slides>
+</ion-content>

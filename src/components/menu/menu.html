@@ -1,0 +1,30 @@
+<ion-content class="menu">
+  <div class="overlay" (click)="dismiss()"></div>
+  <div class="menu-body {{ menuClass }}">
+    <div class="menu-content">
+      <ion-list>
+        <ion-item>
+          <ion-avatar item-start *ngIf="item.img">
+            <img src="{{ item.img }}">
+          </ion-avatar>
+          <h2>{{ item.title }}</h2>
+          <p *ngIf="item.time" item-end>{{ item.time }}</p>
+        </ion-item>
+      </ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 *ngFor="let item of menu" (click)="action(item)" class="{{ item.class }}">
+            <ion-card>
+              <ion-card-content>
+                <small>{{ item.title }}</small>
+                <h2>
+                  <ion-icon name="{{ item.icon }}"></ion-icon>
+                </h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>
