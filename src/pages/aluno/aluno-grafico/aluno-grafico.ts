@@ -7,9 +7,13 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class AlunoGraficoPage {
 
+  aluno: any = {};
+
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams) {}
+    public navParams: NavParams) {
+      this.aluno = this.navParams.get('aluno');
+    }
 
   ionViewDidLoad() {}
 

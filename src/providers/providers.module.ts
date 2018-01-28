@@ -7,14 +7,16 @@ import { AvaliacaoProvider } from '../providers/avaliacao/avaliacao';
 import { ExercicioProvider } from '../providers/exercicio/exercicio';
 import { ConfiguracaoProvider } from '../providers/configuracao/configuracao';
 
+const PROVIDERS = [
+	AuthProvider,
+	AlunoProvider,
+	AulaProvider,
+	AvaliacaoProvider,
+	ExercicioProvider,
+	ConfiguracaoProvider
+];
+
 @NgModule({
-	providers: [
-		AuthProvider,
-		AlunoProvider,
-    AulaProvider,
-    AvaliacaoProvider,
-    ExercicioProvider,
-    ConfiguracaoProvider
-	]
+	providers: [PROVIDERS]
 })
 export class ProvidersModule {}
