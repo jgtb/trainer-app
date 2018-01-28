@@ -1,19 +1,32 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
-@IonicPage()
 @Component({
   selector: 'page-aluno-calendario-view',
   templateUrl: 'aluno-calendario-view.html',
 })
 export class AlunoCalendarioViewPage {
 
-  constructor(
-  	public navCtrl: NavController, 
-  	public navParams: NavParams) {}
+  title = '';
 
-  ionViewDidLoad() {}
+  treino: any = {};
+  aluno: any = {};
+
+  constructor(
+  	public navCtrl: NavController,
+  	public navParams: NavParams) {
+  		this.treino = this.navParams.get('item');
+      this.aluno = this.navParams.get('aluno');
+  }
+
+  ionViewDidLoad() {
+  	this.setTitle();
+  }
 
   ionViewDidEnter() {}
+
+  setTitle() {
+    this.title = this.treino.description;
+  }
 
 }

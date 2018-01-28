@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { DashboardPage } from '../../pages/dashboard/dashboard';
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -11,7 +10,7 @@ import { DashboardPage } from '../../pages/dashboard/dashboard';
 export class LoginPage {
 
   constructor(
-  	public navCtrl: NavController, 
+  	public navCtrl: NavController,
   	public navParams: NavParams) {}
 
   ionViewDidLoad() {}

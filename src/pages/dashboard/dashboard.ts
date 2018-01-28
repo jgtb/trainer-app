@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { AlunoPage } from '../../pages/aluno/aluno';
 import { AvaliacaoPage } from '../../pages/avaliacao/avaliacao';
@@ -8,7 +8,6 @@ import { AulaPage } from '../../pages/aula/aula';
 import { RankingPage } from '../../pages/ranking/ranking';
 import { ConfiguracaoPage } from '../../pages/configuracao/configuracao';
 
-@IonicPage()
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',

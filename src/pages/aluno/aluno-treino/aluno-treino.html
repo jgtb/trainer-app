@@ -10,14 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png">
-      </ion-avatar>
-      <h2>{{ aluno.name }}</h2>
-    </ion-item>
-  </ion-list>
+  <info [aluno]="aluno"></info>
   <ion-list>
     <ion-item *ngFor="let item of items" (click)="open(item)">
       <h2>{{ item.description }}</h2>

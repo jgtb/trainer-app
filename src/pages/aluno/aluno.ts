@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { AlunoFormPage } from './aluno-form/aluno-form';
 import { AlunoMensagemPage } from './aluno-mensagem/aluno-mensagem';
@@ -10,10 +10,9 @@ import { AlunoGraficoPage } from './aluno-grafico/aluno-grafico';
 
 import { MenuComponent } from '../../components/menu/menu';
 
-@IonicPage()
 @Component({
   selector: 'page-aluno',
-  templateUrl: 'aluno.html',
+  templateUrl: 'aluno.html'
 })
 export class AlunoPage {
 
@@ -56,7 +55,7 @@ export class AlunoPage {
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, title: item.name, img: item.img};
+    return {...item, start: item.img, center: item.name};
   }
 
   open(item) {

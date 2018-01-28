@@ -1,12 +1,25 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from "@angular/common";
+import { NgModule } from '@angular/core';
+import { IonicModule } from 'ionic-angular';
+
 import { MenuComponent } from './menu/menu';
+import { ListRankingComponent } from './list-ranking/list-ranking';
+import { InfoComponent } from './info/info';
 
 @NgModule({
-	declarations: [MenuComponent],
-	imports: [CommonModule],
-	exports: [MenuComponent],
-	entryComponents: [MenuComponent],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  declarations: [
+		MenuComponent,
+		ListRankingComponent,
+		InfoComponent
+	],
+  exports: [
+		MenuComponent,
+		ListRankingComponent,
+		InfoComponent
+	],
+  imports: [
+    IonicModule.forRoot(MenuComponent),
+		IonicModule.forRoot(ListRankingComponent),
+		IonicModule.forRoot(InfoComponent)
+  ]
 })
 export class ComponentsModule {}

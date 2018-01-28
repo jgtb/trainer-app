@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { AlunoTreinoFormPage } from './aluno-treino-form/aluno-treino-form';
 import { AlunoTreinoViewPage } from './aluno-treino-view/aluno-treino-view';
 
 import { MenuComponent } from '../../../components/menu/menu';
 
-@IonicPage()
 @Component({
   selector: 'page-aluno-treino',
-  templateUrl: 'aluno-treino.html',
+  templateUrl: 'aluno-treino.html'
 })
 export class AlunoTreinoPage {
 
@@ -41,7 +40,7 @@ export class AlunoTreinoPage {
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, title: item.description};
+    return {...item, center: item.description};
   }
 
   open(item) {

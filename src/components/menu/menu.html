@@ -4,11 +4,11 @@
     <div class="menu-content">
       <ion-list>
         <ion-item>
-          <ion-avatar item-start *ngIf="item.img">
-            <img src="{{ item.img }}">
+          <ion-avatar item-start *ngIf="item.start">
+            <img src="{{ item.start }}">
           </ion-avatar>
-          <h2>{{ item.title }}</h2>
-          <p *ngIf="item.time" item-end>{{ item.time }}</p>
+          <h2>{{ item.center }}</h2>
+          <p *ngIf="item.time" item-end>{{ item.end }}</p>
         </ion-item>
       </ion-list>
       <ion-grid>

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
-@IonicPage()
 @Component({
   selector: 'page-aluno-avaliacao-view',
   templateUrl: 'aluno-avaliacao-view.html',
@@ -14,7 +13,7 @@ export class AlunoAvaliacaoViewPage {
   aluno: any = {};
 
   constructor(
-  	public navCtrl: NavController, 
+  	public navCtrl: NavController,
   	public navParams: NavParams) {
   		this.avaliacao = this.navParams.get('item');
       this.aluno = this.navParams.get('aluno');

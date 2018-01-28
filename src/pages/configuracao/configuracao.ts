@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
-@IonicPage()
 @Component({
   selector: 'page-configuracao',
   templateUrl: 'configuracao.html',
@@ -9,7 +8,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ConfiguracaoPage {
 
   constructor(
-  	public navCtrl: NavController, 
+  	public navCtrl: NavController,
   	public navParams: NavParams) {}
 
   ionViewDidLoad() {}

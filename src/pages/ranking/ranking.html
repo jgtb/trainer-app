@@ -20,17 +20,10 @@
 	</ion-segment>
 	<div [ngSwitch]="tab">
 		<div *ngSwitchCase="'atual'">
-			<ion-item-divider>Grupo 1</ion-item-divider>
-			<ion-item-divider>Grupo 2</ion-item-divider>
-			<ion-item-divider>Grupo 3</ion-item-divider>
-			<ion-item-divider>Grupo 4</ion-item-divider>
+      <list-ranking [items]="itemsAtual"></list-ranking>
 		</div>
 		<div *ngSwitchCase="'anterior'">
-			<ion-item-divider>Grupo 1</ion-item-divider>
-			<ion-item-divider>Grupo 2</ion-item-divider>
-			<ion-item-divider>Grupo 3</ion-item-divider>
-			<ion-item-divider>Grupo 4</ion-item-divider>
+			<list-ranking [items]="itemsAnterior"></list-ranking>
 		</div>
 	</div>
 </ion-content>
-	

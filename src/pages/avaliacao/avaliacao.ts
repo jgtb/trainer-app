@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { AvaliacaoFormPage } from './avaliacao-form/avaliacao-form';
 import { AvaliacaoViewPage } from './avaliacao-view/avaliacao-view';
 
 import { MenuComponent } from '../../components/menu/menu';
 
-@IonicPage()
 @Component({
   selector: 'page-avaliacao',
   templateUrl: 'avaliacao.html',
@@ -28,7 +27,7 @@ export class AvaliacaoPage {
   ];
 
   constructor(
-  	public navCtrl: NavController, 
+  	public navCtrl: NavController,
   	public navParams: NavParams,
     public modalCtrl: ModalController) {}
 
@@ -37,7 +36,7 @@ export class AvaliacaoPage {
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, title: item.description};
+    return {...item, center: item.description};
   }
 
   open(item) {

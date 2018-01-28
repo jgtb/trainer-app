@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
-@IonicPage()
+import { AlunoCalendarioFormPage } from './aluno-calendario-form/aluno-calendario-form';
+import { AlunoCalendarioViewPage } from './aluno-calendario-view/aluno-calendario-view';
+
 @Component({
   selector: 'page-aluno-calendario',
   templateUrl: 'aluno-calendario.html',
@@ -48,6 +50,7 @@ export class AlunoCalendarioPage {
       endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
 
       events.push({
+          description: 'Event - ' + i,
           title: 'Event - ' + i,
           startTime: startTime,
           endTime: endTime,
@@ -56,6 +59,14 @@ export class AlunoCalendarioPage {
     }
 
     return events;
+  }
+
+  create() {
+    this.navCtrl.push(AlunoCalendarioFormPage, {aluno: this.aluno}, {animate: false});
+  }
+
+  onEventSelected(item) {
+    this.navCtrl.push(AlunoCalendarioViewPage, {aluno: this.aluno, item: item}, {animate: false});
   }
 
   onViewTitleChanged(title) {

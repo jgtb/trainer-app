@@ -20,7 +20,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list>
-    <ion-item *ngFor="let item of items | exercicioFilter: searchTerm">
+    <ion-item *ngFor="let item of items | exercicioFilter : searchTerm">
       <ion-thumbnail item-start (click)="open(item)">
         <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
       </ion-thumbnail>

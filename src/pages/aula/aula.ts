@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { AulaFormPage } from './aula-form/aula-form';
 import { AulaViewPage } from './aula-view/aula-view';
 
 import { MenuComponent } from '../../components/menu/menu';
 
-@IonicPage()
 @Component({
   selector: 'page-aula',
   templateUrl: 'aula.html',
@@ -61,7 +60,7 @@ export class AulaPage {
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, title: item.description, time: item.clock};
+    return {...item, center: item.description, end: item.clock};
   }
 
   open(item) {

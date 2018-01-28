@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { ExercicioFormPage } from './exercicio-form/exercicio-form';
 import { ExercicioViewPage } from './exercicio-view/exercicio-view';
 
 import { MenuComponent } from '../../components/menu/menu';
 
-@IonicPage()
 @Component({
   selector: 'page-exercicio',
-  templateUrl: 'exercicio.html',
+  templateUrl: 'exercicio.html'
 })
 export class ExercicioPage {
 
@@ -48,7 +47,7 @@ export class ExercicioPage {
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, title: item.description};
+    return {...item, center: item.description};
   }
 
   open(item) {
