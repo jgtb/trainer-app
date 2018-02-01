@@ -17,7 +17,7 @@ export class AlunoCalendarioPage {
 
   calendar = {
     mode: 'month',
-    locale: 'pt-PT',
+    locale: 'en',
     formatDayHeader: 'EEE',
     noEventsLabel: 'Nenhum Treino',
     currentDate: new Date()

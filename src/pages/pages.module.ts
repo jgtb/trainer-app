@@ -83,8 +83,8 @@ const PROVIDERS = [
 ];
 
 import { registerLocaleData } from '@angular/common';
-import localePtPt from '@angular/common/locales/pt-PT';
-registerLocaleData(localePtPt);
+import localeEn from '@angular/common/locales/en';
+registerLocaleData(localeEn);
 
 @NgModule({
 	declarations: [PAGES],

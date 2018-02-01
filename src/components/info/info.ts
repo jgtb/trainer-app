@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 export class InfoComponent {
 
   @Input('aluno') aluno: any = {};
-  @Input('index') index: number = 0;
+  @Input('index') index: any = 0;
 
   constructor() {}
 

@@ -7,15 +7,14 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class AulaFormPage {
 
-  item: any = {};
+  aula: any = {};
 
   title = '';
 
   constructor(
   	public navCtrl: NavController,
   	public navParams: NavParams) {
-      this.item = this.navParams.get('item');
-      console.log(this.item);
+      this.aula = this.navParams.get('item');
     }
 
   ionViewDidLoad() {
@@ -25,7 +24,7 @@ export class AulaFormPage {
   ionViewDidEnter() {}
 
   setTitle() {
-    this.title = !this.item ?  'Nova Aula' : this.item.description;
+    this.title = !this.aula ?  'Nova Aula' : this.aula.description;
   }
 
 }
