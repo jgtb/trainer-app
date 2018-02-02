@@ -3,6 +3,13 @@
     ion-list {
 		  margin-bottom: 0;
 		}
+    .bar-buttons-ios {
+      .btn-mensagem {
+        ion-icon {
+          font-size: 1.4em;
+        }
+      }
+    }
 		.btn-mensagem {
 			ion-icon {
 				font-size: 1.6em;

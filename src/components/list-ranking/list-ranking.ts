@@ -6,12 +6,12 @@ import { Component, Input } from '@angular/core';
 })
 export class ListRankingComponent {
 
-  @Input('items') items: any = [];
+  @Input('items') items = [];
 
   constructor() {}
 
   toggle(index) {
-    this.items = this.items.map((e, i) => ({...e, show: i == index ? true : false}));
+    this.items = this.items.map((e, i) => ({...e, show: i === index ? true : false}));
   }
 
 }

@@ -6,13 +6,13 @@ import { Component, Input } from '@angular/core';
 })
 export class InfoComponent {
 
-  @Input('aluno') aluno: any = {};
-  @Input('index') index: any = 0;
+  @Input('aluno') aluno = {};
+  @Input('index') index = 0;
 
   constructor() {}
 
   class() {
-    return this.index % 2 == 0 ? 'even' : 'odd';
+    return this.index % 2 === 0 ? 'even' : 'odd';
   }
 
 }

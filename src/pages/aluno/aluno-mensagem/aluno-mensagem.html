@@ -4,6 +4,26 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-icon item-left name="person"></ion-icon>
+      <ion-label>Alunos</ion-label>
+      <ion-select multiple>
+        <ion-option>Todos</ion-option>
+        <ion-option item-end *ngFor="let item of items" value="item.name">{{ item.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-icon item-left name="create"></ion-icon>
+      <ion-textarea placeholder="Descrição..." rows="9"></ion-textarea>
+    </ion-item>
+    <div text-center>
+      <button ion-button color="secondary" round (click)="create()">
+        ENVIAR
+      </button>
+    </div>
+  </ion-list>
 
 </ion-content>

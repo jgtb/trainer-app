@@ -44,7 +44,17 @@ export class AlunoAvaliacaoPage {
   }
 
   open(item) {
-    this.modalCtrl.create(MenuComponent, {aluno: this.aluno, item: this.assign(item), menu: this.menu}).present();
+    const modal = this.modalCtrl.create(MenuComponent, {aluno: this.aluno, item: this.assign(item), menu: this.menu});
+    modal.present();
+    modal.onDidDismiss(res => {
+      if (typeof res != 'undefined') {
+        if (res.component) {
+          this.navCtrl.push(res.component, {aluno: res.aluno, item: res.item}, {animate: false});
+          return
+        }
+        res.method(res.item, res.aluno);
+      }
+    });
   }
 
   create() {

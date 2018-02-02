@@ -1,5 +1,8 @@
 .ios, .md, .wp {
 	page-dashboard {
+		.fab-ios {
+			margin-top: 15px;
+		}
 		ion-content {
 			background-color: map-get($colors, dark);
   		.data-logo {

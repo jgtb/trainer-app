@@ -10,14 +10,16 @@
 </ion-header>
 
 <ion-content>
-	<ion-segment [(ngModel)]="tab" color="secondary">
-	  <ion-segment-button value="atual">
-	    Atual
-	  </ion-segment-button>
-	  <ion-segment-button value="anterior">
-	    Anterior
-	  </ion-segment-button>
-	</ion-segment>
+	<ion-toolbar color="dark">
+    <ion-segment [(ngModel)]="tab" color="secondary">
+  	  <ion-segment-button value="atual">
+  	    Atual
+  	  </ion-segment-button>
+  	  <ion-segment-button value="anterior">
+  	    Anterior
+  	  </ion-segment-button>
+  	</ion-segment>
+  </ion-toolbar>
 	<div [ngSwitch]="tab">
 		<div *ngSwitchCase="'atual'">
       <list-ranking [items]="itemsAtual"></list-ranking>

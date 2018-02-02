@@ -1,21 +1,4 @@
 .ios, .md, .wp {
 	page-avaliacao-form {
-		ion-slides {
-			height: 20%;
-			ion-card {
-				background-color: map-get($colors, darklight) !important;
-				margin: 0;
-				text-align: center;
-				width: 100%;
-				h2 {
-					color: map-get($colors, secondary) !important;
-					font-size: 2.4rem;
-				}
-				small {
-					color: lighten( map-get($colors, darklight) , 35%) !important;
-					font-weight: 600;
-				}
-			}
-		}
 	}
 }

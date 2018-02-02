@@ -6,6 +6,11 @@
       </button>
     </ion-buttons>
     <ion-title>Configurações</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only class="btn-circle btn-ajuda" (click)="help()">
+        <ion-icon name="help"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -15,23 +20,100 @@
       <h2 item-start>Informações</h2>
       <ion-icon name="information-circle" item-end></ion-icon>
     </ion-item-divider>
+    <ion-list class="configuracao-informacoes">
+      <ion-item>
+        <ion-icon item-left name="bookmark"></ion-icon>
+        <ion-input type="text" placeholder="Nome Fantasia"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="image"></ion-icon>
+        <ion-label>Logomarca</ion-label>
+        <ion-avatar item-end>
+          <img src="http://fit.nexur.com.br/logos/1.png" alt="">
+        </ion-avatar>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="briefcase"></ion-icon>
+        <ion-textarea placeholder="Resumo" rows="9"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="person"></ion-icon>
+        <ion-label>Desativar Alunos</ion-label>
+        <ion-input type="text" placeholder="Dias"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Após o Vencimento</ion-label>
+        <ion-toggle item-end color="secondary"></ion-toggle>
+      </ion-item>
+    </ion-list>
   </ion-item-group>
   <ion-item-group>
     <ion-item-divider color="light">
       <h2 item-start>Cores</h2>
       <ion-icon name="color-palette" item-end></ion-icon>
     </ion-item-divider>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4 *ngFor="let item of colors">
+          <ion-card>
+            <ion-card-content>
+              <small>{{ item.title }}</small>
+              <h2 [ngStyle]="setColor(item.color)">
+                <ion-icon name="water"></ion-icon>
+              </h2>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-item-group>
   <ion-item-group>
     <ion-item-divider color="light">
       <h2 item-start>Ranking</h2>
       <ion-icon name="podium" item-end></ion-icon>
     </ion-item-divider>
+    <ion-list class="configuracao-ranking">
+      <ion-item>
+        <ion-icon item-left name="calendar"></ion-icon>
+        <ion-label>Período</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="calendar"></ion-icon>
+        <ion-label>Frequência</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="calendar"></ion-icon>
+        <ion-label>Peso</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="calendar"></ion-icon>
+        <ion-label>PG</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="calendar"></ion-icon>
+        <ion-label>Massa</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-list>
   </ion-item-group>
   <ion-item-group>
     <ion-item-divider color="light">
       <h2 item-start>Notificações</h2>
       <ion-icon name="notifications" item-end></ion-icon>
     </ion-item-divider>
+    <ion-list class="configuracao-notificacoes">
+      <ion-item>
+        <ion-label>Aniversário de Alunos</ion-label>
+        <ion-toggle color="secondary"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Treino de Alunos</ion-label>
+        <ion-toggle color="secondary"></ion-toggle>
+      </ion-item>
+    </ion-list>
   </ion-item-group>
 </ion-content>

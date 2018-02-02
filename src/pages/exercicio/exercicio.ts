@@ -19,20 +19,20 @@ export class ExercicioPage {
   ];
 
   items = [
-    {description: 'Exercício 01'},
-    {description: 'Exercício 02'},
-    {description: 'Exercício 03'},
-    {description: 'Exercício 04'},
-    {description: 'Exercício 05'},
-    {description: 'Exercício 06'},
-    {description: 'Exercício 07'},
-    {description: 'Exercício 08'},
-    {description: 'Exercício 09'},
-    {description: 'Exercício 10'},
-    {description: 'Exercício 11'},
-    {description: 'Exercício 12'},
-    {description: 'Exercício 13'},
-    {description: 'Exercício 14'}
+    {description: 'Exercício 01', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 02', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 03', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 04', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 05', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 06', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 07', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 08', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 09', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 10', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 11', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 12', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 13', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
+    {description: 'Exercício 14', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'}
   ];
 
   searchTerm = '';
@@ -51,7 +51,17 @@ export class ExercicioPage {
   }
 
   open(item) {
-    this.modalCtrl.create(MenuComponent, {aluno: item, item: this.assign(item), menu: this.menu}).present();
+    const modal = this.modalCtrl.create(MenuComponent, {aluno: item, item: this.assign(item), menu: this.menu});
+    modal.present();
+    modal.onDidDismiss(res => {
+      if (typeof res != 'undefined') {
+        if (res.component) {
+          this.navCtrl.push(res.component, {aluno: res.aluno, item: res.item}, {animate: false});
+          return
+        }
+        res.method(res.item, res.aluno);
+      }
+    });
   }
 
   create() {

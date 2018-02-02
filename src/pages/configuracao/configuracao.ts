@@ -7,6 +7,14 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ConfiguracaoPage {
 
+  colors = [
+    {title: 'Primary', color: '#263238'},
+    {title: 'Secondary', color: '#212121'},
+    {title: 'Light', color: '#ffffff'},
+    {title: 'Dark', color: '#004d40'},
+    {title: 'Darklight', color: '#00695c'}
+  ];
+
   constructor(
   	public navCtrl: NavController,
   	public navParams: NavParams) {}
@@ -14,6 +22,12 @@ export class ConfiguracaoPage {
   ionViewDidLoad() {}
 
   ionViewDidEnter() {}
+
+  setColor(color) {
+    return {
+      'color': color
+    }
+  }
 
   back() {
     this.navCtrl.pop({animate: false});

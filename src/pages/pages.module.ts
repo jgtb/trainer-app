@@ -49,6 +49,8 @@ const PAGES = [
 	AvaliacaoFormPage,
 	AvaliacaoViewPage,
 	ExercicioPage,
+	ExercicioFormPage,
+	ExercicioViewPage,
 	AulaPage,
 	AulaFormPage,
 	AulaViewPage,
@@ -60,11 +62,15 @@ import { Ng2FileInputModule } from 'ng2-file-input';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { NgCalendarModule  } from 'ionic2-calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
 import { ComponentsModule } from '../components/components.module';
 
 const COMPONENTS = [
 	NgCalendarModule,
 	RoundProgressModule,
+	BrowserAnimationsModule,
+	CalendarModule.forRoot(),
 	IonicImageLoader.forRoot(),
 	Ng2FileInputModule.forRoot(),
 	ComponentsModule

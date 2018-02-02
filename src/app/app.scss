@@ -21,4 +21,40 @@
 	.modal-wrapper {
 		background: rgba(0.5, 0.5, 0.5, 0.5) !important;
 	}
+	ion-alert {
+		.alert-wrapper {
+			background-color: map-get($colors, darklight) !important;
+			.alert-title, .alert-radio-label, .alert-checkbox-label {
+				color: map-get($colors, light);
+			}
+			.alert-sub-title {
+				color: lighten(map-get($colors, darklight), 30%);
+			}
+			.alert-button {
+				background-color: map-get($colors, secondary);
+				border-top: 0;
+				border-right: 1px solid map-get($colors, dark);
+				color: map-get($colors, dark);
+				&.activated {
+					background-color: darken(map-get($colors, secondary), 5%);
+				}
+			}
+			.alert-checkbox-icon {
+				border-color: map-get($colors, secondary);
+				background-color: map-get($colors, secondary);
+			}
+			.alert-radio-group {
+				border-top: 0.55px solid map-get($colors, dark);
+			}
+			.alert-radio-inner {
+				border-color: map-get($colors, secondary);
+			}
+			.alert-checkbox-inner {
+				border-color: map-get($colors, dark);
+			}
+		}
+	}
+	.item.item-input.input-has-focus .item-inner {
+	    box-shadow: none;
+	}
 }

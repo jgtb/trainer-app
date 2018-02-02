@@ -8,9 +8,9 @@ import { NavController, ViewController, NavParams } from 'ionic-angular';
 })
 export class MenuComponent {
 
-  aluno: any = {};
-  item: any = {};
-  menu: any = [{}];
+  aluno = {};
+  item = {};
+  menu = [{}];
 
   menuClass: '';
 
@@ -25,20 +25,7 @@ export class MenuComponent {
   }
 
   action(item) {
-    if (item.component) {
-      this.open(item.component);
-      return
-    }
-
-    this.alert(item.method);
-  }
-
-  open(component) {
-    this.navCtrl.push(component, {aluno: this.aluno, item: this.item}, {animate: false});
-  }
-
-  alert(method) {
-    method(this.item, this.aluno);
+    this.viewCtrl.dismiss({component: item.component, method: item.method, aluno: this.aluno, item: this.item});
   }
 
   dismiss() {

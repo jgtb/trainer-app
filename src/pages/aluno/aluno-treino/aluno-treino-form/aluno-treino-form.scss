@@ -1,29 +1,44 @@
 .ios, .md, .wp {
 	page-aluno-treino-form {
 		ion-list {
-			margin-bottom: 0;
-    	ion-item {
-  			border-bottom: 1px solid darken(map-get($colors, dark), 2%);
-      	color: lighten(map-get($colors, darklight), 18%);
-      	font-size: 1.4rem;
-	    	&:nth-child(odd) {
-      		background-color: map-get($colors, dark);
-      	}
-      	&:nth-child(even) {
-        	background-color: map-get($colors, darklight);
-      	}
-    		&.item-block {
-	        .item-inner {
-	        	border-bottom: 0;
-	        }
-	        &:first-child {
-	          border-top: 1px solid darken(map-get($colors, dark), 2%);
-	        }
-	        &:last-child {
-	          border-bottom: 1px solid darken(map-get($colors, dark), 2%);
-	        }
-    		}
-    	}
+			background-color: rgba(map-get($colors, dark), 0.9);
+			margin-top: -15px;
+			&:first-of-type {
+				margin: 0 auto;
+				margin-top: 0px;
+				width: 80%;
+			}
+			ion-item {
+				background-color: map-get($colors, darklight);
+				color: map-get($colors, secondary);
+				margin-bottom: 10px;
+				font-size: 1.4rem;
+				padding-left: 20px;
+				border-radius: 20px;
+				&:first-child {
+					border-top: 0;
+				}
+				&.item-block {
+					.item-inner {
+						border-bottom: 0;
+					}
+					&:first-child {
+						border-top: none;
+					}
+					&:last-child {
+						border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+					}
+				}
+			}
+			button {
+				width: 60%;
+			}
+		}
+		.searchbar-ios {
+			width: 80%;
+			margin: 0 auto;
+			background: transparent;
+			padding-bottom: 20px;
 		}
 	}
 }

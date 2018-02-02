@@ -10,13 +10,71 @@
 					.item-inner {
 						border-bottom: 0;
 					}
-					&:first-child {
-						border-top: 1px solid darken(map-get($colors, dark), 2%);
-					}
-					&:last-child {
-						border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+				}
+			}
+			ion-list {
+				background-color: rgba(map-get($colors, dark), 0.9);
+				margin: 0 auto;
+				margin-top: 20px;
+				width: 80%;
+				&.configuracao-informacoes {
+					ion-item:last-child {
+						margin-top: -10px;
 					}
 				}
+				ion-item {
+					background-color: map-get($colors, darklight);
+					color: map-get($colors, secondary);
+					margin-bottom: 10px;
+					font-size: 1.4rem;
+					padding-left: 20px;
+					border-radius: 20px;
+					&:first-child {
+						border-top: 0;
+					}
+					&.item-block {
+						.item-inner {
+							border-bottom: 0;
+						}
+						&:first-child {
+							border-top: none;
+						}
+						&:last-child {
+							border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+						}
+					}
+				}
+				button {
+					width: 60%;
+				}
+			}
+			ion-grid {
+				margin-top: 10px;
+				ion-row {
+					ion-col {
+						&:nth-child(4) {
+							margin-left: 16.5%;
+						}
+						ion-card {
+							background-color: map-get($colors, darklight);
+							margin: 0;
+							text-align: center;
+							width: 100%;
+							h2 {
+								font-size: 2.4rem;
+							}
+							small {
+								color: lighten( map-get($colors, darklight) , 15%);
+								font-weight: 600;
+							}
+						}
+					}
+				}
+			}
+		}
+		.btn-ajuda {
+			ion-icon {
+				font-size: 1.6em;
 			}
 		}
 	}

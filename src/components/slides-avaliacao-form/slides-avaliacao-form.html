@@ -1,0 +1,10 @@
+<ion-slides padding pager paginationType="progress" spaceBetween="20" slidesPerView="2" centeredSlides="false">
+  <ion-slide *ngFor="let item of items">
+    <ion-card>
+      <ion-card-content>
+        <small>{{ item.title }}</small>
+        <h2><ion-icon name="{{ item.icon }}"></ion-icon></h2>
+      </ion-card-content>
+    </ion-card>
+  </ion-slide>
+</ion-slides>

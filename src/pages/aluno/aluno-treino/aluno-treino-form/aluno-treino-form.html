@@ -6,4 +6,41 @@
 
 <ion-content>
   <info [aluno]="aluno"></info>
+  <slides-treino-form [items]="filteredItems()"></slides-treino-form>
+  <ion-searchbar [(ngModel)]="searchTerm" placeholder="Pesquisar..."></ion-searchbar>
+  <ion-list>
+    <ion-item>
+      <ion-icon item-left name="bookmark"></ion-icon>
+      <ion-input type="text" placeholder="Descrição"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list padding>
+    <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
+        </ion-thumbnail>
+        <h2>Supino Reto</h2>
+        <p>Onda Decresc: 3x15</p>
+        <p>Intervalo: 25s</p>
+        <p>Carga: 39 kg</p>
+        <p>Nota: Descida lenta...</p>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
+        </ion-thumbnail>
+        <h2>Supino Reto</h2>
+        <p>Onda Decresc: 3x15</p>
+        <p>Intervalo: 25s</p>
+        <p>Carga: 39 kg</p>
+        <p>Nota: Descida lenta...</p>
+      </ion-item>
+    </ion-item-group>
+    <div text-center>
+      <button ion-button color="secondary" round (click)="create()">
+        SALVAR
+      </button>
+    </div>
+  </ion-list>
 </ion-content>

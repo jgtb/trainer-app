@@ -59,7 +59,17 @@ export class AlunoPage {
   }
 
   open(item) {
-    this.modalCtrl.create(MenuComponent, {aluno: item, item: this.assign(item), menu: this.menu, class: 'menu-lg'}).present();
+    const modal = this.modalCtrl.create(MenuComponent, {aluno: item, item: this.assign(item), menu: this.menu, class: 'menu-lg'});
+    modal.present();
+    modal.onDidDismiss(res => {
+      if (typeof res != 'undefined') {
+        if (res.component) {
+          this.navCtrl.push(res.component, {aluno: res.aluno, item: res.item}, {animate: false});
+          return
+        }
+        res.method(res.item, res.aluno);
+      }
+    });
   }
 
   create() {

@@ -14,7 +14,7 @@ import { ConfiguracaoPage } from '../../pages/configuracao/configuracao';
 })
 export class DashboardPage {
 
-  menu = [{}];
+  menu = [];
 
   show = true;
 

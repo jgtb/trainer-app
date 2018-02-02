@@ -1,0 +1,16 @@
+.ios, .md, .wp {
+  slides-treino-form {
+    ion-slides {
+      height: 25%;
+      margin-top: -20px;
+      .swiper-pagination {
+        bottom: 0px;
+        top: auto;
+        margin-top: 10px;
+        .swiper-pagination-progressbar {
+          background: map-get($colors, darklight);
+        }
+      }
+    }
+  }
+}

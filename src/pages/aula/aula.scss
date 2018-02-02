@@ -1,5 +1,34 @@
 .ios, .md, .wp {
 	page-aula {
+		ion-grid {
+			&.header {
+				ion-row {
+					ion-col:not(:first-child) {
+						background-color: map-get($colors, dark);
+						border: 1px solid darken(map-get($colors, dark), 2%);
+			    	color: lighten(map-get($colors, darklight), 18%);
+						text-align: center;
+					}
+				}
+			}
+			&.wrapper-content {
+				ion-row {
+					ion-col {
+						background-color: map-get($colors, dark);
+						border: 1px solid darken(map-get($colors, dark), 2%);
+						color: lighten(map-get($colors, darklight), 18%);
+						text-align: center;
+						.point {
+							display: inline-block;
+							width: 10px;
+							height: 10px;
+							border-radius: 50%;
+							background-color: map-get($colors, secondary);
+						}
+					}
+				}
+			}
+		}
 		ion-item-divider {
 			background-color: map-get($colors, dark);
 			border-bottom: 1px solid darken(map-get($colors, dark), 2%);
