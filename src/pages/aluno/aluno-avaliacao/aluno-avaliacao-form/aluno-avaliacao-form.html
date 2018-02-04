@@ -7,4 +7,46 @@
 <ion-content>
   <info [aluno]="aluno"></info>
   <slides-avaliacao-form></slides-avaliacao-form>
+  <ion-list>
+    <ion-item>
+      <ion-icon item-left name="bookmark"></ion-icon>
+      <ion-input type="text" placeholder="Descrição"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon item-left name="calendar"></ion-icon>
+      <ion-label>Próxima Avaliação</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
+  </ion-list>
+  <ion-list padding>
+    <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
+      <ion-item>
+        <h2>Você tem alguma doença?</h2>
+        <p>Descritiva</p>
+      </ion-item>
+      <ion-item>
+        <h2>Você tem alguma doença?</h2>
+        <p>Objetiva</p>
+        <p>Hipertensão, Hipotensão, Diabetes</p>
+      </ion-item>
+      <ion-item>
+        <h2>Você tem alguma doença?</h2>
+        <p>Múltipla Escolha</p>
+        <p>Hipertensão, Hipotensão, Diabetes</p>
+      </ion-item>
+      <ion-item>
+        <h2>Você tem alguma doença?</h2>
+        <p>Imagem & Arquivo</p>
+      </ion-item>
+      <ion-item>
+        <h2>Você tem alguma doença?</h2>
+        <p>Texto Longo</p>
+      </ion-item>
+    </ion-item-group>
+    <div text-center>
+      <button ion-button color="secondary" round (click)="create()">
+        SALVAR
+      </button>
+    </div>
+  </ion-list>
 </ion-content>
