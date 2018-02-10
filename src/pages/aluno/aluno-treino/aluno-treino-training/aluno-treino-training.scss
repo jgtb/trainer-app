@@ -1,0 +1,42 @@
+.ios, .md, .wp {
+	page-aluno-treino-training {
+		ion-grid {
+			margin-top: 50px;
+			ion-row {
+				ion-col {
+					h2 {
+						text-align: center;
+						margin-top: 5px;
+						color: lighten(map-get($colors, darklight), 18%);
+					}
+				}
+			}
+		}
+		ion-list {
+			margin-top: 40px;
+			margin-bottom: 0;
+    	ion-item {
+  			border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+      	color: lighten(map-get($colors, darklight), 18%);
+      	font-size: 1.4rem;
+	    	&:nth-child(odd) {
+      		background-color: map-get($colors, dark);
+      	}
+      	&:nth-child(even) {
+        	background-color: map-get($colors, darklight);
+      	}
+    		&.item-block {
+	        .item-inner {
+	        	border-bottom: 0;
+	        }
+	        &:first-child {
+	          border-top: 1px solid darken(map-get($colors, dark), 2%);
+	        }
+	        &:last-child {
+	          border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+	        }
+    		}
+    	}
+		}
+	}
+}

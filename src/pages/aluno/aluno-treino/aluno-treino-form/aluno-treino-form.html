@@ -6,8 +6,8 @@
 
 <ion-content>
   <info [aluno]="aluno"></info>
-  <slides-treino-form [items]="filteredItems()"></slides-treino-form>
   <ion-searchbar [(ngModel)]="searchTerm" placeholder="Pesquisar..."></ion-searchbar>
+  <slides-treino-form [items]="filteredItems()" (click)="action($event)"></slides-treino-form>
   <ion-list>
     <ion-item>
       <ion-icon item-left name="bookmark"></ion-icon>
@@ -17,7 +17,7 @@
   <ion-list padding>
     <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
       <ion-item *ngFor="let exercicio of treino?.exercicioSeries">
-        <ion-thumbnail item-start>
+        <ion-thumbnail item-start (click)="action(exercicio)">
           <img src="http://fit.nexur.com.br/exercicios/{{ exercicio.id_exercicio }}-0.gif">
         </ion-thumbnail>
         <h2>{{ exercicio.idExercicio.descricao_pt }}</h2>

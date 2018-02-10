@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { AlunoTreinoFormPage } from './aluno-treino-form/aluno-treino-form';
+import { AlunoTreinoTrainingPage } from './aluno-treino-training/aluno-treino-training';
 import { AlunoTreinoViewPage } from './aluno-treino-view/aluno-treino-view';
 
 import { MenuComponent } from '../../../components/menu/menu';
@@ -16,8 +17,9 @@ export class AlunoTreinoPage {
 
   menu = [
     {title: 'Visualizar', icon: 'eye', component: AlunoTreinoViewPage, class: ''},
+    {title: 'Treinar', icon: 'body', component: AlunoTreinoTrainingPage, class: ''},
     {title: 'Atualizar', icon: 'create', component: AlunoTreinoFormPage, class: ''},
-    {title: 'Excluír', icon: 'trash', method: this.delete, class: 'odd-last-menu-item'}
+    {title: 'Excluír', icon: 'trash', method: 'delete', class: ''}
   ];
 
   constructor(
@@ -36,7 +38,6 @@ export class AlunoTreinoPage {
   }
 
   open(item) {
-    console.log(item);
     const modal = this.modalCtrl.create(MenuComponent, {aluno: this.aluno, item: this.assign(item), menu: this.menu});
     modal.present();
     modal.onDidDismiss(res => {
@@ -45,9 +46,17 @@ export class AlunoTreinoPage {
           this.navCtrl.push(res.component, {aluno: res.aluno, item: res.item}, {animate: false});
           return
         }
-        res.method(res.item, res.aluno);
+        this.methods(res.method, res.item, res.aluno);
       }
     });
+  }
+
+  methods(method, item, aluno) {
+    switch(method) {
+      case 'delete':
+        this.delete(item, aluno);
+      break;
+    }
   }
 
   create() {
@@ -55,8 +64,6 @@ export class AlunoTreinoPage {
   }
 
   delete(item, aluno) {
-    console.log('Excluír', item);
-    console.log('Excluír', aluno);
   }
 
 }

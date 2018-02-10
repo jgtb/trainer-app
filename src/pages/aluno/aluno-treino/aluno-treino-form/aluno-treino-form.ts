@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
+
+import { AlunoTreinoFormModalPage } from './aluno-treino-form-modal/aluno-treino-form-modal';
 
 import { Util } from '../../../../util';
 
@@ -20,6 +22,7 @@ export class AlunoTreinoFormPage {
   constructor(
   	public navCtrl: NavController,
   	public navParams: NavParams,
+    public modalCtrl: ModalController,
     public util: Util) {
       this.treino = this.navParams.get('item');
   	  this.aluno = this.navParams.get('aluno');
@@ -32,6 +35,13 @@ export class AlunoTreinoFormPage {
 
   filteredItems() {
     return this.exercicios.filter(e => e.idExercicio.descricao_pt.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
+  }
+
+  action(exercicio) {
+    if (typeof exercicio.id_exercicio !== 'undefined') {
+      const modal = this.modalCtrl.create(AlunoTreinoFormModalPage, {exercicio: exercicio});
+      modal.present();
+    }
   }
 
   reorderItems(indexes) {

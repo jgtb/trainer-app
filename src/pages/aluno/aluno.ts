@@ -24,7 +24,7 @@ export class AlunoPage {
     {title: 'Avaliações', icon: 'document', component: AlunoAvaliacaoPage, class: ''},
     {title: 'Calendário', icon: 'calendar', component: AlunoCalendarioPage, class: ''},
     {title: 'Gráficos', icon: 'md-podium', component: AlunoGraficoPage, class: ''},
-    {title: 'Redefinir', icon: 'lock', method: 'changePassowrd', class: ''},
+    {title: 'Redefinir', icon: 'lock', method: 'changePassword', class: ''},
     {title: 'Excluír', icon: 'trash', method: 'delete', class: 'odd-last-menu-item'}
   ];
 
@@ -72,8 +72,8 @@ export class AlunoPage {
 
   methods(method, {}, aluno) {
     switch(method) {
-      case 'changePassowrd':
-        this.changePassowrd({}, aluno);
+      case 'changePassword':
+        this.changePassword({}, aluno);
       break;
       case 'delete':
         this.delete({}, aluno);
@@ -81,7 +81,7 @@ export class AlunoPage {
     }
   }
 
-  changePassowrd({}, aluno) {
+  changePassword({}, aluno) {
     const title = 'Redefinir';
     const message = `Deseja redefinir a senha de ${aluno.nome}`;
     const buttons = [

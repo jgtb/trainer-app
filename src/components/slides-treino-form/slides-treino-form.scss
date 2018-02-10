@@ -2,11 +2,10 @@
   slides-treino-form {
     ion-slides {
       height: 25%;
-      margin-top: -20px;
+      margin-top: -40px;
       .swiper-pagination {
-        bottom: 0px;
+        bottom: 15px;
         top: auto;
-        margin-top: 10px;
         .swiper-pagination-progressbar {
           background: map-get($colors, darklight);
         }

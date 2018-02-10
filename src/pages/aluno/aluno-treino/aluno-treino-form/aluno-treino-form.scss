@@ -5,13 +5,8 @@
 			margin-top: -15px;
 			&:first-of-type {
 				margin: 0 auto;
+				margin-top: -20px;
 				width: 80%;
-				&.list-ios {
-					margin-top: -10px;
-				}
-				&.list-md {
-					margin-top: 5px
-				}
 			}
 			ion-item {
 				background-color: map-get($colors, darklight);
@@ -20,6 +15,9 @@
 				font-size: 1.4rem;
 				padding-left: 20px;
 				border-radius: 20px;
+				h2 {
+					white-space: normal;
+				}
 				&:first-child {
 					border-top: 0;
 				}
@@ -43,12 +41,6 @@
 			width: 90%;
 			margin: 0 auto;
 			background: transparent;
-			&.searchbar-ios {
-				padding-bottom: 20px;
-			}
-			&.searchbar-md {
-				margin-top: -10px;
-			}
 		}
 	}
 }

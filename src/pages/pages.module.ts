@@ -14,6 +14,8 @@ import { AlunoCalendarioFormPage } from '../pages/aluno/aluno-calendario/aluno-c
 import { AlunoCalendarioViewPage } from '../pages/aluno/aluno-calendario/aluno-calendario-view/aluno-calendario-view';
 import { AlunoTreinoPage } from '../pages/aluno/aluno-treino/aluno-treino';
 import { AlunoTreinoFormPage } from '../pages/aluno/aluno-treino/aluno-treino-form/aluno-treino-form';
+import { AlunoTreinoFormModalPage } from '../pages/aluno/aluno-treino/aluno-treino-form/aluno-treino-form-modal/aluno-treino-form-modal';
+import { AlunoTreinoTrainingPage } from '../pages/aluno/aluno-treino/aluno-treino-training/aluno-treino-training';
 import { AlunoTreinoViewPage } from '../pages/aluno/aluno-treino/aluno-treino-view/aluno-treino-view';
 import { AlunoGraficoPage } from '../pages/aluno/aluno-grafico/aluno-grafico';
 import { AlunoMensagemPage } from '../pages/aluno/aluno-mensagem/aluno-mensagem';
@@ -42,6 +44,8 @@ const PAGES = [
 	AlunoCalendarioViewPage,
 	AlunoTreinoPage,
 	AlunoTreinoFormPage,
+	AlunoTreinoFormModalPage,
+	AlunoTreinoTrainingPage,
 	AlunoTreinoViewPage,
 	AlunoGraficoPage,
 	AlunoMensagemPage,

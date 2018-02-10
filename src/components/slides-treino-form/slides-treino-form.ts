@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'slides-treino-form',
@@ -7,7 +7,12 @@ import { Component, Input } from '@angular/core';
 export class SlidesTreinoFormComponent {
 
   @Input('items') items = [];
+  @Output() click: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
+
+  emit(item) {
+    this.click.emit(item);
+  }
 
 }

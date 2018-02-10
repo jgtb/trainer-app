@@ -1,0 +1,60 @@
+<ion-content padding>
+  <div class="overlay" (click)="dismiss()"></div>
+  <div class="modal-body">
+    <ion-list>
+      <ion-item class="bg-clean">
+        <ion-thumbnail item-start>
+          <img src="http://fit.nexur.com.br/exercicios/{{ exercicio.id_exercicio }}-0.gif">
+        </ion-thumbnail>
+        <h2>{{ exercicio.idExercicio.descricao_pt }}</h2>
+      </ion-item>
+    </ion-list>
+    <form [formGroup]="form" (ngSubmit)="action()">
+      <ion-list>
+        <ion-item>
+          <ion-icon item-left name="body"></ion-icon>
+          <ion-label>Repetição</ion-label>
+          <ion-select formControlName="id_tipo_repeticao">
+            <ion-option value="{{ tipoRepeticao.id_tipo_repeticao }}" *ngFor="let tipoRepeticao of tiposRepeticao">{{ tipoRepeticao.descricao }}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-left name="body"></ion-icon>
+          <ion-label>Carga</ion-label>
+          <ion-input type="text" formControlName="carga"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-left name="body"></ion-icon>
+          <ion-label>Nº Repetições</ion-label>
+          <ion-input type="text" formControlName="num_repeticao"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-left name="clock"></ion-icon>
+          <ion-label>Intervalo</ion-label>
+          <ion-input type="text" formControlName="intervalo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-left name="bookmark"></ion-icon>
+          <ion-label>Nota</ion-label>
+          <ion-input type="text" formControlName="nota"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col text-center>
+            <button ion-button color="secondary" round [disabled]="!form.valid">
+              {{ actionName }}
+            </button>
+          </ion-col>
+          <ng-container *ngIf="exercicio.id_exercicio_serie">
+            <ion-col>
+              <button ion-button color="danger" round>
+                Excluír
+              </button>
+            </ion-col>
+          </ng-container>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

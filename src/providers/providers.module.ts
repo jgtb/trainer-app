@@ -7,13 +7,16 @@ import { AvaliacaoProvider } from '../providers/avaliacao/avaliacao';
 import { ExercicioProvider } from '../providers/exercicio/exercicio';
 import { ConfiguracaoProvider } from '../providers/configuracao/configuracao';
 
+import { StaticProvider } from '../providers/static/static';
+
 const PROVIDERS = [
 	AuthProvider,
 	AlunoProvider,
 	AulaProvider,
 	AvaliacaoProvider,
 	ExercicioProvider,
-	ConfiguracaoProvider
+	ConfiguracaoProvider,
+	StaticProvider
 ];
 
 @NgModule({
