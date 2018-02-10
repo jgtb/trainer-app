@@ -8,6 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class ExercicioFormPage {
 
   title = '';
+  actionName = '';
 
   item: any = {};
 
@@ -19,12 +20,36 @@ export class ExercicioFormPage {
 
   ionViewDidLoad() {
     this.setTitle();
+    this.setAction();
+  }
+
+  action() {
+    switch(this.actionName) {
+      case 'Salvar':
+        this.create();
+      break;
+      case 'Alterar':
+        this.update();
+      break;
+    }
+  }
+
+  create() {
+
+  }
+
+  update() {
+
   }
 
   ionViewDidEnter() {}
 
   setTitle() {
     this.title = !this.item ? 'Novo Exercício' : this.item.description;
+  }
+
+  setAction() {
+    this.actionName = !this.item ? 'Salvar' : 'Alterar';
   }
 
 }

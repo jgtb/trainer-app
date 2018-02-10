@@ -10,12 +10,14 @@ export class AlunoCalendarioFormPage {
   title = '';
 
   aluno: any = {};
+  calendario: any = {};
 
   constructor(
   	public navCtrl: NavController,
   	public navParams: NavParams) {
   	  this.aluno = this.navParams.get('aluno');
-      console.log(this.aluno);
+      this.calendario = this.navParams.get('item');
+      console.log(this.calendario);
   }
 
   ionViewDidLoad() {
@@ -25,7 +27,7 @@ export class AlunoCalendarioFormPage {
   ionViewDidEnter() {}
 
   setTitle() {
-    this.title = 'Novo Treino';
+    this.title = !this.calendario ? 'Novo Treino' : this.calendario.description;
   }
 
 }

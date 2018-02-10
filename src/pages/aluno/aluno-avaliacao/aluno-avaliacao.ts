@@ -40,7 +40,7 @@ export class AlunoAvaliacaoPage {
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, center: item.description};
+    return {...item, center: item.descricao};
   }
 
   open(item) {

@@ -9,6 +9,8 @@ import { MyApp } from './app.component';
 import { PagesModule } from '../pages/pages.module';
 import { ProvidersModule } from '../providers/providers.module';
 
+import { Util } from '../util';
+
 @NgModule({
   declarations: [
     MyApp
@@ -26,6 +28,7 @@ import { ProvidersModule } from '../providers/providers.module';
   providers: [
     StatusBar,
     SplashScreen,
+    Util,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

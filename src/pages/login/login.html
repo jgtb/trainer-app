@@ -4,19 +4,21 @@
 		<div class="aligner-wrapper">
 			<div class="aligner-item">
 				<div class="logo">
-			  	<img src="http://fit.nexur.com.br/logos/1.png" alt="Company">
+			  	<img src="http://fit.nexur.com.br/logos/1.png" alt="Nexur Trainer">
 			  </div>
-				<ion-list padding>
-					<ion-item>
-			    	<ion-icon item-left name="person"></ion-icon>
-					<ion-input type="text" placeholder="Login"></ion-input>
-					</ion-item>
-					<ion-item>
-						<ion-icon item-left name="lock"></ion-icon>
-						<ion-input type="password" placeholder="Senha"></ion-input>
-					</ion-item>
-					<button ion-button color="secondary" block round (click)="go()">ENTRAR</button>
-				</ion-list>
+				<form [formGroup]="form" (ngSubmit)="login(form.value)">
+				  <ion-list padding class="login-form">
+		      	<ion-item>
+		          <ion-icon item-left name="person"></ion-icon>
+					  	<ion-input type="text" placeholder="Login" formControlName="login"></ion-input>
+				  	</ion-item>
+				  	<ion-item>
+					  	<ion-icon item-left name="lock"></ion-icon>
+					  	<ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
+				  	</ion-item>
+				  	<button ion-button color="secondary" block round [disabled]="!form.valid">ENTRAR</button>
+				  </ion-list>
+        </form>
 				<p text-right>
 					<small>Esqueceu a senha ?</small>
 				</p>

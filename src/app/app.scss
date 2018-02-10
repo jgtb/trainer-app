@@ -24,7 +24,7 @@
 	ion-alert {
 		.alert-wrapper {
 			background-color: map-get($colors, darklight) !important;
-			.alert-title, .alert-radio-label, .alert-checkbox-label {
+			.alert-title, .alert-message, .alert-radio-label, .alert-checkbox-label {
 				color: map-get($colors, light);
 			}
 			.alert-sub-title {
@@ -54,7 +54,22 @@
 			}
 		}
 	}
-	.item.item-input.input-has-focus .item-inner {
-	    box-shadow: none;
+}
+
+ion-list:not(.login-form) {
+	.item-md.item-block .item-inner,
+	.item-md.item-input.input-has-focus .item-inner,
+	.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner,
+	.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner,
+	.list-md .item-input.input-has-focus:last-child,
+	.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child,
+	.list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {
+	    border-bottom: none !important;
+	    box-shadow: none !important;
+	}
+	.list-md .item-input.input-has-focus:last-child .item-inner,
+	.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child .item-inner,
+	.list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child .item-inner {
+	    box-shadow: none !important;
 	}
 }

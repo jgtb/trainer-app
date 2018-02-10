@@ -12,7 +12,7 @@ export class AlunoPipe implements PipeTransform {
       return items;
 
     return items.filter(item =>
-        item.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+        item.nome.toLowerCase().indexOf(query.toLowerCase()) > -1
     );
   }
 }

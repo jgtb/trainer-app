@@ -4,6 +4,36 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-icon item-left name="bookmark"></ion-icon>
+      <ion-label>Descrição</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon item-left name="calendar"></ion-icon>
+      <ion-label>Dia da Semana</ion-label>
+      <ion-select>
+        <ion-option></ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-icon item-left name="calendar"></ion-icon>
+      <ion-label>Horário</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-icon item-left name="water"></ion-icon>
+      <ion-label>Cor</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <div text-center>
+      <button ion-button color="secondary" round (click)="action()">
+        {{ actionName }}
+      </button>
+    </div>
+  </ion-list>
 
 </ion-content>

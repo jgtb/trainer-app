@@ -6,7 +6,7 @@
 		<ion-grid>
 			<ion-row>
 				<ion-col>
-					<h2>550</h2>
+					<h2>{{ getAlunoCount() }}</h2>
 					<p>Alunos</p>
 				</ion-col>
 				<ion-col>
@@ -39,7 +39,7 @@
     </ion-grid>
 	</div>
   <ion-fab top right>
-		<button ion-fab icon-only mini color="darklight">
+		<button ion-fab icon-only mini color="darklight" (click)="logout()">
 			<ion-icon name="md-log-out"></ion-icon>
 		</button>
   </ion-fab>

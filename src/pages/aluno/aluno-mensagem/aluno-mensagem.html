@@ -6,24 +6,26 @@
 
 <ion-content padding>
 
-  <ion-list>
-    <ion-item>
-      <ion-icon item-left name="person"></ion-icon>
-      <ion-label>Alunos</ion-label>
-      <ion-select multiple>
-        <ion-option>Todos</ion-option>
-        <ion-option item-end *ngFor="let item of items" value="item.name">{{ item.name }}</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="create"></ion-icon>
-      <ion-textarea placeholder="Descrição..." rows="9"></ion-textarea>
-    </ion-item>
-    <div text-center>
-      <button ion-button color="secondary" round (click)="create()">
-        ENVIAR
-      </button>
-    </div>
-  </ion-list>
+  <form [formGroup]="form" (ngSubmit)="create(form.value)">
+    <ion-list>
+      <ion-item>
+        <ion-icon item-left name="person"></ion-icon>
+        <ion-label>Alunos</ion-label>
+        <ion-select multiple formControlName="id_aluno">
+          <ion-option (ionSelect)="handlerOptionChange($event)" value="0">Todos</ion-option>
+          <ion-option item-end *ngFor="let aluno of alunos" value="{{ aluno.id_aluno }}">{{ aluno.nome }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="create"></ion-icon>
+        <ion-textarea placeholder="Descrição..." rows="9" formControlName="mensagem"></ion-textarea>
+      </ion-item>
+      <div text-center>
+        <button ion-button color="secondary" round [disabled]="!form.valid">
+          ENVIAR
+        </button>
+      </div>
+    </ion-list>
+  </form>
 
 </ion-content>

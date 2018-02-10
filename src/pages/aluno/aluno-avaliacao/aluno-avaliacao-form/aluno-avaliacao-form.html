@@ -20,27 +20,8 @@
   </ion-list>
   <ion-list padding>
     <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
-      <ion-item>
-        <h2>Você tem alguma doença?</h2>
-        <p>Descritiva</p>
-      </ion-item>
-      <ion-item>
-        <h2>Você tem alguma doença?</h2>
-        <p>Objetiva</p>
-        <p>Hipertensão, Hipotensão, Diabetes</p>
-      </ion-item>
-      <ion-item>
-        <h2>Você tem alguma doença?</h2>
-        <p>Múltipla Escolha</p>
-        <p>Hipertensão, Hipotensão, Diabetes</p>
-      </ion-item>
-      <ion-item>
-        <h2>Você tem alguma doença?</h2>
-        <p>Imagem & Arquivo</p>
-      </ion-item>
-      <ion-item>
-        <h2>Você tem alguma doença?</h2>
-        <p>Texto Longo</p>
+      <ion-item *ngFor="let sessao of avaliacao?.idAvaliacao?.sessaos">
+        <h2>{{ sessao.descricao }}</h2>
       </ion-item>
     </ion-item-group>
     <div text-center>

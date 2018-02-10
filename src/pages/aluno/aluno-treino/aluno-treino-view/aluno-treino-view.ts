@@ -24,7 +24,7 @@ export class AlunoTreinoViewPage {
   }
 
   setTitle() {
-    this.title = this.treino.description;
+    this.title = this.treino.descricao;
   }
 
 }

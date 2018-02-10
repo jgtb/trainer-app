@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+
+import { Util } from '../../../../util';
 
 @Component({
   selector: 'page-aluno-treino-form',
@@ -13,29 +15,15 @@ export class AlunoTreinoFormPage {
 
   aluno: any = {};
   treino: any = {};
-
-  items = [
-    {description: 'Exercício 01', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 02', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 03', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 04', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 05', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 06', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 07', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 08', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 09', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 10', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 11', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 12', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 13', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 14', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'}
-  ];
+  exercicios: any = [];
 
   constructor(
   	public navCtrl: NavController,
-  	public navParams: NavParams) {
+  	public navParams: NavParams,
+    public util: Util) {
       this.treino = this.navParams.get('item');
   	  this.aluno = this.navParams.get('aluno');
+      this.exercicios = this.util.getStorage('dataExercicio');
   }
 
   ionViewDidLoad() {
@@ -43,17 +31,17 @@ export class AlunoTreinoFormPage {
   }
 
   filteredItems() {
-    return this.items.filter(item => item.description.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
+    return this.exercicios.filter(e => e.idExercicio.descricao_pt.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1);
   }
 
   reorderItems(indexes) {
-    let element = this.items[indexes.from];
-    this.items.splice(indexes.from, 1);
-    this.items.splice(indexes.to, 0, element);
+    let e = this.treino.exercicioSeries[indexes.from];
+    this.treino.exercicioSeries.splice(indexes.from, 1);
+    this.treino.exercicioSeries.splice(indexes.to, 0, e);
   }
 
   setTitle() {
-    this.title = !this.treino ? 'Novo Treino' : this.treino.description;
+    this.title = !this.treino ? 'Novo Treino' : this.treino.descricao;
   }
 
 }

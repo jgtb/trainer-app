@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { LoginPage } from '../../pages/login/login';
+
 import { AlunoPage } from '../../pages/aluno/aluno';
 import { AvaliacaoPage } from '../../pages/avaliacao/avaliacao';
 import { ExercicioPage } from '../../pages/exercicio/exercicio';
 import { AulaPage } from '../../pages/aula/aula';
 import { RankingPage } from '../../pages/ranking/ranking';
 import { ConfiguracaoPage } from '../../pages/configuracao/configuracao';
+
+import { Util } from '../../util';
 
 @Component({
   selector: 'page-dashboard',
@@ -20,7 +24,8 @@ export class DashboardPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public util: Util) {
       this.initMenu();
   }
 
@@ -44,6 +49,15 @@ export class DashboardPage {
 
   open(component) {
     this.navCtrl.push(component, {}, {animate: false});
+  }
+
+  getAlunoCount() {
+    return this.util.getStorage('dataAluno').length;
+  }
+
+  logout() {
+    this.util.setLogout();
+    this.navCtrl.push(LoginPage, {}, {animate: false});
   }
 
 }

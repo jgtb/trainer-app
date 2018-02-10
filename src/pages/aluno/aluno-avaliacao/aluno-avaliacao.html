@@ -12,8 +12,9 @@
 <ion-content>
   <info [aluno]="aluno"></info>
   <ion-list>
-    <ion-item *ngFor="let item of items" (click)="open(item)">
-      <h2>{{ item.description }}</h2>
+    <ion-item *ngFor="let avaliacao of aluno.avaliacaoAlunos" (click)="open(avaliacao)">
+      <h2>{{ avaliacao.descricao }}</h2>
+      <p item-end>{{ avaliacao.data }}</p>
     </ion-item>
   </ion-list>
 </ion-content>

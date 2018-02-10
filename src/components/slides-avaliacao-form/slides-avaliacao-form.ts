@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 export class SlidesAvaliacaoFormComponent {
 
   items = [
+    {id: 0, title: 'Sessão', icon: 'create'},
   	{id: 1, title: 'Objetiva', icon: 'create'},
   	{id: 2, title: 'Múltipla Escolha', icon: 'create'},
   	{id: 3, title: 'Descritiva', icon: 'create'},

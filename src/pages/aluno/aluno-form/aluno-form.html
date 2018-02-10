@@ -6,53 +6,55 @@
 
 <ion-content padding>
 
-  <ion-list>
-    <ion-item>
-      <ion-icon item-left name="body"></ion-icon>
-      <ion-input type="text" placeholder="Nome"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="mail"></ion-icon>
-      <ion-input type="text" placeholder="Email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="calendar"></ion-icon>
-      <ion-label>Data de Nascimento</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="contacts"></ion-icon>
-      <ion-label>Sexo</ion-label>
-      <ion-select>
-        <ion-option value="Masculino">Masculino</ion-option>
-        <ion-option value="Feminino">Feminino</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="calendar"></ion-icon>
-      <ion-label>Data de Matrícula</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="podium"></ion-icon>
-      <ion-label>Grupo</ion-label>
-      <ion-select>
-        <ion-option *ngFor="let grupo of grupos" value="grupo.id">{{ grupo.description }}</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="person"></ion-icon>
-      <ion-input type="text" placeholder="Login"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="lock"></ion-icon>
-      <ion-input type="password" placeholder="Senha"></ion-input>
-    </ion-item>
-    <div text-center>
-      <button ion-button color="secondary" round (click)="action()">
-        {{ actionName }}
-      </button>
-    </div>
-  </ion-list>
+  <form [formGroup]="form" (ngSubmit)="action()">
+    <ion-list>
+      <ion-item>
+        <ion-icon item-left name="body"></ion-icon>
+        <ion-input type="text" placeholder="Nome" formControlName="nome"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="mail"></ion-icon>
+        <ion-input type="text" placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="calendar"></ion-icon>
+        <ion-label>Data de Nascimento</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="contacts"></ion-icon>
+        <ion-label>Sexo</ion-label>
+        <ion-select>
+          <ion-option value="Masculino">Masculino</ion-option>
+          <ion-option value="Feminino">Feminino</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="calendar"></ion-icon>
+        <ion-label>Data de Matrícula</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="podium"></ion-icon>
+        <ion-label>Grupo</ion-label>
+        <ion-select>
+          <ion-option *ngFor="let grupo of grupos" value="grupo.id">{{ grupo.description }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="person"></ion-icon>
+        <ion-input type="text" placeholder="Login"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="lock"></ion-icon>
+        <ion-input type="password" placeholder="Senha"></ion-input>
+      </ion-item>
+      <div text-center>
+        <button ion-button color="secondary" round [disabled]="!form.valid">
+          {{ actionName }}
+        </button>
+      </div>
+    </ion-list>
+  </form>
 
 </ion-content>

@@ -1,35 +1,48 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+
+import { Util } from '../../../util';
+
 @Component({
   selector: 'page-aluno-mensagem',
   templateUrl: 'aluno-mensagem.html',
 })
 export class AlunoMensagemPage {
 
-  items = [
-    {name: 'Aluno 01', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 02', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 03', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 04', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 05', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 06', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 07', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 08', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 09', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 10', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 11', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 12', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 13', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 14', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'}
-  ];
+  form: FormGroup;
+
+  alunos: any = [];
 
   constructor(
   	public navCtrl: NavController,
-  	public navParams: NavParams) {}
+  	public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public util: Util) {
+      this.alunos = this.util.getStorage('dataAluno');
+      this.initForm();
+    }
 
   ionViewDidLoad() {}
 
   ionViewDidEnter() {}
+
+  initForm() {
+    this.form = this.formBuilder.group({
+      id_aluno: ['', Validators.required],
+      mensagem: ['', Validators.required]
+    });
+  }
+
+  create(data) {
+    console.log(data);
+  }
+
+  handlerOptionChange($event) {
+    this.form.patchValue({
+      id_aluno: $event
+    });
+  }
 
 }

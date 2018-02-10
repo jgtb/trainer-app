@@ -1,29 +1,48 @@
 .ios, .md, .wp {
-	page-aluno-treino-view {
+	page-aluno-avaliacao-view {
 		ion-list {
 			margin-bottom: 0;
-    	ion-item {
+  		ion-item {
   			border-bottom: 1px solid darken(map-get($colors, dark), 2%);
-      	color: lighten(map-get($colors, darklight), 18%);
-      	font-size: 1.4rem;
+      		color: lighten(map-get($colors, darklight), 18%);
+      		font-size: 1.4rem;
 	    	&:nth-child(odd) {
-      		background-color: map-get($colors, dark);
-      	}
-      	&:nth-child(even) {
-        	background-color: map-get($colors, darklight);
-      	}
+      			background-color: map-get($colors, dark);
+      		}
+      		&:nth-child(even) {
+        		background-color: map-get($colors, darklight);
+      		}
     		&.item-block {
-	        .item-inner {
-	        	border-bottom: 0;
-	        }
-	        &:first-child {
-	          border-top: 1px solid darken(map-get($colors, dark), 2%);
-	        }
-	        &:last-child {
-	          border-bottom: 1px solid darken(map-get($colors, dark), 2%);
-	        }
+	        	.item-inner {
+	        		border-bottom: 0;
+	        	}
+	        	&:first-child {
+	          	border-top: 1px solid darken(map-get($colors, dark), 2%);
+	        	}
+	        	&:last-child {
+	          	border-bottom: 1px solid darken(map-get($colors, dark), 2%);
+	        	}
     		}
-    	}
+    		.sessao, .pergunta, .opcao {
+    			line-height: 1.4;
+    			white-space: normal;
+    		}
+    		.sessao {
+    			font-size: 16px;
+    			color: map-get($colors, secondary);
+    			margin-bottom: 15px;
+    		}
+    		.pergunta {
+    			font-size: 14px;
+    			margin-bottom: 10px;
+    			&:not(:first-child) {
+    				margin-top: 15px;
+    			}
+    		}
+				.resposta {
+					color: lighten(map-get($colors, dark), 30%);
+				}
+  		}
 		}
 	}
 }

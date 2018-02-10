@@ -7,14 +7,6 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class AlunoAvaliacaoFormPage {
 
-  slides = [
-  	{id: 1, title: 'Objetiva', icon: 'create'},
-  	{id: 2, title: 'Múltipla Escolha', icon: 'create'},
-  	{id: 3, title: 'Descritiva', icon: 'create'},
-  	{id: 4, title: 'Texto Longo', icon: 'create'},
-  	{id: 5, title: 'Imagem & Arquivo', icon: 'create'}
-  ];
-
   title = '';
 
   aluno: any = {};
@@ -23,8 +15,8 @@ export class AlunoAvaliacaoFormPage {
   constructor(
   	public navCtrl: NavController,
   	public navParams: NavParams) {
+      this.aluno = this.navParams.get('aluno');
       this.avaliacao = this.navParams.get('item');
-  	  this.aluno = this.navParams.get('aluno');
   }
 
   ionViewDidLoad() {
@@ -33,8 +25,14 @@ export class AlunoAvaliacaoFormPage {
 
   ionViewDidEnter() {}
 
+  reorderItems(indexes) {
+    //let element = this.items[indexes.from];
+    //this.items.splice(indexes.from, 1);
+    //this.items.splice(indexes.to, 0, element);
+  }
+
   setTitle() {
-    this.title = !this.avaliacao ? 'Nova Avaliação' : this.avaliacao.description;
+    this.title = !this.avaliacao ? 'Nova Avaliação' : this.avaliacao.descricao;
   }
 
 }

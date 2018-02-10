@@ -20,14 +20,6 @@ export class AlunoTreinoPage {
     {title: 'Excluír', icon: 'trash', method: this.delete, class: 'odd-last-menu-item'}
   ];
 
-  items = [
-    {description: 'Treino 01'},
-    {description: 'Treino 02'},
-    {description: 'Treino 03'},
-    {description: 'Treino 04'},
-    {description: 'Treino 05'}
-  ];
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,10 +32,11 @@ export class AlunoTreinoPage {
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, center: item.description};
+    return {...item, center: item.descricao};
   }
 
   open(item) {
+    console.log(item);
     const modal = this.modalCtrl.create(MenuComponent, {aluno: this.aluno, item: this.assign(item), menu: this.menu});
     modal.present();
     modal.onDidDismiss(res => {

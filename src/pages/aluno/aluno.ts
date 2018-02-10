@@ -10,6 +10,8 @@ import { AlunoGraficoPage } from './aluno-grafico/aluno-grafico';
 
 import { MenuComponent } from '../../components/menu/menu';
 
+import { Util } from '../../util';
+
 @Component({
   selector: 'page-aluno',
   templateUrl: 'aluno.html'
@@ -22,40 +24,28 @@ export class AlunoPage {
     {title: 'Avaliações', icon: 'document', component: AlunoAvaliacaoPage, class: ''},
     {title: 'Calendário', icon: 'calendar', component: AlunoCalendarioPage, class: ''},
     {title: 'Gráficos', icon: 'md-podium', component: AlunoGraficoPage, class: ''},
-    {title: 'Redefinir', icon: 'lock', method: this.changePassowrd, class: ''},
-    {title: 'Excluír', icon: 'trash', method: this.delete, class: 'odd-last-menu-item'}
+    {title: 'Redefinir', icon: 'lock', method: 'changePassowrd', class: ''},
+    {title: 'Excluír', icon: 'trash', method: 'delete', class: 'odd-last-menu-item'}
   ];
 
-  items = [
-    {name: 'Aluno 01', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 02', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 03', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 04', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 05', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 06', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 07', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 08', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 09', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 10', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 11', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 12', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 13', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'},
-    {name: 'Aluno 14', img: 'https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png'}
-  ];
+  alunos: any = [];
 
   searchTerm = '';
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController) {}
+    public modalCtrl: ModalController,
+    public util: Util) {
+      this.alunos = this.util.getStorage('dataAluno');
+    }
 
   ionViewDidLoad() {}
 
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, start: item.img, center: item.name};
+    return {...item, start: item.idUsuario.link_foto, center: item.nome};
   }
 
   open(item) {
@@ -67,7 +57,7 @@ export class AlunoPage {
           this.navCtrl.push(res.component, {aluno: res.aluno, item: res.item}, {animate: false});
           return
         }
-        res.method(res.item, res.aluno);
+        this.methods(res.method, res.item, res.aluno);
       }
     });
   }
@@ -80,12 +70,59 @@ export class AlunoPage {
     this.navCtrl.push(AlunoMensagemPage, {}, {animate: false});
   }
 
+  methods(method, {}, aluno) {
+    switch(method) {
+      case 'changePassowrd':
+        this.changePassowrd({}, aluno);
+      break;
+      case 'delete':
+        this.delete({}, aluno);
+      break;
+    }
+  }
+
   changePassowrd({}, aluno) {
-    console.log('Redefinir', aluno);
+    const title = 'Redefinir';
+    const message = `Deseja redefinir a senha de ${aluno.nome}`;
+    const buttons = [
+      {
+        text: 'Cancelar',
+        role: 'cancel'
+      },
+      {
+        text: 'Confirmar',
+        handler: () => {
+          this.handlerChangePassword();
+        }
+      }
+    ];
+    this.util.showAlert(title, message, null, buttons);
+  }
+
+  handlerChangePassword() {
+
   }
 
   delete({}, aluno) {
-    console.log('Excluír', aluno);
+    const title = 'Excluír';
+    const message = `Deseja excluír o Aluno: ${aluno.nome}`;
+    const buttons = [
+      {
+        text: 'Cancelar',
+        role: 'cancel'
+      },
+      {
+        text: 'Confirmar',
+        handler: () => {
+          this.handlerDelete();
+        }
+      }
+    ];
+    this.util.showAlert(title, message, null, buttons);
+  }
+
+  handlerDelete() {
+
   }
 
   search($event) {

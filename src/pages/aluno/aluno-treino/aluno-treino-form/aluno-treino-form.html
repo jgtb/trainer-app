@@ -16,85 +16,15 @@
   </ion-list>
   <ion-list padding>
     <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
-      <ion-item>
+      <ion-item *ngFor="let exercicio of treino?.exercicioSeries">
         <ion-thumbnail item-start>
-          <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
+          <img src="http://fit.nexur.com.br/exercicios/{{ exercicio.id_exercicio }}-0.gif">
         </ion-thumbnail>
-        <h2>Supino Reto</h2>
-        <p>Onda Decresc: 3x15</p>
-        <p>Intervalo: 25s</p>
-        <p>Carga: 39 kg</p>
-        <p>Nota: Descida lenta...</p>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
-        </ion-thumbnail>
-        <h2>Supino Reto</h2>
-        <p>Onda Decresc: 3x15</p>
-        <p>Intervalo: 25s</p>
-        <p>Carga: 39 kg</p>
-        <p>Nota: Descida lenta...</p>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
-        </ion-thumbnail>
-        <h2>Supino Reto</h2>
-        <p>Onda Decresc: 3x15</p>
-        <p>Intervalo: 25s</p>
-        <p>Carga: 39 kg</p>
-        <p>Nota: Descida lenta...</p>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
-        </ion-thumbnail>
-        <h2>Supino Reto</h2>
-        <p>Onda Decresc: 3x15</p>
-        <p>Intervalo: 25s</p>
-        <p>Carga: 39 kg</p>
-        <p>Nota: Descida lenta...</p>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
-        </ion-thumbnail>
-        <h2>Supino Reto</h2>
-        <p>Onda Decresc: 3x15</p>
-        <p>Intervalo: 25s</p>
-        <p>Carga: 39 kg</p>
-        <p>Nota: Descida lenta...</p>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
-        </ion-thumbnail>
-        <h2>Supino Reto</h2>
-        <p>Onda Decresc: 3x15</p>
-        <p>Intervalo: 25s</p>
-        <p>Carga: 39 kg</p>
-        <p>Nota: Descida lenta...</p>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
-        </ion-thumbnail>
-        <h2>Supino Reto</h2>
-        <p>Onda Decresc: 3x15</p>
-        <p>Intervalo: 25s</p>
-        <p>Carga: 39 kg</p>
-        <p>Nota: Descida lenta...</p>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="http://fit.nexur.com.br/exercicios/24-0.gif">
-        </ion-thumbnail>
-        <h2>Supino Reto</h2>
-        <p>Onda Decresc: 3x15</p>
-        <p>Intervalo: 25s</p>
-        <p>Carga: 39 kg</p>
-        <p>Nota: Descida lenta...</p>
+        <h2>{{ exercicio.idExercicio.descricao_pt }}</h2>
+        <p>{{ exercicio.idTipoRepeticao.descricao }}</p>
+        <p>Intervalo: {{ exercicio.intervalo }}s</p>
+        <p>Carga: {{ exercicio.carga }}</p>
+        <p *ngIf="exercicio.nota">Nota: {{ exercicio.nota }}</p>
       </ion-item>
     </ion-item-group>
     <div text-center>

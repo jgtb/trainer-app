@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'page-aluno-form',
   templateUrl: 'aluno-form.html',
 })
 export class AlunoFormPage {
+
+  form: FormGroup;
 
   grupos = [
     {id: 1, description: 'Grupo 01'},
@@ -17,12 +21,14 @@ export class AlunoFormPage {
   title = '';
   actionName = 'Salvar';
 
-  item: any = {};
+  aluno: any = {};
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams) {
-      this.item = this.navParams.get('item');
+    public navParams: NavParams,
+    public formBuilder: FormBuilder) {
+      this.aluno = this.navParams.get('item');
+      this.initForm();
   }
 
   ionViewDidLoad() {
@@ -31,6 +37,12 @@ export class AlunoFormPage {
   }
 
   ionViewDidEnter() {}
+
+  initForm() {
+    this.form = this.formBuilder.group({
+      nome: [this.aluno ? this.aluno.nome : '', Validators.required]
+    });
+  }
 
   action() {
     switch(this.actionName) {
@@ -52,11 +64,11 @@ export class AlunoFormPage {
   }
 
   setTitle() {
-    this.title = !this.item ? 'Novo Aluno' : this.item.name;
+    this.title = !this.aluno ? 'Novo Aluno' : this.aluno.nome;
   }
 
   setAction() {
-    this.actionName = !this.item ? 'Salvar' : 'Alterar';
+    this.actionName = !this.aluno ? 'Salvar' : 'Alterar';
   }
 
 }
