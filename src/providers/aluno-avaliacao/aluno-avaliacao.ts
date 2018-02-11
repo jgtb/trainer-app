@@ -5,39 +5,34 @@ import { Injectable } from '@angular/core';
 import { Util } from '../../util';
 
 @Injectable()
-export class AlunoProvider {
+export class AlunoAvaliacaoProvider {
 
   constructor(
     public http: HttpClient,
     public util: Util) {}
 
   index(id) {
-    const url = this.util.getUrl(`trainer/aluno-index?id=${id}`);
+    const url = this.util.getUrl(`trainer/aluno-avaliacao-index?id=${id}`);
     return this.http.get(url);
   }
 
   view(id) {
-    const url = this.util.getUrl(`trainer/aluno-view?id=${id}`);
+    const url = this.util.getUrl(`trainer/aluno-avaliacao-view?id=${id}`);
     return this.http.get(url);
   }
 
   create(data) {
-    const url = this.util.getUrl(`trainer/aluno-create`);
+    const url = this.util.getUrl(`trainer/aluno-avaliacao-create`);
     return this.http.post(url, data);
   }
 
   update(data) {
-    const url = this.util.getUrl(`trainer/aluno-update`);
+    const url = this.util.getUrl(`trainer/aluno-avaliacao-update`);
     return this.http.post(url, data);
   }
 
-  checkLogin(id) {
-    const url = this.util.getUrl(`trainer/aluno-check-login?id=${id}`);
-    return this.http.get(url);
-  }
-
   delete(id) {
-    const url = this.util.getUrl(`trainer/aluno-delete?id=${id}`);
+    const url = this.util.getUrl(`trainer/aluno-avaliacao-delete?id=${id}`);
     return this.http.get(url);
   }
 

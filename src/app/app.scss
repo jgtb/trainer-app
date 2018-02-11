@@ -54,11 +54,10 @@
 			}
 		}
 	}
-}
-
-ion-list:not(.login-form) {
-	ion-item, .item-inner {
-		box-shadow: none !important;
-		border-bottom: none !important;
+	ion-list:not(.login-form) {
+		ion-item, .item-inner {
+			box-shadow: none !important;
+			border-bottom: none !important;
+		}
 	}
 }

@@ -11,14 +11,15 @@
       <ion-item>
         <ion-icon item-left name="person"></ion-icon>
         <ion-label>Alunos</ion-label>
-        <ion-select multiple formControlName="id_aluno">
-          <ion-option (ionSelect)="handlerOptionChange($event)" value="0">Todos</ion-option>
+        <ion-select multiple formControlName="ids" (ionChange)="handlerOptionChange()">
+          <ion-option value="0">Todos</ion-option>
           <ion-option item-end *ngFor="let aluno of alunos" value="{{ aluno.id_aluno }}">{{ aluno.nome }}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-icon item-left name="create"></ion-icon>
-        <ion-textarea placeholder="Descrição..." rows="9" formControlName="mensagem"></ion-textarea>
+        <ion-label>Descrição...</ion-label>
+        <ion-textarea rows="9" formControlName="mensagem"></ion-textarea>
       </ion-item>
       <div text-center>
         <button ion-button color="secondary" round [disabled]="!form.valid">

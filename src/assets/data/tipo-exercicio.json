@@ -1,0 +1,17 @@
+[
+  {
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Strength",
+    "descricao_pt": "Força"
+  },
+  {
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Functional",
+    "descricao_pt": "Funcional"
+  },
+  {
+    "id_tipo_exercicio": "3",
+    "descricao_en": "Aerobic",
+    "descricao_pt": "Aeróbico"
+  }
+]

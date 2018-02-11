@@ -33,7 +33,7 @@ export class Util {
   }
 
   isLogged() {
-    if (this.getStorage('isLogged') === 'true')
+    if (this.getStorage('isLogged') == 'true')
       return true;
 
     return false;

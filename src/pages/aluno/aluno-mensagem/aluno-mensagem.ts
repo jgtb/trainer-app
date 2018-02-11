@@ -30,7 +30,7 @@ export class AlunoMensagemPage {
 
   initForm() {
     this.form = this.formBuilder.group({
-      id_aluno: ['', Validators.required],
+      ids: ['', Validators.required],
       mensagem: ['', Validators.required]
     });
   }
@@ -40,9 +40,13 @@ export class AlunoMensagemPage {
   }
 
   handlerOptionChange($event) {
-    this.form.patchValue({
-      id_aluno: $event
-    });
+    const ids = this.form.value.ids;
+
+    const hasForAll = ids.some(e => e === '0');
+
+    if (hasForAll) {
+      this.form.controls['ids'].setValue(0);
+    }
   }
 
 }

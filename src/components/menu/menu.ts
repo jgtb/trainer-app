@@ -8,11 +8,11 @@ import { NavController, ViewController, NavParams } from 'ionic-angular';
 })
 export class MenuComponent {
 
-  aluno = {};
-  item = {};
-  menu = [{}];
+  aluno: any = {};
+  item: any = {};
+  menu: any = [{}];
 
-  menuClass: '';
+  menuClass = '';
 
   constructor(
     public navCtrl: NavController,

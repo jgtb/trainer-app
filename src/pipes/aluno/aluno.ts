@@ -4,15 +4,15 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'alunoFilter',
 })
 export class AlunoPipe implements PipeTransform {
-  transform(items, query) {
+  transform(items, searchTerm) {
     if (!items)
       return [];
 
-    if (query == null)
+    if (searchTerm == null)
       return items;
 
     return items.filter(item =>
-        item.nome.toLowerCase().indexOf(query.toLowerCase()) > -1
+        item.nome.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
     );
   }
 }

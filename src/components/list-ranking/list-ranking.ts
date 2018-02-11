@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ListRankingComponent {
 
-  @Input('items') items = [];
+  @Input('items') items: any = [];
 
   constructor() {}
 

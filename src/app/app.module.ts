@@ -10,6 +10,10 @@ import { PagesModule } from '../pages/pages.module';
 import { ProvidersModule } from '../providers/providers.module';
 
 import { Util } from '../util';
+import { AlunoTreinoProvider } from '../providers/aluno-treino/aluno-treino';
+import { AlunoAvaliacaoProvider } from '../providers/aluno-avaliacao/aluno-avaliacao';
+import { AlunoCalendarioProvider } from '../providers/aluno-calendario/aluno-calendario';
+import { AlunoGraficoProvider } from '../providers/aluno-grafico/aluno-grafico';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { Util } from '../util';
     StatusBar,
     SplashScreen,
     Util,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AlunoTreinoProvider,
+    AlunoAvaliacaoProvider,
+    AlunoCalendarioProvider,
+    AlunoGraficoProvider
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

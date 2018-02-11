@@ -14,17 +14,17 @@
       </ion-item>
       <ion-item>
         <ion-icon item-left name="mail"></ion-icon>
-        <ion-input type="text" placeholder="Email"></ion-input>
+        <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-icon item-left name="calendar"></ion-icon>
         <ion-label>Data de Nascimento</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+        <ion-datetime displayFormat="MM/DD/YYYY" formControlName="data_nascimento"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-icon item-left name="contacts"></ion-icon>
         <ion-label>Sexo</ion-label>
-        <ion-select>
+        <ion-select formControlName="sexo">
           <ion-option value="Masculino">Masculino</ion-option>
           <ion-option value="Feminino">Feminino</ion-option>
         </ion-select>
@@ -32,23 +32,25 @@
       <ion-item>
         <ion-icon item-left name="calendar"></ion-icon>
         <ion-label>Data de Matrícula</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+        <ion-datetime displayFormat="MM/DD/YYYY" formControlName="data_matricula"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-icon item-left name="podium"></ion-icon>
         <ion-label>Grupo</ion-label>
-        <ion-select>
-          <ion-option *ngFor="let grupo of grupos" value="grupo.id">{{ grupo.description }}</ion-option>
+        <ion-select formControlName="grupo">
+          <ion-option *ngFor="let grupo of grupos" value="{{ grupo.id }}">{{ grupo.descricao }}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-icon item-left name="person"></ion-icon>
-        <ion-input type="text" placeholder="Login"></ion-input>
+        <ion-input type="text" placeholder="Login" formControlName="login"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-icon item-left name="lock"></ion-icon>
-        <ion-input type="password" placeholder="Senha"></ion-input>
-      </ion-item>
+      <ng-container *ngIf="!this.aluno">
+        <ion-item>
+          <ion-icon item-left name="lock"></ion-icon>
+          <ion-input type="password" placeholder="Senha" formControlName="senha"></ion-input>
+        </ion-item>
+      </ng-container>
       <div text-center>
         <button ion-button color="secondary" round [disabled]="!form.valid">
           {{ actionName }}

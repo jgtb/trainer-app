@@ -6,13 +6,15 @@ import { ListRankingComponent } from './list-ranking/list-ranking';
 import { InfoComponent } from './info/info';
 import { SlidesAvaliacaoFormComponent } from './slides-avaliacao-form/slides-avaliacao-form';
 import { SlidesTreinoFormComponent } from './slides-treino-form/slides-treino-form';
+import { EmptyComponent } from './empty/empty';
 
 const COMPONENTS = [
   MenuComponent,
   ListRankingComponent,
   InfoComponent,
   SlidesAvaliacaoFormComponent,
-  SlidesTreinoFormComponent
+  SlidesTreinoFormComponent,
+  EmptyComponent
 ];
 
 @NgModule({

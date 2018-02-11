@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
+import { StaticProvider } from '../../../providers/static/static';
+
 @Component({
   selector: 'page-aluno-form',
   templateUrl: 'aluno-form.html',
@@ -11,12 +13,7 @@ export class AlunoFormPage {
 
   form: FormGroup;
 
-  grupos = [
-    {id: 1, description: 'Grupo 01'},
-    {id: 2, description: 'Grupo 02'},
-    {id: 3, description: 'Grupo 03'},
-    {id: 4, description: 'Grupo 04'}
-  ];
+  grupos: any = [];
 
   title = '';
   actionName = 'Salvar';
@@ -26,6 +23,7 @@ export class AlunoFormPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public staticProvider: StaticProvider,
     public formBuilder: FormBuilder) {
       this.aluno = this.navParams.get('item');
       this.initForm();
@@ -34,13 +32,21 @@ export class AlunoFormPage {
   ionViewDidLoad() {
     this.setTitle();
     this.setAction();
+    this.getAllGrupo();
   }
 
   ionViewDidEnter() {}
 
   initForm() {
     this.form = this.formBuilder.group({
-      nome: [this.aluno ? this.aluno.nome : '', Validators.required]
+      nome: [this.aluno ? this.aluno.nome : '', Validators.required],
+      email: [this.aluno ? this.aluno.email : '', Validators.required],
+      data_nascimento: [this.aluno ? this.aluno.data_nascimento : '', Validators.required],
+      sexo: [this.aluno ? this.aluno.sexo : '', Validators.required],
+      data_matricula: [this.aluno ? this.aluno.data_matricula : '', Validators.required],
+      grupo: [this.aluno ? this.aluno.grupo : '', Validators.required],
+      login: [this.aluno ? this.aluno.idUsuario.login : '', Validators.required],
+      senha: [this.aluno ? this.aluno.idUsuario.senha : '', Validators.required]
     });
   }
 
@@ -69,6 +75,10 @@ export class AlunoFormPage {
 
   setAction() {
     this.actionName = !this.aluno ? 'Salvar' : 'Alterar';
+  }
+
+  getAllGrupo() {
+    this.staticProvider.getAllGrupo().subscribe(res => this.grupos = res);
   }
 
 }

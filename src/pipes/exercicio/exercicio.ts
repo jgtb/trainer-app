@@ -4,15 +4,15 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'exercicioFilter',
 })
 export class ExercicioPipe implements PipeTransform {
-  transform(items, query) {
-    if (!items)
+  transform(items, searchTerm, count) {
+    if (!items) {
       return [];
+    }
 
-    if (query == null)
-      return items;
+    if (searchTerm === '' || typeof searchTerm === 'undefined') {
+      return items.filter((item, i) => i <= count);
+    }
 
-    return items.filter(item =>
-        item.description.toLowerCase().indexOf(query.toLowerCase()) > -1
-    );
+    return items.filter((item, i) => item.idExercicio.descricao_pt.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
   }
 }

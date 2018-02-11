@@ -29,6 +29,7 @@ export class MyApp {
   setRoot() {
     if (this.util.isLogged()) {
       this.rootPage = DashboardPage;
+      return;
     }
 
     this.rootPage = LoginPage;

@@ -7,6 +7,8 @@ import { AlunoTreinoViewPage } from './aluno-treino-view/aluno-treino-view';
 
 import { MenuComponent } from '../../../components/menu/menu';
 
+import { Util } from '../../../util';
+
 @Component({
   selector: 'page-aluno-treino',
   templateUrl: 'aluno-treino.html'
@@ -14,6 +16,7 @@ import { MenuComponent } from '../../../components/menu/menu';
 export class AlunoTreinoPage {
 
   aluno: any = {};
+  treinos: any = [];
 
   menu = [
     {title: 'Visualizar', icon: 'eye', component: AlunoTreinoViewPage, class: ''},
@@ -22,11 +25,15 @@ export class AlunoTreinoPage {
     {title: 'Excluír', icon: 'trash', method: 'delete', class: ''}
   ];
 
+  emptyMessage = 'Nenhum Treino encontrado!';
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public util: Util) {
       this.aluno = this.navParams.get('aluno');
+      this.getTreinos();
   }
 
   ionViewDidLoad() {}
@@ -64,6 +71,10 @@ export class AlunoTreinoPage {
   }
 
   delete(item, aluno) {
+  }
+
+  getTreinos() {
+    this.treinos = this.util.getStorage('dataAlunoTreino').find(e => e.id_aluno === this.aluno.id_aluno).series;
   }
 
 }

@@ -1,32 +1,22 @@
 [
   {
-    "id": 0,
-    "title": "Sessão",
-    "icon": "create"
+    "id_tipo_pergunta": "1",
+    "descricao": "Objetiva"
   },
   {
-    "id": 1,
-    "title": "Objetiva",
-    "icon": "create"
+    "id_tipo_pergunta": "2",
+    "descricao": "Descritiva"
   },
   {
-    "id": 2,
-    "title": "Múltipla Escolha",
-    "icon": "create"
+    "id_tipo_pergunta": "3",
+    "descricao": "Múltipla Escolha"
   },
   {
-    "id": 3,
-    "title": "Descritiva",
-    "icon": "create"
+    "id_tipo_pergunta": "4",
+    "descricao": "Imagem"
   },
   {
-    "id": 4,
-    "title": "Texto Longo",
-    "icon": "create"
-  },
-  {
-    "id": 5,
-    "title": "Imagem & Arquivo",
-    "icon": "create"
+    "id_tipo_pergunta": "5",
+    "descricao": "Texto Longo"
   }
 ]

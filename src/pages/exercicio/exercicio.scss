@@ -24,6 +24,8 @@
           }
     		}
         ion-label[item-start] {
+          white-space: normal;
+          text-align: center;
           margin-left: -15px;
         }
         ion-toggle[item-end] {

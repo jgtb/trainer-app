@@ -1,0 +1,134 @@
+[
+  {
+    "id_classificacao_exercicio": "1",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Abs",
+    "descricao_pt": "Abdominal"
+  },
+  {
+    "id_classificacao_exercicio": "2",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Biceps",
+    "descricao_pt": "Bíceps"
+  },
+  {
+    "id_classificacao_exercicio": "3",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Back",
+    "descricao_pt": "Costas"
+  },
+  {
+    "id_classificacao_exercicio": "4",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Butt/Hips",
+    "descricao_pt": "Glúteo"
+  },
+  {
+    "id_classificacao_exercicio": "5",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Chest",
+    "descricao_pt": "Peito"
+  },
+  {
+    "id_classificacao_exercicio": "6",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Legs",
+    "descricao_pt": "Perna"
+  },
+  {
+    "id_classificacao_exercicio": "7",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Neck",
+    "descricao_pt": "Pescoço"
+  },
+  {
+    "id_classificacao_exercicio": "8",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Shoulders",
+    "descricao_pt": "Ombro"
+  },
+  {
+    "id_classificacao_exercicio": "9",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Triceps",
+    "descricao_pt": "Tríceps"
+  },
+  {
+    "id_classificacao_exercicio": "10",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Forearm",
+    "descricao_pt": "Antebraço"
+  },
+  {
+    "id_classificacao_exercicio": "11",
+    "id_tipo_exercicio": "1",
+    "descricao_en": "Calf",
+    "descricao_pt": "Panturrilha"
+  },
+  {
+    "id_classificacao_exercicio": "29",
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Mobility",
+    "descricao_pt": "Mobilidade"
+  },
+  {
+    "id_classificacao_exercicio": "30",
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Static Motor Control",
+    "descricao_pt": "Controle Motor Estático"
+  },
+  {
+    "id_classificacao_exercicio": "31",
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Dynamic Motor Control",
+    "descricao_pt": "Controle Motor Dinâmico"
+  },
+  {
+    "id_classificacao_exercicio": "32",
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Prehab",
+    "descricao_pt": "Prehab"
+  },
+  {
+    "id_classificacao_exercicio": "33",
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Core",
+    "descricao_pt": "Centro"
+  },
+  {
+    "id_classificacao_exercicio": "34",
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Pull",
+    "descricao_pt": "Puxar"
+  },
+  {
+    "id_classificacao_exercicio": "35",
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Push",
+    "descricao_pt": "Empurrar"
+  },
+  {
+    "id_classificacao_exercicio": "36",
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Self Limiting",
+    "descricao_pt": "Auto Limite"
+  },
+  {
+    "id_classificacao_exercicio": "37",
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Hybrid",
+    "descricao_pt": "Híbrido"
+  },
+  {
+    "id_classificacao_exercicio": "38",
+    "id_tipo_exercicio": "2",
+    "descricao_en": "Power",
+    "descricao_pt": "Potência"
+  },
+  {
+    "id_classificacao_exercicio": "41",
+    "id_tipo_exercicio": "3",
+    "descricao_en": "Aerobic",
+    "descricao_pt": "Aeróbico"
+  }
+]

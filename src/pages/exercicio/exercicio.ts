@@ -6,6 +6,8 @@ import { ExercicioViewPage } from './exercicio-view/exercicio-view';
 
 import { MenuComponent } from '../../components/menu/menu';
 
+import { Util } from '../../util';
+
 @Component({
   selector: 'page-exercicio',
   templateUrl: 'exercicio.html'
@@ -18,36 +20,27 @@ export class ExercicioPage {
     {title: 'Excluír', icon: 'trash', method: this.delete, class: 'odd-last-menu-item'}
   ];
 
-  items = [
-    {description: 'Exercício 01', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 02', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 03', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 04', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 05', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 06', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 07', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 08', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 09', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 10', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 11', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 12', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 13', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'},
-    {description: 'Exercício 14', img: 'http://fit.nexur.com.br/exercicios/24-0.gif'}
-  ];
+  exercicios: any = [];
 
   searchTerm = '';
+  
+  count = 15;
+  increase = 10;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController) {}
+    public modalCtrl: ModalController,
+    public util: Util) {
+      this.exercicios = this.util.getStorage('dataExercicio');
+    }
 
   ionViewDidLoad() {}
 
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, center: item.description};
+    return {...item, center: item.idExercicio.descricao_pt};
   }
 
   open(item) {
@@ -81,7 +74,10 @@ export class ExercicioPage {
   }
 
   infinite($event) {
-
+    setTimeout(() => {
+      this.count += this.increase;
+      $event.complete();
+    }, 500);
   }
 
   back() {

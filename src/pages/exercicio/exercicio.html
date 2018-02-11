@@ -20,12 +20,12 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list>
-    <ion-item *ngFor="let item of items | exercicioFilter : searchTerm">
-      <ion-thumbnail item-start (click)="open(item)">
-        <img src="{{ item.img }}">
+    <ion-item *ngFor="let exercicio of exercicios | exercicioFilter : searchTerm : count">
+      <ion-thumbnail item-start (click)="open(exercicio)">
+        <img src="http://fit.nexur.com.br/exercicios/{{ exercicio.id_exercicio }}-0.gif">
       </ion-thumbnail>
       <ion-item item-end class="bg-clean">
-        <ion-label item-start>{{ item.description}}</ion-label>
+        <ion-label item-start>{{ exercicio?.idExercicio?.descricao_pt }}</ion-label>
         <ion-toggle item-end color="secondary"></ion-toggle>
       </ion-item>
     </ion-item>

@@ -1,0 +1,82 @@
+[
+  {
+    "id_tipo_equipamento": "1",
+    "descricao_en": "Barbell",
+    "descricao_pt": "Barra"
+  },
+  {
+    "id_tipo_equipamento": "2",
+    "descricao_en": "Bench",
+    "descricao_pt": "Banco"
+  },
+  {
+    "id_tipo_equipamento": "3",
+    "descricao_en": "Cones",
+    "descricao_pt": "Cones"
+  },
+  {
+    "id_tipo_equipamento": "4",
+    "descricao_en": "Dumbells",
+    "descricao_pt": "Halteres"
+  },
+  {
+    "id_tipo_equipamento": "5",
+    "descricao_en": "Ladder",
+    "descricao_pt": "Escada"
+  },
+  {
+    "id_tipo_equipamento": "6",
+    "descricao_en": "Medicine Ball",
+    "descricao_pt": "Bola Medicinal"
+  },
+  {
+    "id_tipo_equipamento": "7",
+    "descricao_en": "TRX",
+    "descricao_pt": "TRX"
+  },
+  {
+    "id_tipo_equipamento": "8",
+    "descricao_en": "Machine",
+    "descricao_pt": "Máquina"
+  },
+  {
+    "id_tipo_equipamento": "9",
+    "descricao_en": "Stability Ball",
+    "descricao_pt": "Bola de Estabilidade"
+  },
+  {
+    "id_tipo_equipamento": "10",
+    "descricao_en": "Platform/Box",
+    "descricao_pt": "Plataforma/Caixa"
+  },
+  {
+    "id_tipo_equipamento": "11",
+    "descricao_en": "Resistence Band",
+    "descricao_pt": "Fitas de Resistência"
+  },
+  {
+    "id_tipo_equipamento": "12",
+    "descricao_en": "Kettlebell",
+    "descricao_pt": "Kettlebell"
+  },
+  {
+    "id_tipo_equipamento": "13",
+    "descricao_en": "Floor",
+    "descricao_pt": "Chão"
+  },
+  {
+    "id_tipo_equipamento": "14",
+    "descricao_en": "Bodyweight",
+    "descricao_pt": "Peso Corporal"
+  },
+  {
+    "id_tipo_equipamento": "15",
+    "descricao_en": "Foam Roller",
+    "descricao_pt": "Rolo de Liberação"
+  },
+  {
+    "id_tipo_equipamento": "16",
+    "descricao_en": "Stick",
+    "descricao_pt": "Bastão"
+  }
+]
