@@ -33,18 +33,17 @@ export class Util {
   }
 
   isLogged() {
-    if (this.getStorage('isLogged') == 'true')
+    if (this.getStorage('isLogged') == 'true') {
       return true;
+    }
 
     return false;
   }
 
-  getUrl(url) {
-    return `${this.baseUrl}${url}`;
-  }
-
   showLoading() {
-    this.loading = this.loadingCtrl.create();
+    this.loading = this.loadingCtrl.create({
+      spinner: 'circles',
+    });
     this.loading.present();
   }
 
@@ -52,7 +51,7 @@ export class Util {
     this.loading.dismiss();
   }
 
-  showAlert(title, message, inputs, buttons) {
+  showAlert(title, message, inputs = null, buttons = null) {
     const alert = this.alertCtrl.create({
       title: title,
       message: message,
@@ -72,8 +71,23 @@ export class Util {
   }
 
   handlerServerError(err) {
-    console.log('Server Error');
-    console.log(err);
+    const title = 'Atenção';
+    const message = 'Ocorreu um erro no servidor ao tratar da sua solicitação';
+    const buttons = [
+      {
+        text: 'Tente novamente mais tarde',
+      }
+    ];
+
+    if (this.loading) {
+      this.endLoading();
+    }
+    
+    this.showAlert(title, message, null, buttons);
+  }
+
+  getUrl(url) {
+    return `${this.baseUrl}${url}`;
   }
 
 }

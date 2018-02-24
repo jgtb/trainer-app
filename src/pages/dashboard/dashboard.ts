@@ -51,8 +51,8 @@ export class DashboardPage {
     this.navCtrl.push(component, {}, {animate: false});
   }
 
-  getAlunoCount() {
-    return this.util.getStorage('dataAluno').length;
+  count(key) {
+    return this.util.getStorage(key).length;
   }
 
   logout() {

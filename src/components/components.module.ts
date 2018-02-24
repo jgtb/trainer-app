@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 
 import { MenuComponent } from './menu/menu';
@@ -17,6 +17,17 @@ const COMPONENTS = [
   EmptyComponent
 ];
 
+import { IonicImageLoader } from 'ionic-image-loader';
+
+const MODULES = [
+  IonicImageLoader.forRoot(),
+  IonicModule.forRoot(MenuComponent),
+  IonicModule.forRoot(ListRankingComponent),
+  IonicModule.forRoot(InfoComponent),
+  IonicModule.forRoot(SlidesAvaliacaoFormComponent),
+  IonicModule.forRoot(SlidesTreinoFormComponent)
+];
+
 @NgModule({
   declarations: [
 		COMPONENTS
@@ -25,11 +36,8 @@ const COMPONENTS = [
 		COMPONENTS
 	],
   imports: [
-    IonicModule.forRoot(MenuComponent),
-		IonicModule.forRoot(ListRankingComponent),
-		IonicModule.forRoot(InfoComponent),
-    IonicModule.forRoot(SlidesAvaliacaoFormComponent),
-		IonicModule.forRoot(SlidesTreinoFormComponent)
-  ]
+    MODULES,
+  ],
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ComponentsModule {}

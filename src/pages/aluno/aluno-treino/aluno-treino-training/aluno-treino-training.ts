@@ -27,4 +27,8 @@ export class AlunoTreinoTrainingPage {
     this.title = this.treino.descricao;
   }
 
+  src(treino) {
+    return `http://fit.nexur.com.br/exercicios/${treino.idExercicio.id_exercicio}-0.gif`;
+  }
+
 }

@@ -10,10 +10,7 @@ import { PagesModule } from '../pages/pages.module';
 import { ProvidersModule } from '../providers/providers.module';
 
 import { Util } from '../util';
-import { AlunoTreinoProvider } from '../providers/aluno-treino/aluno-treino';
-import { AlunoAvaliacaoProvider } from '../providers/aluno-avaliacao/aluno-avaliacao';
-import { AlunoCalendarioProvider } from '../providers/aluno-calendario/aluno-calendario';
-import { AlunoGraficoProvider } from '../providers/aluno-grafico/aluno-grafico';
+import { PersistencesModule } from '../persistences/persistences.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +20,7 @@ import { AlunoGraficoProvider } from '../providers/aluno-grafico/aluno-grafico';
     BrowserModule,
     PagesModule,
     ProvidersModule,
+    PersistencesModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -33,11 +31,7 @@ import { AlunoGraficoProvider } from '../providers/aluno-grafico/aluno-grafico';
     StatusBar,
     SplashScreen,
     Util,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AlunoTreinoProvider,
-    AlunoAvaliacaoProvider,
-    AlunoCalendarioProvider,
-    AlunoGraficoProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

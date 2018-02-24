@@ -11,11 +11,6 @@ export class AlunoTreinoProvider {
     public http: HttpClient,
     public util: Util) {}
 
-    indexAll(id) {
-      const url = this.util.getUrl(`trainer/aluno-treino-index-all?id=${id}`);
-      return this.http.get(url);
-    }
-
   index(id) {
     const url = this.util.getUrl(`trainer/aluno-treino-index?id=${id}`);
     return this.http.get(url);

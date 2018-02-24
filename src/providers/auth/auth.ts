@@ -16,9 +16,9 @@ export class AuthProvider {
     return this.http.post(url, data);
   }
 
-  forgotPassword(data) {
-    const url = this.util.getUrl(`trainer/auth-forgot-password`);
-    return this.http.post(url, data);
+  forgotPassword(login) {
+    const url = this.util.getUrl(`trainer/auth-forgot-password?login=${login}`);
+    return this.http.get(url);
   }
 
   appId() {}

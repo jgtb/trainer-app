@@ -6,6 +6,8 @@ import { AvaliacaoViewPage } from './avaliacao-view/avaliacao-view';
 
 import { MenuComponent } from '../../components/menu/menu';
 
+import { Util } from '../../util';
+
 @Component({
   selector: 'page-avaliacao',
   templateUrl: 'avaliacao.html',
@@ -18,25 +20,22 @@ export class AvaliacaoPage {
     {title: 'Excluír', icon: 'trash', method: this.delete, class: 'odd-last-menu-item'}
   ];
 
-  items = [
-    {description: 'Avaliação 01'},
-    {description: 'Avaliação 02'},
-    {description: 'Avaliação 03'},
-    {description: 'Avaliação 04'},
-    {description: 'Avaliação 05'}
-  ];
+  avaliacoes: any = [];
 
   constructor(
   	public navCtrl: NavController,
   	public navParams: NavParams,
-    public modalCtrl: ModalController) {}
+    public modalCtrl: ModalController,
+    public util: Util) {
+      this.avaliacoes = this.util.getStorage('dataAvaliacao');
+    }
 
   ionViewDidLoad() {}
 
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, center: item.description};
+    return {...item, center: item.descricao};
   }
 
   open(item) {

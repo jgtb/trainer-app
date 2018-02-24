@@ -60,4 +60,7 @@
 			border-bottom: none !important;
 		}
 	}
+	.loading-wrapper {
+		background-color: darken(map-get($colors, secondary), 5%);
+	}
 }

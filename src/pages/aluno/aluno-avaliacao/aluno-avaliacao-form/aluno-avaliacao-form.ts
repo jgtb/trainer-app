@@ -25,10 +25,16 @@ export class AlunoAvaliacaoFormPage {
 
   ionViewDidEnter() {}
 
-  reorderItems(indexes) {
-    //let element = this.items[indexes.from];
-    //this.items.splice(indexes.from, 1);
-    //this.items.splice(indexes.to, 0, element);
+  reorderSessao(indexes) {
+    let element = this.avaliacao.idAvaliacao.sessaos[indexes.from];
+    this.avaliacao.idAvaliacao.sessaos.splice(indexes.from, 1);
+    this.avaliacao.idAvaliacao.sessaos.splice(indexes.to, 0, element);
+  }
+
+  reorderPergunta(indexes, sessao) {
+    let element = this.avaliacao.idAvaliacao.sessaos[indexes.from];
+    this.avaliacao.idAvaliacao.sessaos.splice(indexes.from, 1);
+    this.avaliacao.idAvaliacao.sessaos.splice(indexes.to, 0, element);
   }
 
   setTitle() {

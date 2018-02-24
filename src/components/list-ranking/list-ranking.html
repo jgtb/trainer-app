@@ -6,7 +6,7 @@
   <ng-container *ngIf="item.show">
     <ion-item *ngFor="let aluno of item.alunos">
       <ion-avatar item-start>
-        <img src="{{ aluno.img }}">
+        <img-loader src="{{ aluno.img }}" useImg></img-loader>
       </ion-avatar>
       <h2>{{ aluno.nome }}</h2>
       <p item-end>{{ aluno.pontos }}</p>

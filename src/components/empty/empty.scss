@@ -2,6 +2,8 @@
   empty {
     ion-list {
       ion-item {
+        background-color: map-get($colors, dark);
+        color: lighten(map-get($colors, darklight), 18%);
         h2 {
           margin-top: 20px;
           text-align: center;

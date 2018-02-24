@@ -15,6 +15,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-item-group>
     <ion-item-divider color="light">
       <h2 item-start>Informações</h2>
@@ -23,27 +26,28 @@
     <ion-list class="configuracao-informacoes">
       <ion-item>
         <ion-icon item-left name="bookmark"></ion-icon>
-        <ion-input type="text" placeholder="Nome Fantasia"></ion-input>
+        <ion-input type="text" placeholder="Nome Fantasia" [(ngModel)]="configuracao.info.descricao"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item (click)="open()">
         <ion-icon item-left name="image"></ion-icon>
         <ion-label>Logomarca</ion-label>
         <ion-avatar item-end>
-          <img src="http://fit.nexur.com.br/logos/1.png" alt="">
+          <img src="http://fit.nexur.com.br/logos/1.png">
         </ion-avatar>
+        <input #logo type="file" (change)="upload($event)">
       </ion-item>
       <ion-item>
         <ion-icon item-left name="briefcase"></ion-icon>
-        <ion-textarea placeholder="Resumo" rows="9"></ion-textarea>
+        <ion-textarea placeholder="Resumo" rows="9" [(ngModel)]="configuracao.info.resumo"></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-icon item-left name="person"></ion-icon>
         <ion-label>Desativar Alunos</ion-label>
-        <ion-input type="text" placeholder="Dias"></ion-input>
+        <ion-input type="text" placeholder="Dias" [(ngModel)]="configuracao.info.tolerancia"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Após o Vencimento</ion-label>
-        <ion-toggle item-end color="secondary"></ion-toggle>
+        <ion-toggle item-end color="secondary" [(ngModel)]="configuracao.info.desativar"></ion-toggle>
       </ion-item>
     </ion-list>
   </ion-item-group>
@@ -54,7 +58,7 @@
     </ion-item-divider>
     <ion-grid>
       <ion-row>
-        <ion-col col-4 *ngFor="let item of colors">
+        <ion-col col-4 *ngFor="let item of configuracao?.colors">
           <ion-card>
             <ion-card-content>
               <small>{{ item.title }}</small>
@@ -74,30 +78,37 @@
     </ion-item-divider>
     <ion-list class="configuracao-ranking">
       <ion-item>
-        <ion-icon item-left name="calendar"></ion-icon>
-        <ion-label>Período</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-icon item-left name="build"></ion-icon>
+        <ion-label>Habilitar Ranking</ion-label>
+        <ion-toggle color="secondary" [(ngModel)]="showRanking"></ion-toggle>
       </ion-item>
-      <ion-item>
-        <ion-icon item-left name="medal"></ion-icon>
-        <ion-label>Frequência</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon item-left name="medal"></ion-icon>
-        <ion-label>Peso</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon item-left name="medal"></ion-icon>
-        <ion-label>PG</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon item-left name="medal"></ion-icon>
-        <ion-label>Massa</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
+      <ng-container *ngIf="showRanking">
+        <ion-item>
+          <ion-icon item-left name="calendar"></ion-icon>
+          <ion-label>Período</ion-label>
+          <ion-input type="text" [(ngModel)]="configuracao.ranking.periodo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-left name="medal"></ion-icon>
+          <ion-label>Frequência</ion-label>
+          <ion-input type="text" [(ngModel)]="configuracao.ranking.frequencia"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-left name="medal"></ion-icon>
+          <ion-label>Peso</ion-label>
+          <ion-input type="text" [(ngModel)]="configuracao.ranking.peso"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-left name="medal"></ion-icon>
+          <ion-label>PG</ion-label>
+          <ion-input type="text" [(ngModel)]="configuracao.ranking.pg"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-left name="medal"></ion-icon>
+          <ion-label>Massa</ion-label>
+          <ion-input type="text" [(ngModel)]="configuracao.ranking.massa"></ion-input>
+        </ion-item>
+      </ng-container>
     </ion-list>
   </ion-item-group>
   <ion-item-group>
@@ -109,12 +120,12 @@
       <ion-item>
         <ion-icon item-left name="calendar"></ion-icon>
         <ion-label>Aniversário</ion-label>
-        <ion-toggle color="secondary"></ion-toggle>
+        <ion-toggle color="secondary" [(ngModel)]="configuracao.notifications.aniversario"></ion-toggle>
       </ion-item>
       <ion-item>
         <ion-icon item-left name="body"></ion-icon>
         <ion-label>Treino</ion-label>
-        <ion-toggle color="secondary"></ion-toggle>
+        <ion-toggle color="secondary" [(ngModel)]="configuracao.notifications.treino"></ion-toggle>
       </ion-item>
     </ion-list>
   </ion-item-group>

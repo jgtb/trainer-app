@@ -1,11 +1,22 @@
 .ios, .md, .wp {
 	page-aluno-treino-view {
+		ion-buttons {
+			button {
+				ion-icon {
+					font-size: 1.6em !important;
+				}
+			}
+		}
 		ion-list {
 			margin-bottom: 0;
     	ion-item {
   			border-bottom: 1px solid darken(map-get($colors, dark), 2%);
       	color: lighten(map-get($colors, darklight), 18%);
       	font-size: 1.4rem;
+				h2 {
+					white-space: normal;
+					margin-bottom: 10px;
+				}
 	    	&:nth-child(odd) {
       		background-color: map-get($colors, dark);
       	}

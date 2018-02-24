@@ -1,12 +1,17 @@
 <ion-header>
   <ion-navbar color="darklight">
     <ion-title>{{ title }}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only class="btn-circle">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <info [aluno]="aluno"></info>
-  <ion-grid ion-fixed>
+  <ion-grid class="c">
     <ion-row>
       <ion-col col-3>
         <button ion-button block round small color="terciary"><ion-icon name="square" color="light"></ion-icon></button>
@@ -21,8 +26,38 @@
     </ion-row>
   </ion-grid>
   <ion-list>
-  	<ion-item *ngFor="let treino of treino.exercicioSeries">
+    <ion-item *ngFor="let treino of treino.exercicioSeries">
+      <ion-thumbnail item-start>
+        <img src="{{ src(treino) }}">
+      </ion-thumbnail>
       <h2>{{ treino.idExercicio.descricao_pt }}</h2>
-  	</ion-item>
+      <p>Hayao Miyazaki • 1988</p>
+      <p>Hayao Miyazaki • 1988</p>
+      <p>Hayao Miyazaki • 1988</p>
+      <ion-grid class="b">
+        <ion-row>
+          <ion-col>
+            <button ion-button clear icon-only>
+              <ion-icon name="timer" color="secondary"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button clear icon-only>
+              <ion-icon name="create" color="secondary"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button clear icon-only>
+              <ion-icon name="checkmark" color="secondary"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button clear icon-only>
+              <ion-icon name="videocam" color="secondary"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
   </ion-list>
 </ion-content>

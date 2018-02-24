@@ -55,9 +55,6 @@
 				margin-top: 10px;
 				ion-row {
 					ion-col {
-						&:nth-child(4) {
-							margin-left: 16.5%;
-						}
 						ion-card {
 							background-color: map-get($colors, darklight);
 							margin: 0;

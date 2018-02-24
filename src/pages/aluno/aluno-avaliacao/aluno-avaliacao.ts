@@ -6,6 +6,8 @@ import { AlunoAvaliacaoViewPage } from './aluno-avaliacao-view/aluno-avaliacao-v
 
 import { MenuComponent } from '../../../components/menu/menu';
 
+import { Util } from '../../../util';
+
 @Component({
   selector: 'page-aluno-avaliacao',
   templateUrl: 'aluno-avaliacao.html',
@@ -17,22 +19,17 @@ export class AlunoAvaliacaoPage {
   menu = [
     {title: 'Visualizar', icon: 'eye', component: AlunoAvaliacaoViewPage, class: ''},
     {title: 'Atualizar', icon: 'create', component: AlunoAvaliacaoFormPage, class: ''},
-    {title: 'Excluír', icon: 'trash', method: this.delete, class: 'odd-last-menu-item'}
+    {title: 'Excluír', icon: 'trash', method: 'delete', class: 'odd-last-menu-item'}
   ];
 
-  items = [
-    {description: 'Avaliação 01'},
-    {description: 'Avaliação 02'},
-    {description: 'Avaliação 03'},
-    {description: 'Avaliação 04'},
-    {description: 'Avaliação 05'}
-  ];
+  emptyMessage = 'Nenhum Avaliação encontrado...';
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController) {
-        this.aluno = this.navParams.get('aluno');
+    public modalCtrl: ModalController,
+    public util: Util) {
+      this.aluno = this.navParams.get('aluno');
   }
 
   ionViewDidLoad() {}
@@ -40,7 +37,7 @@ export class AlunoAvaliacaoPage {
   ionViewDidEnter() {}
 
   assign(item) {
-    return {...item, center: item.descricao};
+    return {...item, center: item.descricao, end: item.data};
   }
 
   open(item) {
@@ -52,9 +49,17 @@ export class AlunoAvaliacaoPage {
           this.navCtrl.push(res.component, {aluno: res.aluno, item: res.item}, {animate: false});
           return
         }
-        res.method(res.item, res.aluno);
+        this.methods(res.method, res.item, res.aluno);
       }
     });
+  }
+
+  methods(method, item, aluno) {
+    switch(method) {
+      case 'delete':
+        this.delete(item, aluno);
+      break;
+    }
   }
 
   create() {
@@ -62,8 +67,22 @@ export class AlunoAvaliacaoPage {
   }
 
   delete(item, aluno) {
-    console.log('Excluír', item);
-    console.log('Excluír', aluno);
+    const title = 'Excluír';
+    const message = `Deseja excluír a Avaliação: ${item.descricao}`;
+    const buttons = [
+      {
+        text: 'Cancelar',
+        role: 'cancel'
+      },
+      {
+        text: 'Confirmar',
+        handler: () => {
+          //this.handlerDelete(item);
+        }
+      }
+    ];
+
+    this.util.showAlert(title, message, null, buttons);
   }
 
 }

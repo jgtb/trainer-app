@@ -23,6 +23,8 @@ export class ExercicioFormPage {
     this.setAction();
   }
 
+  ionViewDidEnter() {}
+
   action() {
     switch(this.actionName) {
       case 'Salvar':
@@ -41,8 +43,6 @@ export class ExercicioFormPage {
   update() {
 
   }
-
-  ionViewDidEnter() {}
 
   setTitle() {
     this.title = !this.item ? 'Novo Exercício' : this.item.description;

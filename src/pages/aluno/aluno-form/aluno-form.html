@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar color="darklight">
-    <ion-title>{{ title }}</ion-title>
+    <ion-title>{{ getTitle() }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <form [formGroup]="form" (ngSubmit)="action()">
+  <form [formGroup]="form" (ngSubmit)="action(form.value)">
     <ion-list>
       <ion-item>
         <ion-icon item-left name="body"></ion-icon>
@@ -53,7 +53,7 @@
       </ng-container>
       <div text-center>
         <button ion-button color="secondary" round [disabled]="!form.valid">
-          {{ actionName }}
+          {{ getAction() }}
         </button>
       </div>
     </ion-list>

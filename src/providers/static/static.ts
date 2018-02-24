@@ -41,4 +41,10 @@ export class StaticProvider {
     return this.http.get(url);
   }
 
+  getAllRankingPeriodo() {
+    const url = 'assets/data/ranking-periodo.json';
+
+    return this.http.get(url);
+  }
+
 }

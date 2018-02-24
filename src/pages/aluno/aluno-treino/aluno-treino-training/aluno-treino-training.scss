@@ -1,24 +1,54 @@
 .ios, .md, .wp {
 	page-aluno-treino-training {
+		ion-buttons {
+			button {
+				ion-icon {
+					font-size: 1.6em !important;
+				}
+			}
+		}
 		ion-grid {
-			margin-top: 50px;
-			ion-row {
-				ion-col {
-					h2 {
-						text-align: center;
-						margin-top: 5px;
-						color: lighten(map-get($colors, darklight), 18%);
+			&.c {
+				margin-bottom: -8px;
+				ion-row {
+					ion-col {
+						h2 {
+							text-align: center;
+							margin-top: 5px;
+							color: lighten(map-get($colors, darklight), 18%);
+						}
+					}
+				}
+			}
+			&.b {
+				padding: 0px;
+				ion-row {
+					ion-col {
+						padding: 0px;
+						&:not(:first-child) {
+							margin-left: -75px;
+						}
+						button {
+							ion-icon {
+								font-size: 1.4em;
+							}
+						}
 					}
 				}
 			}
 		}
 		ion-list {
-			margin-top: 40px;
 			margin-bottom: 0;
     	ion-item {
   			border-bottom: 1px solid darken(map-get($colors, dark), 2%);
       	color: lighten(map-get($colors, darklight), 18%);
       	font-size: 1.4rem;
+				margin-top: -10px;
+				margin-bottom: -10px;
+				h2 {
+					white-space: normal;
+					margin-bottom: 10px;
+				}
 	    	&:nth-child(odd) {
       		background-color: map-get($colors, dark);
       	}

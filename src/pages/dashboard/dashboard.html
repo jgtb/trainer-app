@@ -6,19 +6,19 @@
 		<ion-grid>
 			<ion-row>
 				<ion-col>
-					<h2>{{ getAlunoCount() }}</h2>
+					<h2>{{ count('dataAluno') }}</h2>
 					<p>Alunos</p>
 				</ion-col>
 				<ion-col>
-					<h2>15</h2>
+					<h2>{{ count('dataAvaliacao') }}</h2>
 					<p>Avaliações</p>
 				</ion-col>
 				<ion-col *ngIf="show">
-					<h2>9</h2>
+					<h2>{{ count('dataAula') }}</h2>
 					<p>Aulas</p>
 				</ion-col>
         <ion-col>
-					<h2>320</h2>
+					<h2>{{ count('dataExercicio') }}</h2>
 					<p>Exercícios</p>
 				</ion-col>
 			</ion-row>

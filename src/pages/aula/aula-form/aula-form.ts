@@ -23,6 +23,8 @@ export class AulaFormPage {
     this.setAction();
   }
 
+  ionViewDidEnter() {}
+
   action() {
     switch(this.actionName) {
       case 'Salvar':
@@ -41,8 +43,6 @@ export class AulaFormPage {
   update() {
 
   }
-
-  ionViewDidEnter() {}
 
   setTitle() {
     this.title = !this.item ? 'Nova Aula' : this.item.description;

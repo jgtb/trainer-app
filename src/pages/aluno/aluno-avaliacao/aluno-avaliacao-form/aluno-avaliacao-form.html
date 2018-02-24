@@ -19,9 +19,10 @@
     </ion-item>
   </ion-list>
   <ion-list padding>
-    <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
+    <ion-item-group reorder="true" (ionItemReorder)="reorderSessao($event)">
       <ion-item *ngFor="let sessao of avaliacao?.idAvaliacao?.sessaos">
         <h2>{{ sessao.descricao }}</h2>
+        <p>Sessão</p>
       </ion-item>
     </ion-item-group>
     <div text-center>

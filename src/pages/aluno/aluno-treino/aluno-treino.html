@@ -12,9 +12,9 @@
 <ion-content>
   <info [aluno]="aluno"></info>
   <ion-list>
-    <ion-item *ngFor="let treino of treinos" (click)="open(treino)">
+    <ion-item *ngFor="let treino of aluno.series" (click)="open(treino)">
       <h2>{{ treino.descricao }}</h2>
     </ion-item>
   </ion-list>
-  <empty [count]="treinos?.length" [message]="emptyMessage"></empty>
+  <empty [count]="aluno?.series?.length" [message]="emptyMessage"></empty>
 </ion-content>

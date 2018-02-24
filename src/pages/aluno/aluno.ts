@@ -8,9 +8,16 @@ import { AlunoAvaliacaoPage } from './aluno-avaliacao/aluno-avaliacao';
 import { AlunoCalendarioPage } from './aluno-calendario/aluno-calendario';
 import { AlunoGraficoPage } from './aluno-grafico/aluno-grafico';
 
+import { AuthProvider } from '../../providers/auth/auth';
+import { AlunoProvider } from '../../providers/aluno/aluno';
+
+import { AlunoPersistence } from '../../persistences/aluno/aluno';
+
 import { MenuComponent } from '../../components/menu/menu';
 
 import { Util } from '../../util';
+
+import * as _ from 'lodash';
 
 @Component({
   selector: 'page-aluno',
@@ -31,21 +38,39 @@ export class AlunoPage {
   alunos: any = [];
 
   searchTerm = '';
+  emptyMessage = 'Nenhum Aluno encontrado...';
+
+  messages = {
+    changePassword: 'E-mail enviado com sucesso',
+    delete: 'Aluno excluído com sucesso',
+    error: 'Não foi possível realizar este procedimento, tente mais tarde'
+  };
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    public util: Util) {
-      this.alunos = this.util.getStorage('dataAluno');
-    }
+    public authProvider: AuthProvider,
+    public alunoProvider: AlunoProvider,
+    public alunoPersistence: AlunoPersistence,
+    public util: Util) {}
 
   ionViewDidLoad() {}
 
-  ionViewDidEnter() {}
+  ionViewDidEnter() {
+    this.store();
+  }
+
+  store() {
+    this.alunos = this.alunoPersistence.list();
+  }
 
   assign(item) {
-    return {...item, start: item.idUsuario.link_foto, center: item.nome};
+    return {...item, start: this.src(item), center: item.nome};
+  }
+
+  src(item) {
+    return item.idUsuario.link_foto ? item.idUsuario.link_foto : 'assets/img/user/none.svg';
   }
 
   open(item) {
@@ -57,9 +82,20 @@ export class AlunoPage {
           this.navCtrl.push(res.component, {aluno: res.aluno, item: res.item}, {animate: false});
           return
         }
-        this.methods(res.method, res.item, res.aluno);
+        this.methods(res.method, res.aluno);
       }
     });
+  }
+
+  methods(method, aluno) {
+    switch(method) {
+      case 'changePassword':
+        this.changePassword(aluno);
+      break;
+      case 'delete':
+        this.delete(aluno);
+      break;
+    }
   }
 
   create() {
@@ -70,18 +106,7 @@ export class AlunoPage {
     this.navCtrl.push(AlunoMensagemPage, {}, {animate: false});
   }
 
-  methods(method, {}, aluno) {
-    switch(method) {
-      case 'changePassword':
-        this.changePassword({}, aluno);
-      break;
-      case 'delete':
-        this.delete({}, aluno);
-      break;
-    }
-  }
-
-  changePassword({}, aluno) {
+  changePassword(aluno) {
     const title = 'Redefinir';
     const message = `Deseja redefinir a senha de ${aluno.nome}`;
     const buttons = [
@@ -92,18 +117,26 @@ export class AlunoPage {
       {
         text: 'Confirmar',
         handler: () => {
-          this.handlerChangePassword();
+          this.handleChangePassword(aluno);
         }
       }
     ];
     this.util.showAlert(title, message, null, buttons);
   }
 
-  handlerChangePassword() {
-
+  handleChangePassword(aluno) {
+    this.util.showLoading();
+    this.authProvider.forgotPassword(aluno.idUsuario.login).subscribe(res => {
+      if (res) {
+        this.util.showAlert('Atenção', this.messages.changePassword);
+      } else {
+        this.util.showAlert('Atenção', this.messages.error);
+      }
+      this.util.endLoading();
+    }, err => this.util.handlerServerError(err))
   }
 
-  delete({}, aluno) {
+  delete(aluno) {
     const title = 'Excluír';
     const message = `Deseja excluír o Aluno: ${aluno.nome}`;
     const buttons = [
@@ -114,27 +147,42 @@ export class AlunoPage {
       {
         text: 'Confirmar',
         handler: () => {
-          this.handlerDelete();
+          this.handleDelete(aluno);
         }
       }
     ];
     this.util.showAlert(title, message, null, buttons);
   }
 
-  handlerDelete() {
+  handleDelete(aluno) {
+    this.util.showLoading();
+    this.alunoProvider.delete(aluno.id_usuario).subscribe(res => {
+      if (res) {
+        this.util.showAlert('Atenção', this.messages.delete);
+        this.alunoPersistence.delete(aluno.id_aluno);
+        this.store();
+      } else {
+        this.util.showAlert('Atenção', this.messages.error);
+      }
+      this.util.endLoading();
+    }, err => this.util.handlerServerError(err));
+  }
 
+  refresh($event) {
+    const usuarioId = this.util.getStorage('usuarioId');
+    this.alunoProvider.index(usuarioId).subscribe(res => {
+      this.alunoPersistence.store(res);
+      this.store();
+      $event.complete();
+    }, err => this.util.handlerServerError(err));
   }
 
   search($event) {
     this.searchTerm = $event.target.value;
   }
 
-  refresh($event) {
-
-  }
-
   infinite($event) {
-
+    $event.complete();
   }
 
   back() {

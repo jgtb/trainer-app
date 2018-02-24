@@ -31,8 +31,8 @@ export class AlunoProvider {
     return this.http.post(url, data);
   }
 
-  checkLogin(id) {
-    const url = this.util.getUrl(`trainer/aluno-check-login?id=${id}`);
+  checkLogin(login) {
+    const url = this.util.getUrl(`trainer/aluno-check-login?login=${login}`);
     return this.http.get(url);
   }
 

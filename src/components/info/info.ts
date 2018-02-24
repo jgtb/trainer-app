@@ -11,6 +11,10 @@ export class InfoComponent {
 
   constructor() {}
 
+  src() {
+    return this.aluno.idUsuario.link_foto ? this.aluno.idUsuario.link_foto : 'assets/img/user/none.svg'
+  }
+
   class() {
     return this.index % 2 === 0 ? 'even' : 'odd';
   }

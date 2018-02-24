@@ -5,7 +5,7 @@
       <ion-list>
         <ion-item>
           <ion-avatar item-start *ngIf="item.start">
-            <img src="{{ item.start }}">
+            <img-loader src="{{ item.start }}" useImg></img-loader>
           </ion-avatar>
           <h2>{{ item.center }}</h2>
           <p *ngIf="item.end" item-end>{{ item.end }}</p>
