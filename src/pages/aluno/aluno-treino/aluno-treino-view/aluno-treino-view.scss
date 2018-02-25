@@ -36,5 +36,24 @@
     		}
     	}
 		}
+		ion-card {
+			background-color: map-get($colors, darklight);
+			ion-card-content {
+				p {
+					color: lighten(map-get($colors, darklight), 18%);
+				}
+			}
+			ion-item {
+				background-color: map-get($colors, darklight);
+				ion-label {
+					h2 {
+						color: map-get($colors, secondary) !important;
+					}
+					p {
+						color: lighten(map-get($colors, darklight), 18%);
+					}
+				}
+			}
+		}
 	}
 }

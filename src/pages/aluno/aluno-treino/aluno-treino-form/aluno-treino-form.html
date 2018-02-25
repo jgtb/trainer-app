@@ -9,26 +9,28 @@
   <ion-searchbar [(ngModel)]="searchTerm" placeholder="Pesquisar..."></ion-searchbar>
   <slides-treino-form [items]="filteredItems()" (click)="action($event)"></slides-treino-form>
   <ion-list>
-    <ion-item>
-      <ion-icon item-left name="bookmark"></ion-icon>
-      <ion-input type="text" placeholder="Descrição"></ion-input>
-    </ion-item>
+    <form [formGroup]="form">
+      <ion-item>
+        <ion-icon item-left name="bookmark"></ion-icon>
+        <ion-input type="text" placeholder="Descrição" formControlName="descricao"></ion-input>
+      </ion-item>
+    </form>
   </ion-list>
   <ion-list padding>
     <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
-      <ion-item *ngFor="let exercicio of treino?.exercicioSeries">
-        <ion-thumbnail item-start (click)="action(exercicio)">
-          <img src="http://fit.nexur.com.br/exercicios/{{ exercicio.id_exercicio }}-0.gif">
+      <ion-item *ngFor="let exercicioSerie of treino?.exercicioSeries">
+        <ion-thumbnail item-start (click)="action(exercicioSerie)">
+          <img src="http://fit.nexur.com.br/exercicios/{{ exercicioSerie.id_exercicio }}-0.gif">
         </ion-thumbnail>
-        <h2>{{ exercicio.idExercicio.descricao_pt }}</h2>
-        <p>{{ exercicio.idTipoRepeticao.descricao }}</p>
-        <p>Intervalo: {{ exercicio.intervalo }}s</p>
-        <p>Carga: {{ exercicio.carga }}</p>
-        <p *ngIf="exercicio.nota">Nota: {{ exercicio.nota }}</p>
+        <h2>{{ exercicioSerie?.idExercicio?.descricao_pt }}</h2>
+        <p>{{ exercicioSerie?.idTipoRepeticao?.descricao }}</p>
+        <p>Intervalo: {{ exercicioSerie?.intervalo }}s</p>
+        <p>Carga: {{ exercicioSerie?.carga }}</p>
+        <p *ngIf="exercicioSerie.nota">Nota: {{ exercicioSerie?.nota }}</p>
       </ion-item>
     </ion-item-group>
     <div text-center>
-      <button ion-button color="secondary" round (click)="create()">
+      <button ion-button color="secondary" round [disabled]="!form.value.descricao" (click)="methods(actionName, form.value)">
         SALVAR
       </button>
     </div>

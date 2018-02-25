@@ -7,6 +7,8 @@ import { AlunoTreinoViewPage } from './aluno-treino-view/aluno-treino-view';
 
 import { AlunoTreinoProvider } from '../../../providers/aluno-treino/aluno-treino';
 
+import { AlunoTreinoPersistence } from '../../../persistences/aluno-treino/aluno-treino';
+
 import { MenuComponent } from '../../../components/menu/menu';
 
 import { Util } from '../../../util';
@@ -38,13 +40,20 @@ export class AlunoTreinoPage {
     public navParams: NavParams,
     public modalCtrl: ModalController,
     public alunoTreinoProvider: AlunoTreinoProvider,
+    public alunoTreinoPersistence: AlunoTreinoPersistence,
     public util: Util) {
       this.aluno = this.navParams.get('aluno');
   }
 
   ionViewDidLoad() {}
 
-  ionViewDidEnter() {}
+  ionViewDidEnter() {
+    this.store();
+  }
+
+  store() {
+    this.aluno = this.alunoTreinoPersistence.list().find(e => e.id_aluno === this.aluno.id_aluno);
+  }
 
   assign(item) {
     return {...item, center: item.descricao};
@@ -87,7 +96,7 @@ export class AlunoTreinoPage {
       {
         text: 'Confirmar',
         handler: () => {
-          this.handlerDelete(treino);
+          this.handleDelete(treino);
         }
       }
     ];
@@ -95,26 +104,19 @@ export class AlunoTreinoPage {
     this.util.showAlert(title, message, null, buttons);
   }
 
-  handlerDelete(treino) {
+  handleDelete(treino) {
     this.util.showLoading();
     this.alunoTreinoProvider.delete(treino.id_serie).subscribe(res => {
         if (res) {
           this.util.showAlert('Atenção', this.messages.delete);
-          this.updateStorageAfterDelete(treino);
+          this.alunoTreinoPersistence.delete(this.aluno.id_aluno, treino.id_serie);
+          this.store();
         } else {
           this.util.showAlert('Atenção', this.messages.error);
         }
         this.util.endLoading();
       },
       err => this.util.handlerServerError(err));
-  }
-
-  updateStorageAfterDelete(treino) {
-    const oldJson = this.util.getStorage('dataAluno');
-    const newJson = oldJson.map(e => e.id_aluno === this.aluno.id_aluno ? {...e, series: e.series.filter(e => e.id_serie !== treino.id_serie)} : e);
-
-    this.util.setStorage('dataAluno', newJson);
-    this.aluno = newJson.find(e => e.id_aluno === this.aluno.id_aluno);
   }
 
 }

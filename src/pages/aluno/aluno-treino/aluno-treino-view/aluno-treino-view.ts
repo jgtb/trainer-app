@@ -12,6 +12,8 @@ export class AlunoTreinoViewPage {
   treino: any = {};
   aluno: any = {};
 
+  showList = true;
+
   constructor(
   	public navCtrl: NavController,
   	public navParams: NavParams) {

@@ -82,12 +82,16 @@ export class Util {
     if (this.loading) {
       this.endLoading();
     }
-    
+
     this.showAlert(title, message, null, buttons);
   }
 
   getUrl(url) {
     return `${this.baseUrl}${url}`;
+  }
+
+  getId() {
+    return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 20);
   }
 
 }

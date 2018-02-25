@@ -4,12 +4,12 @@
     <ion-list>
       <ion-item class="bg-clean">
         <ion-thumbnail item-start>
-          <img src="http://fit.nexur.com.br/exercicios/{{ exercicio.id_exercicio }}-0.gif">
+          <img src="http://fit.nexur.com.br/exercicios/{{ exercicioSerie.id_exercicio }}-0.gif">
         </ion-thumbnail>
-        <h2>{{ exercicio.idExercicio.descricao_pt }}</h2>
+        <h2>{{ exercicioSerie?.idExercicio?.descricao_pt }}</h2>
       </ion-item>
     </ion-list>
-    <form [formGroup]="form" (ngSubmit)="action()">
+    <form [formGroup]="form">
       <ion-list>
         <ion-item>
           <ion-icon item-left name="body"></ion-icon>
@@ -42,13 +42,13 @@
       <ion-grid>
         <ion-row>
           <ion-col text-center>
-            <button ion-button color="secondary" round [disabled]="!form.valid">
+            <button ion-button color="secondary" round [disabled]="!form.valid" (click)="action(form.value)">
               {{ actionName }}
             </button>
           </ion-col>
-          <ng-container *ngIf="exercicio.id_exercicio_serie">
+          <ng-container *ngIf="exercicioSerie.id_exercicio_serie">
             <ion-col>
-              <button ion-button color="danger" round>
+              <button ion-button color="danger" round (click)="delete()">
                 Excluír
               </button>
             </ion-col>

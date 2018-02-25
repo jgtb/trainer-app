@@ -26,14 +26,15 @@
     </ion-row>
   </ion-grid>
   <ion-list>
-    <ion-item *ngFor="let treino of treino.exercicioSeries">
+    <ion-item *ngFor="let exercicioSerie of treino.exercicioSeries">
       <ion-thumbnail item-start>
-        <img src="{{ src(treino) }}">
+        <img src="{{ src(exercicioSerie) }}">
       </ion-thumbnail>
-      <h2>{{ treino.idExercicio.descricao_pt }}</h2>
-      <p>Hayao Miyazaki • 1988</p>
-      <p>Hayao Miyazaki • 1988</p>
-      <p>Hayao Miyazaki • 1988</p>
+      <h2>{{ exercicioSerie?.idExercicio?.descricao_pt }}</h2>
+      <p>{{ exercicioSerie?.idTipoRepeticao?.descricao }}</p>
+      <p>Intervalo: {{ exercicioSerie?.intervalo }}s</p>
+      <p>Carga: {{ exercicioSerie?.carga }}</p>
+      <p *ngIf="exercicioSerie.nota">Nota: {{ exercicioSerie?.nota }}</p>
       <ion-grid class="b">
         <ion-row>
           <ion-col>

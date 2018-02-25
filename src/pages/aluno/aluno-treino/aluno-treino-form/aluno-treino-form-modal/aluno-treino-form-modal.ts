@@ -5,6 +5,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { StaticProvider } from '../../../../../providers/static/static';
 
+import { Util } from '../../../../../util';
+
 @Component({
   selector: 'page-aluno-treino-form-modal',
   templateUrl: 'aluno-treino-form-modal.html',
@@ -16,7 +18,7 @@ export class AlunoTreinoFormModalPage {
   title = '';
   actionName = '';
 
-  exercicio: any = {};
+  exercicioSerie: any = {};
 
   tiposRepeticao: any = [];
 
@@ -25,8 +27,9 @@ export class AlunoTreinoFormModalPage {
     public viewCtrl: ViewController,
     public navParams: NavParams,
     public staticProvider: StaticProvider,
-    public formBuilder: FormBuilder) {
-      this.exercicio = this.navParams.get('exercicio');
+    public formBuilder: FormBuilder,
+    public util: Util) {
+      this.exercicioSerie = this.navParams.get('exercicioSerie');
       this.initForm();
     }
 
@@ -38,29 +41,55 @@ export class AlunoTreinoFormModalPage {
 
   initForm() {
     this.form = this.formBuilder.group({
-      id_exercicio: [this.exercicio.id_exercicio, Validators.required],
-      id_tipo_repeticao: [this.exercicio.idTipoRepeticao ? this.exercicio.idTipoRepeticao.id_tipo_repeticao : '' , Validators.required],
-      carga: [this.exercicio.carga ? this.exercicio.carga : '', Validators.required],
-      num_repeticao: [this.exercicio.num_repeticao ? this.exercicio.num_repeticao : '', Validators.required],
-      intervalo: [this.exercicio.intervalo ? this.exercicio.intervalo : '', Validators.required],
-      nota: [this.exercicio.nota ? this.exercicio.nota : '']
+      id_exercicio_serie: [this.exercicioSerie.id_exercicio_serie ? this.exercicioSerie.id_exercicio_serie : ''],
+      id_exercicio: [this.exercicioSerie.id_exercicio, Validators.required],
+      id_tipo_repeticao: [this.exercicioSerie.idTipoRepeticao ? this.exercicioSerie.idTipoRepeticao.id_tipo_repeticao : '' , Validators.required],
+      carga: [this.exercicioSerie.carga ? this.exercicioSerie.carga : '', Validators.required],
+      num_repeticao: [this.exercicioSerie.num_repeticao ? this.exercicioSerie.num_repeticao : '', Validators.required],
+      intervalo: [this.exercicioSerie.intervalo ? this.exercicioSerie.intervalo : '', Validators.required],
+      nota: [this.exercicioSerie.nota ? this.exercicioSerie.nota : '']
     });
   }
 
+  action(data) {
+    switch(this.actionName) {
+      case 'Adicionar':
+        this.add(data);
+      break;
+      case 'Alterar':
+        this.edit(data);
+      break;
+    }
+  }
+
+  add(data) {
+    const res = {...data, id_exercicio_serie: this.util.getId(), idExercicio: {descricao_pt: this.exercicioSerie.idExercicio.descricao_pt}, idTipoRepeticao: this.tiposRepeticao.find(e => e.id_tipo_repeticao === data.id_tipo_repeticao)};
+    this.dismiss(res, 'add');
+  }
+
+  edit(data) {
+    const res = {...data, idExercicio: {descricao_pt: this.exercicioSerie.idExercicio.descricao_pt}, idTipoRepeticao: this.tiposRepeticao.find(e => e.id_tipo_repeticao === data.id_tipo_repeticao)};
+    this.dismiss(res, 'edit');
+  }
+
+  delete() {
+    this.dismiss(this.exercicioSerie.id_exercicio_serie, 'delete');
+  }
+
   setTitle() {
-    this.title = this.exercicio.idExercicio.descricao_pt;
+    this.title = this.exercicioSerie.idExercicio.descricao_pt;
   }
 
   setActionName() {
-    this.actionName = !this.exercicio.id_exercicio_serie ? 'Adicionar' : 'Alterar';
+    this.actionName = !this.exercicioSerie.id_exercicio_serie ? 'Adicionar' : 'Alterar';
   }
 
   getAllTipoRepeticao() {
     this.staticProvider.getAllTipoRepeticao().subscribe(res => this.tiposRepeticao = res);
   }
 
-  dismiss() {
-    this.viewCtrl.dismiss();
+  dismiss(item = null, action = null) {
+    this.viewCtrl.dismiss({action: action, item: item});
   }
 
 }

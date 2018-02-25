@@ -2,7 +2,7 @@
   <ion-navbar color="darklight">
     <ion-title>{{ title }}</ion-title>
     <ion-buttons right>
-      <button ion-button icon-only class="btn-circle">
+      <button ion-button icon-only class="btn-circle" (click)="showList = !showList">
         <ion-icon name="refresh"></ion-icon>
       </button>
     </ion-buttons>
@@ -11,15 +11,36 @@
 
 <ion-content>
   <info [aluno]="aluno"></info>
-  <ion-list>
-    <ion-item *ngFor="let treino of treino.exercicioSeries">
+  <ion-list *ngIf="showList">
+    <ion-item *ngFor="let exercicioSerie of treino.exercicioSeries">
       <ion-thumbnail item-start>
-        <img src="{{ src(treino) }}">
+        <img src="{{ src(exercicioSerie) }}">
       </ion-thumbnail>
-      <h2>{{ treino.idExercicio.descricao_pt }}</h2>
-      <p>Hayao Miyazaki • 1988</p>
-      <p>Hayao Miyazaki • 1988</p>
-      <p>Hayao Miyazaki • 1988</p>
+      <h2>{{ exercicioSerie?.idExercicio?.descricao_pt }}</h2>
+      <p>{{ exercicioSerie?.idTipoRepeticao?.descricao }}</p>
+      <p>Intervalo: {{ exercicioSerie?.intervalo }}s</p>
+      <p>Carga: {{ exercicioSerie?.carga }}</p>
+      <p *ngIf="exercicioSerie.nota">Nota: {{ exercicioSerie?.nota }}</p>
+      <button ion-button clear item-end>
+        <ion-icon name="videocam" color="secondary"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
+  <ng-container *ngIf="!showList">
+    <ion-card *ngFor="let exercicioSerie of treino.exercicioSeries">
+      <ion-item>
+        <h2>{{ exercicioSerie?.idExercicio?.descricao_pt }}</h2>
+        <p>{{ exercicioSerie?.idTipoRepeticao?.descricao }}</p>
+        <button ion-button clear item-end>
+          <ion-icon name="videocam" color="secondary"></ion-icon>
+        </button>
+      </ion-item>
+      <img src="{{ src(exercicioSerie) }}">
+      <ion-card-content>
+        <p>Intervalo: {{ exercicioSerie?.intervalo }}s</p>
+        <p>Carga: {{ exercicioSerie?.carga }}</p>
+        <p *ngIf="exercicioSerie.nota">Nota: {{ exercicioSerie?.nota }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
 </ion-content>
