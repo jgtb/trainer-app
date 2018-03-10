@@ -29,15 +29,9 @@ const MODULES = [
 ];
 
 @NgModule({
-  declarations: [
-		COMPONENTS
-	],
-  exports: [
-		COMPONENTS
-	],
-  imports: [
-    MODULES,
-  ],
+  declarations: [COMPONENTS],
+  exports: [COMPONENTS],
+  imports: [MODULES],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ComponentsModule {}

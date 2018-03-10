@@ -77,7 +77,7 @@ export class AlunoPage {
     const modal = this.modalCtrl.create(MenuComponent, {aluno: item, item: this.assign(item), menu: this.menu, class: 'menu-lg'});
     modal.present();
     modal.onDidDismiss(res => {
-      if (typeof res != 'undefined') {
+      if (typeof res !== 'undefined') {
         if (res.component) {
           this.navCtrl.push(res.component, {aluno: res.aluno, item: res.item}, {animate: false});
           return
@@ -133,7 +133,7 @@ export class AlunoPage {
         this.util.showAlert('Atenção', this.messages.error);
       }
       this.util.endLoading();
-    }, err => this.util.handlerServerError(err))
+    }, err => this.util.handleServerError(err))
   }
 
   delete(aluno) {
@@ -165,7 +165,7 @@ export class AlunoPage {
         this.util.showAlert('Atenção', this.messages.error);
       }
       this.util.endLoading();
-    }, err => this.util.handlerServerError(err));
+    }, err => this.util.handleServerError(err));
   }
 
   refresh($event) {
@@ -174,7 +174,7 @@ export class AlunoPage {
       this.alunoPersistence.store(res);
       this.store();
       $event.complete();
-    }, err => this.util.handlerServerError(err));
+    }, err => this.util.handleServerError(err));
   }
 
   search($event) {

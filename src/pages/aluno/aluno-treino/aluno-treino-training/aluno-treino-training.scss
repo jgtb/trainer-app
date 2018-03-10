@@ -26,7 +26,7 @@
 					ion-col {
 						padding: 0px;
 						&:not(:first-child) {
-							margin-left: -75px;
+							margin-left: -35px;
 						}
 						button {
 							ion-icon {
@@ -67,6 +67,26 @@
 	        }
     		}
     	}
+		}
+		ion-card {
+			background-color: map-get($colors, darklight);
+			ion-card-content {
+				p {
+					color: lighten(map-get($colors, darklight), 18%);
+				}
+			}
+			ion-item {
+				background-color: map-get($colors, darklight);
+				ion-label {
+					white-space: normal;
+					h2 {
+						color: map-get($colors, secondary) !important;
+					}
+					p {
+						color: lighten(map-get($colors, darklight), 18%);
+					}
+				}
+			}
 		}
 	}
 }

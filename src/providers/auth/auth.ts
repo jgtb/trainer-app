@@ -13,11 +13,13 @@ export class AuthProvider {
 
   login(data) {
     const url = this.util.getUrl(`trainer/auth-login`);
+
     return this.http.post(url, data);
   }
 
   forgotPassword(login) {
     const url = this.util.getUrl(`trainer/auth-forgot-password?login=${login}`);
+
     return this.http.get(url);
   }
 

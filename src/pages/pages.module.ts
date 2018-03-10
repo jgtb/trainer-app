@@ -16,6 +16,8 @@ import { AlunoTreinoPage } from '../pages/aluno/aluno-treino/aluno-treino';
 import { AlunoTreinoFormPage } from '../pages/aluno/aluno-treino/aluno-treino-form/aluno-treino-form';
 import { AlunoTreinoFormModalPage } from '../pages/aluno/aluno-treino/aluno-treino-form/aluno-treino-form-modal/aluno-treino-form-modal';
 import { AlunoTreinoTrainingPage } from '../pages/aluno/aluno-treino/aluno-treino-training/aluno-treino-training';
+import { AlunoTreinoTrainingTimerPage } from '../pages/aluno/aluno-treino/aluno-treino-training/aluno-treino-training-timer/aluno-treino-training-timer';
+import { AlunoTreinoTrainingModalPage } from '../pages/aluno/aluno-treino/aluno-treino-training/aluno-treino-training-modal/aluno-treino-training-modal';
 import { AlunoTreinoViewPage } from '../pages/aluno/aluno-treino/aluno-treino-view/aluno-treino-view';
 import { AlunoGraficoPage } from '../pages/aluno/aluno-grafico/aluno-grafico';
 import { AlunoMensagemPage } from '../pages/aluno/aluno-mensagem/aluno-mensagem';
@@ -46,6 +48,8 @@ const PAGES = [
 	AlunoTreinoFormPage,
 	AlunoTreinoFormModalPage,
 	AlunoTreinoTrainingPage,
+	AlunoTreinoTrainingTimerPage,
+	AlunoTreinoTrainingModalPage,
 	AlunoTreinoViewPage,
 	AlunoGraficoPage,
 	AlunoMensagemPage,
@@ -92,6 +96,12 @@ const PROVIDERS = [
 	ProvidersModule
 ];
 
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+
+const SERVICES = [
+	YoutubeVideoPlayer
+]
+
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 registerLocaleData(localeEn);
@@ -105,6 +115,7 @@ registerLocaleData(localeEn);
 		COMPONENTS,
 		PIPES,
 		PROVIDERS
-	]
+	],
+	providers: [SERVICES]
 })
 export class PagesModule {}

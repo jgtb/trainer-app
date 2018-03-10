@@ -24,7 +24,7 @@ export class StaticProvider {
   }
 
   getAllTipoExercicio() {
-    const url = 'assets/data/tipo-exercico.json';
+    const url = 'assets/data/tipo-exercicio.json';
 
     return this.http.get(url);
   }
@@ -33,6 +33,12 @@ export class StaticProvider {
     const url = 'assets/data/tipo-equipamento.json';
 
     return this.http.get(url);
+  }
+
+  async getAllClassificacaoExercicio() {
+    const url = 'assets/data/classificacao-exercicio.json';
+
+    return await this.http.get(url).toPromise();
   }
 
   getAllGrupo() {

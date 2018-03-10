@@ -67,7 +67,7 @@ export class ConfiguracaoPage {
     this.configuracaoProvider.index(usuarioId).subscribe(res => {
       this.util.setStorage('dataConfiguracao', res);
       this.init();
-    }, err => this.util.handlerServerError(err));
+    }, err => this.util.handleServerError(err));
   }
 
   back() {

@@ -14,6 +14,10 @@ import { RankingProvider } from '../../providers/ranking/ranking';
 import { ConfiguracaoProvider } from '../../providers/configuracao/configuracao';
 
 import { AlunoPersistence } from '../../persistences/aluno/aluno';
+import { AvaliacaoPersistence } from '../../persistences/avaliacao/avaliacao';
+import { ExercicioPersistence } from '../../persistences/exercicio/exercicio';
+import { AulaPersistence } from '../../persistences/aula/aula';
+import { ConfiguracaoPersistence } from '../../persistences/configuracao/configuracao';
 
 import { Util } from '../../util';
 
@@ -36,6 +40,10 @@ export class LoginPage {
     public rankingProvider: RankingProvider,
     public configuracaoProvider: ConfiguracaoProvider,
     public alunoPersistence: AlunoPersistence,
+    public avaliacaoPersistence: AvaliacaoPersistence,
+    public exercicioPersistence: ExercicioPersistence,
+    public aulaPersistence: AulaPersistence,
+    public configuracaoPersistence: ConfiguracaoPersistence,
     public formBuilder: FormBuilder,
     public util: Util) {
       this.initForm();
@@ -60,24 +68,24 @@ export class LoginPage {
       }
       this.util.showLoading();
       this.handleLoginSuccess(res);
-    }, err => this.util.handlerServerError(err));
+    }, err => this.util.handleServerError(err));
   }
 
-  handleLoginSuccess(res) {
+  async handleLoginSuccess(res) {
     const usuarioId = res.id_usuario;
 
-    this.util.setLogged();
+    this.util.setLogged()
     this.util.setStorage('usuarioId', usuarioId);
-    this.alunoProvider.index(usuarioId).subscribe(res => {
-      this.alunoPersistence.store(res);
-      this.avaliacaoProvider.index(usuarioId).subscribe(res => this.util.setStorage('dataAvaliacao', res));
-      this.exercicioProvider.index(usuarioId).subscribe(res => this.util.setStorage('dataExercicio', res));
-      this.aulaProvider.index(usuarioId).subscribe(res => this.util.setStorage('dataAula', res));
-      // this.rankingProvider.index(res.id_usuario).subscribe(res => this.util.setStorage('dataRanking', res));
-      this.configuracaoProvider.index(usuarioId).subscribe(res => this.util.setStorage('dataConfiguracao', res));
-      this.util.endLoading();
-      this.goToDashboard();
-    });
+
+    await this.alunoProvider.index(usuarioId).then(res => this.alunoPersistence.store(res));
+    await this.avaliacaoProvider.index(usuarioId).then(res => this.avaliacaoPersistence.store(res));
+    await this.exercicioProvider.index(usuarioId).then(res => this.exercicioPersistence.store(res));
+    await this.aulaProvider.index(usuarioId).then(res => this.aulaPersistence.store(res));
+    // await this.rankingProvider.index(res.id_usuario).then(res => this.util.setStorage('dataRanking', res));
+    await this.configuracaoProvider.index(usuarioId).then(res => this.configuracaoPersistence.store(res));
+
+    this.util.endLoading();
+    this.goToDashboard();
   }
 
   goToDashboard() {

@@ -107,16 +107,24 @@ export class AlunoTreinoPage {
   handleDelete(treino) {
     this.util.showLoading();
     this.alunoTreinoProvider.delete(treino.id_serie).subscribe(res => {
-        if (res) {
-          this.util.showAlert('Atenção', this.messages.delete);
-          this.alunoTreinoPersistence.delete(this.aluno.id_aluno, treino.id_serie);
-          this.store();
-        } else {
-          this.util.showAlert('Atenção', this.messages.error);
-        }
-        this.util.endLoading();
-      },
-      err => this.util.handlerServerError(err));
+      if (res) {
+        this.util.showAlert('Atenção', this.messages.delete);
+        this.alunoTreinoPersistence.delete(this.aluno.id_aluno, treino.id_serie);
+        this.store();
+      } else {
+        this.util.showAlert('Atenção', this.messages.error);
+      }
+      this.util.endLoading();
+    },
+    err => this.util.handleServerError(err));
+  }
+
+  refresh($event) {
+    this.alunoTreinoProvider.index(this.aluno.id_aluno).subscribe(res => {
+      this.alunoTreinoPersistence.saveAll(this.aluno.id_aluno, res);
+      this.store();
+      $event.complete();
+    }, err => this.util.handleServerError(err));
   }
 
 }

@@ -13,26 +13,31 @@ export class AlunoTreinoProvider {
 
   index(id) {
     const url = this.util.getUrl(`trainer/aluno-treino-index?id=${id}`);
+    
     return this.http.get(url);
   }
 
   view(id) {
     const url = this.util.getUrl(`trainer/aluno-treino-view?id=${id}`);
+    
     return this.http.get(url);
   }
 
   create(data) {
     const url = this.util.getUrl(`trainer/aluno-treino-create`);
+    
     return this.http.post(url, data);
   }
 
   update(data) {
     const url = this.util.getUrl(`trainer/aluno-treino-update`);
+    
     return this.http.post(url, data);
   }
 
   delete(id) {
     const url = this.util.getUrl(`trainer/aluno-treino-delete?id=${id}`);
+    
     return this.http.get(url);
   }
 

@@ -8,9 +8,9 @@ import { MyApp } from './app.component';
 
 import { PagesModule } from '../pages/pages.module';
 import { ProvidersModule } from '../providers/providers.module';
+import { PersistencesModule } from '../persistences/persistences.module';
 
 import { Util } from '../util';
-import { PersistencesModule } from '../persistences/persistences.module';
 
 @NgModule({
   declarations: [

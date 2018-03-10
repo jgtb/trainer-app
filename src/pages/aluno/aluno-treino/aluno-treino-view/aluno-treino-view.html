@@ -10,9 +10,12 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <info [aluno]="aluno"></info>
   <ion-list *ngIf="showList">
-    <ion-item *ngFor="let exercicioSerie of treino.exercicioSeries">
+    <ion-item *ngFor="let exercicioSerie of treino?.exercicioSeries">
       <ion-thumbnail item-start>
         <img src="{{ src(exercicioSerie) }}">
       </ion-thumbnail>
@@ -21,26 +24,27 @@
       <p>Intervalo: {{ exercicioSerie?.intervalo }}s</p>
       <p>Carga: {{ exercicioSerie?.carga }}</p>
       <p *ngIf="exercicioSerie.nota">Nota: {{ exercicioSerie?.nota }}</p>
-      <button ion-button clear item-end>
+      <button *ngIf="exercicioSerie.idExercicio.video" ion-button clear item-end (click)="openVideo(exercicioSerie)">
         <ion-icon name="videocam" color="secondary"></ion-icon>
       </button>
     </ion-item>
   </ion-list>
   <ng-container *ngIf="!showList">
-    <ion-card *ngFor="let exercicioSerie of treino.exercicioSeries">
+    <ion-card *ngFor="let exercicioSerie of treino?.exercicioSeries">
       <ion-item>
         <h2>{{ exercicioSerie?.idExercicio?.descricao_pt }}</h2>
-        <p>{{ exercicioSerie?.idTipoRepeticao?.descricao }}</p>
-        <button ion-button clear item-end>
+        <button *ngIf="exercicioSerie.idExercicio.video" ion-button clear item-end (click)="openVideo(exercicioSerie)">
           <ion-icon name="videocam" color="secondary"></ion-icon>
         </button>
       </ion-item>
       <img src="{{ src(exercicioSerie) }}">
       <ion-card-content>
+        <p>{{ exercicioSerie?.idTipoRepeticao?.descricao }}</p>
         <p>Intervalo: {{ exercicioSerie?.intervalo }}s</p>
         <p>Carga: {{ exercicioSerie?.carga }}</p>
         <p *ngIf="exercicioSerie.nota">Nota: {{ exercicioSerie?.nota }}</p>
       </ion-card-content>
     </ion-card>
   </ng-container>
+  <empty [count]="treino?.exercicioSeries?.length" [message]="emptyMessage"></empty>
 </ion-content>

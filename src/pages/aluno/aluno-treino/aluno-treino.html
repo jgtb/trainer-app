@@ -10,6 +10,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <info [aluno]="aluno"></info>
   <ion-list>
     <ion-item *ngFor="let treino of aluno.series" (click)="open(treino)">

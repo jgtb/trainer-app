@@ -10,8 +10,6 @@ import { AlunoPersistence } from '../../../persistences/aluno/aluno';
 
 import { Util } from '../../../util';
 
-import * as _ from 'lodash';
-
 @Component({
   selector: 'page-aluno-form',
   templateUrl: 'aluno-form.html',
@@ -76,7 +74,7 @@ export class AlunoFormPage {
 
   create(data) {
     this.util.showLoading();
-    this.alunoProvider.checkLogin(data.login).subscribe(res => {
+    this.alunoProvider.checkLogin(null, data.login).subscribe(res => {
       if (res === 1) {
         this.alunoProvider.create(data).subscribe(res => {
           if (res) {
@@ -86,18 +84,18 @@ export class AlunoFormPage {
           } else {
             this.util.showAlert('Atenção', this.messages.error);
           }
-        }, err => this.util.handlerServerError(err));
+        }, err => this.util.handleServerError(err));
       } else {
         this.util.showAlert('Atenção', this.messages.loginHasTakenError);
       }
       this.util.endLoading();
-    }, err => this.util.handlerServerError(err));
+    }, err => this.util.handleServerError(err));
   }
 
   update(data) {
     this.util.showLoading();
-    this.alunoProvider.checkLogin(data.login).subscribe(res => {
-      if (res === 1 ) {
+    this.alunoProvider.checkLogin(this.aluno.idUsuario.id_usuario, data.login).subscribe(res => {
+      if (res === 1) {
         this.alunoProvider.update(data).subscribe(res => {
           if (res) {
             this.util.showAlert('Atenção', this.messages.update);
@@ -106,12 +104,12 @@ export class AlunoFormPage {
           } else {
             this.util.showAlert('Atenção', this.messages.error);
           }
-        }, err => this.util.handlerServerError(err));
+        }, err => this.util.handleServerError(err));
       } else {
         this.util.showAlert('Atenção', this.messages.loginHasTakenError);
       }
       this.util.endLoading();
-    }, err => this.util.handlerServerError(err));
+    }, err => this.util.handleServerError(err));
   }
 
   getTitle() {

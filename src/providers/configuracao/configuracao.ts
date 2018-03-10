@@ -11,13 +11,15 @@ export class ConfiguracaoProvider {
     public http: HttpClient,
     public util: Util) {}
 
-  index(id) {
+  async index(id) {
     const url = this.util.getUrl(`trainer/configuracao-index?id=${id}`);
-    return this.http.get(url);
+
+    return await this.http.get(url).toPromise();
   }
 
   update(data) {
     const url = this.util.getUrl(`trainer/configuracao-update`);
+
     return this.http.post(url, data);
   }
 

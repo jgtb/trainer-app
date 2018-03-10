@@ -23,7 +23,7 @@ export class ExercicioPage {
   exercicios: any = [];
 
   searchTerm = '';
-  
+
   count = 15;
   increase = 10;
 
@@ -78,6 +78,10 @@ export class ExercicioPage {
       this.count += this.increase;
       $event.complete();
     }, 500);
+  }
+
+  isChecked(exercicio) {
+    return exercicio.ativo === '1';
   }
 
   back() {

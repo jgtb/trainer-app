@@ -6,13 +6,15 @@
 
 <ion-content>
   <info [aluno]="aluno"></info>
-  <ion-searchbar [(ngModel)]="searchTerm" placeholder="Pesquisar..."></ion-searchbar>
-  <slides-treino-form [items]="filteredItems()" (click)="action($event)"></slides-treino-form>
+  <ng-container *ngIf="!hasFocus">
+    <ion-searchbar [(ngModel)]="searchTerm" placeholder="Pesquisar..."></ion-searchbar>
+    <slides-treino-form [items]="filteredItems()" (click)="action($event)"></slides-treino-form>
+  </ng-container>
   <ion-list>
     <form [formGroup]="form">
       <ion-item>
         <ion-icon item-left name="bookmark"></ion-icon>
-        <ion-input type="text" placeholder="Descrição" formControlName="descricao"></ion-input>
+        <ion-input #inp type="text" placeholder="Descrição" formControlName="descricao" (ionFocus)="hasFocus = true" (focusout)="hasFocus = false"></ion-input>
       </ion-item>
     </form>
   </ion-list>

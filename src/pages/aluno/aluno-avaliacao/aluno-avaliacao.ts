@@ -22,7 +22,7 @@ export class AlunoAvaliacaoPage {
     {title: 'Excluír', icon: 'trash', method: 'delete', class: 'odd-last-menu-item'}
   ];
 
-  emptyMessage = 'Nenhum Avaliação encontrado...';
+  emptyMessage = 'Nenhuma Avaliação encontrado...';
 
   constructor(
     public navCtrl: NavController,

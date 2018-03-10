@@ -25,8 +25,12 @@ export class AlunoTreinoPersistence {
     this.store(this.list().map(e => e.id_aluno === alunoId ? {...e, series: _.orderBy(_.unionBy([res], e.series, this.identifier), this.orderBy)} : e));
   }
 
+  saveAll(alunoId, res) {
+    this.store(this.list().map(e => e.id_aluno === alunoId ? {...e, series: res.series} : e));
+  }
+
   delete(alunoId, serieId) {
-    this.store(this.list().map(e => e.id_aluno === alunoId ? {...e, series: e.series.filter(e => e.id_serie !== serieId)} : e));
+    this.store(this.list().map(e => e.id_aluno === alunoId ? {...e, series: _.reject(e.series, {[this.identifier]: serieId})} : e));
   }
 
 }

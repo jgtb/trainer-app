@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -22,6 +22,8 @@ export class AlunoTreinoFormPage {
   title = '';
 
   searchTerm = '';
+
+  hasFocus = false;
 
   aluno: any = {};
   treino: any = {};
@@ -109,7 +111,7 @@ export class AlunoTreinoFormPage {
         this.util.showAlert('Atenção', this.messages.error);
       }
       this.util.endLoading();
-    }, err => this.util.handlerServerError(err));
+    }, err => this.util.handleServerError(err));
   }
 
   update(data) {
@@ -123,7 +125,7 @@ export class AlunoTreinoFormPage {
         this.util.showAlert('Atenção', this.messages.error);
       }
       this.util.endLoading();
-    }, err => this.util.handlerServerError(err));
+    }, err => this.util.handleServerError(err));
   }
 
   add(item) {

@@ -14,7 +14,7 @@ export class ExercicioViewPage {
   constructor(
   	public navCtrl: NavController,
   	public navParams: NavParams) {
-  	   this.item = this.navParams.get('item');
+      this.item = this.navParams.get('item');
   }
 
   ionViewDidLoad() {
@@ -24,7 +24,7 @@ export class ExercicioViewPage {
   ionViewDidEnter() {}
 
   setTitle() {
-    this.title = this.item.description;
+    this.title = this.item.idExercicio.descricao_pt;
   }
 
 }

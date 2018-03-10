@@ -6,47 +6,48 @@
 
 <ion-content padding>
 
-  <ion-list>
-    <ion-item>
-      <ion-icon item-left name="bookmark"></ion-icon>
-      <ion-label>Descrição</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="body"></ion-icon>
-      <ion-label>Equipamento</ion-label>
-      <ion-select>
-        <ion-option></ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="body"></ion-icon>
-      <ion-label>Exercício</ion-label>
-      <ion-select>
-        <ion-option></ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="body"></ion-icon>
-      <ion-label>Classificação</ion-label>
-      <ion-select>
-        <ion-option></ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="camera"></ion-icon>
-      <ion-label>Fotos</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-icon item-left name="logo-youtube"></ion-icon>
-      <ion-label>Youtube</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <div text-center>
-      <button ion-button color="secondary" round (click)="action()">
-        {{ actionName }}
-      </button>
-    </div>
-  </ion-list>
+  <form [formGroup]="form" (ngSubmit)="action(form.value)">
+    <ion-list>
+      <ion-item>
+        <ion-icon item-left name="bookmark"></ion-icon>
+        <ion-input type="text" placeholder="Descrição" formControlName="descricao"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="podium"></ion-icon>
+        <ion-label>Equipamento</ion-label>
+        <ion-select formControlName="id_tipo_equipamento">
+          <ion-option *ngFor="let tipo_equipamento of dataTipoEquipamento" value="{{ tipo_equipamento.id_tipo_equipamento }}">{{ tipo_equipamento.descricao_pt }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="body"></ion-icon>
+        <ion-label>Exercício</ion-label>
+        <ion-select formControlName="id_tipo_exercicio" (ionChange)="getAllClassificacaoExercicio($event)">
+          <ion-option *ngFor="let tipo_exercicio of dataTipoExercicio" value="{{ tipo_exercicio.id_tipo_exercicio }}">{{ tipo_exercicio.descricao_pt }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="body"></ion-icon>
+        <ion-label>Classificação</ion-label>
+        <ion-select formControlName="id_classificacao_exercicio">
+          <ion-option *ngFor="let classificacao_exercicio of dataClassificacaoExercicio" value="{{ classificacao_exercicio.id_classificacao_exercicio }}">{{ classificacao_exercicio.descricao_pt }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="camera"></ion-icon>
+        <ion-label>Fotos</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="logo-youtube"></ion-icon>
+        <ion-label>Youtube</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <div text-center>
+        <button ion-button color="secondary" round>
+          {{ actionName }}
+        </button>
+      </div>
+    </ion-list>
+  </form>
 
 </ion-content>

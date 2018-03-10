@@ -13,6 +13,7 @@ export class AlunoGraficoProvider {
 
   index(id) {
     const url = this.util.getUrl(`trainer/aluno-grafico-index?id=${id}`);
+    
     return this.http.get(url);
   }
 
