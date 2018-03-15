@@ -35,10 +35,10 @@ export class StaticProvider {
     return this.http.get(url);
   }
 
-  async getAllClassificacaoExercicio() {
+  getAllClassificacaoExercicio() {
     const url = 'assets/data/classificacao-exercicio.json';
 
-    return await this.http.get(url).toPromise();
+    return this.http.get(url);
   }
 
   getAllGrupo() {

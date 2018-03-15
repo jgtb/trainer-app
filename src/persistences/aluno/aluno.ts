@@ -1,4 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
+import { Subscriber } from 'rxjs/Subscriber';
+
+import PouchDB from 'pouchdb';
 
 import { Util } from '../../util';
 
@@ -7,26 +12,36 @@ import * as _ from 'lodash';
 @Injectable()
 export class AlunoPersistence {
 
-  identifier = 'id_aluno';
-  key = 'dataAluno';
-  orderBy = ['nome'];
+  dbName: string = this.util.getStorage('usuarioId');
 
-  constructor(public util: Util) {}
+  db = new PouchDB<any>(`trainer-${this.dbName}`);
 
-  store(res) {
-    this.util.setStorage(this.key, res);
+  constructor(private zone: NgZone, public util: Util) {
+    this.db.sync(`http://localhost:5984/trainer-${this.dbName}`, { live: true, retry: true });
   }
 
-  list() {
-    return this.util.getStorage(this.key);
+  findAll() {
+    return this.db.allDocs({ include_docs: true }).then(docs => docs.rows.map(row => row.doc));
   }
 
-  save(res) {
-    this.store(_.orderBy(_.unionBy([res], this.list(), this.identifier), this.orderBy));
+  create(aluno) {
+    this.db.post(aluno);
   }
 
-  delete(id) {
-    this.store(_.reject(this.list(), {[this.identifier]: id}));
+  bulk(alunos) {
+    this.db.bulkDocs(alunos);
+  }
+
+  update(aluno) {
+    this.db.put(aluno);
+  }
+
+  remove(aluno) {
+    this.db.remove(aluno._id, aluno._rev);
+  }
+
+  truncate() {
+    this.db.allDocs({ include_docs: true }).then(docs => docs.rows.map(row => this.db.remove(row.doc)))
   }
 
 }

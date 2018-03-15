@@ -17,8 +17,6 @@ import { MenuComponent } from '../../components/menu/menu';
 
 import { Util } from '../../util';
 
-import * as _ from 'lodash';
-
 @Component({
   selector: 'page-aluno',
   templateUrl: 'aluno.html'
@@ -39,6 +37,9 @@ export class AlunoPage {
 
   searchTerm = '';
   emptyMessage = 'Nenhum Aluno encontrado...';
+
+  count = 15;
+  increase = 10;
 
   messages = {
     changePassword: 'E-mail enviado com sucesso',
@@ -62,7 +63,7 @@ export class AlunoPage {
   }
 
   store() {
-    this.alunos = this.alunoPersistence.list();
+    this.alunoPersistence.findAll().then(res => this.alunos = res);
   }
 
   assign(item) {
@@ -159,8 +160,7 @@ export class AlunoPage {
     this.alunoProvider.delete(aluno.id_usuario).subscribe(res => {
       if (res) {
         this.util.showAlert('Atenção', this.messages.delete);
-        this.alunoPersistence.delete(aluno.id_aluno);
-        this.store();
+        this.alunoPersistence.remove(aluno);
       } else {
         this.util.showAlert('Atenção', this.messages.error);
       }
@@ -168,11 +168,10 @@ export class AlunoPage {
     }, err => this.util.handleServerError(err));
   }
 
-  refresh($event) {
+  async refresh($event) {
     const usuarioId = this.util.getStorage('usuarioId');
-    this.alunoProvider.index(usuarioId).subscribe(res => {
-      this.alunoPersistence.store(res);
-      this.store();
+    await this.alunoProvider.index(usuarioId).then((res: any) => {
+      this.alunoPersistence.bulk(res);
       $event.complete();
     }, err => this.util.handleServerError(err));
   }
@@ -182,7 +181,12 @@ export class AlunoPage {
   }
 
   infinite($event) {
-    $event.complete();
+    if (this.alunos.length < this.count) {
+      setTimeout(() => {
+        this.count += this.increase;
+        $event.complete();
+      }, 500);
+    }
   }
 
   back() {

@@ -26,7 +26,7 @@
     <info
       [aluno]="aluno"
       [index]="index"
-      *ngFor="let aluno of alunos | alunoFilter : searchTerm; let index = index"
+      *ngFor="let aluno of alunos | alunoFilter : searchTerm : count; let index = index"
       (click)="open(aluno)"></info>
   </ion-list>
   <empty [count]="alunos.length" [message]="emptyMessage"></empty>

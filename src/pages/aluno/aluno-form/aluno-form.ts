@@ -79,7 +79,7 @@ export class AlunoFormPage {
         this.alunoProvider.create(data).subscribe(res => {
           if (res) {
             this.util.showAlert('Atenção', this.messages.create);
-            this.alunoPersistence.save(res);
+            this.alunoPersistence.create(res);
             this.navCtrl.pop();
           } else {
             this.util.showAlert('Atenção', this.messages.error);
@@ -99,7 +99,7 @@ export class AlunoFormPage {
         this.alunoProvider.update(data).subscribe(res => {
           if (res) {
             this.util.showAlert('Atenção', this.messages.update);
-            this.alunoPersistence.save(res);
+            this.alunoPersistence.update({...this.aluno, ...res});
             this.navCtrl.pop();
           } else {
             this.util.showAlert('Atenção', this.messages.error);

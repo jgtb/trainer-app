@@ -82,8 +82,8 @@ export class ExercicioFormPage {
     this.staticProvider.getAllTipoExercicio().subscribe(res => this.dataTipoExercicio = res);
   }
 
-  async getAllClassificacaoExercicio(idTipoExercicio) {
-    this.dataClassificacaoExercicio = await this.staticProvider.getAllClassificacaoExercicio();
+  getAllClassificacaoExercicio(idTipoExercicio) {
+    this.staticProvider.getAllClassificacaoExercicio().subscribe(res => this.dataClassificacaoExercicio = res.filter(e => e.id_tipo_exercicio = idTipoExercicio));
   }
 
   setTitle() {

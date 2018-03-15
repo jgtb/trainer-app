@@ -77,7 +77,7 @@ export class LoginPage {
     this.util.setLogged()
     this.util.setStorage('usuarioId', usuarioId);
 
-    await this.alunoProvider.index(usuarioId).then(res => this.alunoPersistence.store(res));
+    await this.alunoProvider.index(usuarioId).then(res => this.alunoPersistence.bulk(res));
     await this.avaliacaoProvider.index(usuarioId).then(res => this.avaliacaoPersistence.store(res));
     await this.exercicioProvider.index(usuarioId).then(res => this.exercicioPersistence.store(res));
     await this.aulaProvider.index(usuarioId).then(res => this.aulaPersistence.store(res));
