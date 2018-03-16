@@ -11,16 +11,16 @@ export class AuthProvider {
     public http: HttpClient,
     public util: Util) {}
 
-  login(data) {
+  async login(data) {
     const url = this.util.getUrl(`trainer/auth-login`);
 
-    return this.http.post(url, data);
+    return await this.http.post(url, data).toPromise();
   }
 
-  forgotPassword(login) {
+  async forgotPassword(login) {
     const url = this.util.getUrl(`trainer/auth-forgot-password?login=${login}`);
 
-    return this.http.get(url);
+    return await this.http.get(url).toPromise();
   }
 
   appId() {}

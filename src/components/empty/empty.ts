@@ -8,11 +8,12 @@ export class EmptyComponent {
 
   @Input('count') count = 0;
   @Input('message') message = '';
+  @Input('show') _show = true;
 
   constructor() {}
 
   show() {
-    return this.count === 0 ? true : false;
+    return this.count === 0 && !this._show;
   }
 
 }

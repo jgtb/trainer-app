@@ -38,7 +38,7 @@ export class AlunoPage {
   searchTerm = '';
   emptyMessage = 'Nenhum Aluno encontrado...';
 
-  count = 15;
+  count = 10;
   increase = 10;
 
   messages = {
@@ -56,14 +56,16 @@ export class AlunoPage {
     public alunoPersistence: AlunoPersistence,
     public util: Util) {}
 
-  ionViewDidLoad() {}
-
-  ionViewDidEnter() {
-    this.store();
+  async ionViewDidLoad() {
+    this.util.showLoading();
+    await this.store();
+    this.util.endLoading();
   }
 
-  store() {
-    this.alunoPersistence.findAll().then(res => this.alunos = res);
+  ionViewDidEnter() {}
+
+  async store() {
+    this.alunos = await this.alunoPersistence.list();
   }
 
   assign(item) {
@@ -81,7 +83,7 @@ export class AlunoPage {
       if (typeof res !== 'undefined') {
         if (res.component) {
           this.navCtrl.push(res.component, {aluno: res.aluno, item: res.item}, {animate: false});
-          return
+          return;
         }
         this.methods(res.method, res.aluno);
       }
@@ -125,9 +127,9 @@ export class AlunoPage {
     this.util.showAlert(title, message, null, buttons);
   }
 
-  handleChangePassword(aluno) {
+  async handleChangePassword(aluno) {
     this.util.showLoading();
-    this.authProvider.forgotPassword(aluno.idUsuario.login).subscribe(res => {
+    await this.authProvider.forgotPassword(aluno.idUsuario.login).then(res => {
       if (res) {
         this.util.showAlert('Atenção', this.messages.changePassword);
       } else {
@@ -155,12 +157,13 @@ export class AlunoPage {
     this.util.showAlert(title, message, null, buttons);
   }
 
-  handleDelete(aluno) {
+  async handleDelete(aluno) {
     this.util.showLoading();
-    this.alunoProvider.delete(aluno.id_usuario).subscribe(res => {
+    await this.alunoProvider.delete(aluno.id_usuario).then(async res => {
       if (res) {
+        await this.alunoPersistence.delete(aluno.id_aluno);
+        await this.store();
         this.util.showAlert('Atenção', this.messages.delete);
-        this.alunoPersistence.remove(aluno);
       } else {
         this.util.showAlert('Atenção', this.messages.error);
       }
@@ -169,9 +172,10 @@ export class AlunoPage {
   }
 
   async refresh($event) {
-    const usuarioId = this.util.getStorage('usuarioId');
-    await this.alunoProvider.index(usuarioId).then((res: any) => {
-      this.alunoPersistence.bulk(res);
+    const usuarioId = await this.util.getStorage('usuarioId');
+    await this.alunoProvider.index(usuarioId).then(async res => {
+      await this.alunoPersistence.store(res);
+      await this.store();
       $event.complete();
     }, err => this.util.handleServerError(err));
   }
@@ -181,11 +185,13 @@ export class AlunoPage {
   }
 
   infinite($event) {
-    if (this.alunos.length < this.count) {
+    if (this.alunos.length > this.count) {
       setTimeout(() => {
         this.count += this.increase;
         $event.complete();
       }, 500);
+    } else {
+      $event.complete();
     }
   }
 

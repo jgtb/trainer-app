@@ -24,7 +24,7 @@ export class ExercicioPage {
 
   searchTerm = '';
 
-  count = 15;
+  count = 10;
   increase = 10;
 
   constructor(
@@ -74,10 +74,14 @@ export class ExercicioPage {
   }
 
   infinite($event) {
-    setTimeout(() => {
-      this.count += this.increase;
+    if (this.exercicios.length > this.count) {
+      setTimeout(() => {
+        this.count += this.increase;
+        $event.complete();
+      }, 500);
+    } else {
       $event.complete();
-    }, 500);
+    }
   }
 
   isChecked(exercicio) {

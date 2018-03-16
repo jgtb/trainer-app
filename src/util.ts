@@ -1,47 +1,53 @@
 import { Injectable } from '@angular/core';
 import { AlertController, LoadingController } from 'ionic-angular';
 
+import { Storage } from '@ionic/storage';
+
 @Injectable()
 export class Util {
 
-  baseUrl = 'http://localhost/personal/web/';
+  baseUrl = 'http://localhost/nexur-api/web/';
   //baseUrl = 'http://homolog.nexur.com.br/web/trainer/';
   //baseUrl = 'http://fit.nexur.com.br/trainer/';
 
   logo: any;
 
   loading: any;
+  loadingRunning: boolean;
 
   constructor(
+    public storage: Storage,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController) {}
 
-  setStorage(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
+  async setStorage(key, value) {
+    await this.storage.set(key, JSON.stringify(value));
   }
 
-  getStorage(key) {
-    return JSON.parse(localStorage.getItem(key));
+  async getStorage(key) {
+    return JSON.parse(await this.storage.get(key));
   }
 
-  setLogged() {
-    this.setStorage('isLogged', 'true');
+  async setLogged() {
+    await this.setStorage('isLogged', 'true');
   }
 
-  setLogout() {
-    localStorage.removeItem('isLogged');
+  async setLogout() {
+    await this.storage.clear();
   }
 
-  isLogged() {
-    return this.getStorage('isLogged');
+  async isLogged() {
+    return await this.getStorage('isLogged');
   }
 
   showLoading() {
     this.loading = this.loadingCtrl.create();
+    this.loadingRunning = true;
     this.loading.present();
   }
 
   endLoading() {
+    this.loadingRunning = false;
     this.loading.dismiss();
   }
 

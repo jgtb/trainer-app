@@ -51,12 +51,8 @@ export class DashboardPage {
     this.navCtrl.push(component, {}, {animate: false});
   }
 
-  count(key) {
-    return this.util.getStorage(key).length;
-  }
-
-  logout() {
-    this.util.setLogout();
+  async logout() {
+    await this.util.setLogout();
     this.navCtrl.push(LoginPage, {}, {animate: false});
   }
 

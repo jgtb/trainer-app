@@ -17,34 +17,34 @@ export class AlunoProvider {
     return await this.http.get(url).toPromise();
   }
 
-  view(id) {
+  async view(id) {
     const url = this.util.getUrl(`trainer/aluno-view?id=${id}`);
 
-    return this.http.get(url);
+    return await this.http.get(url).toPromise();
   }
 
-  create(data) {
+  async create(data) {
     const url = this.util.getUrl(`trainer/aluno-create`);
 
-    return this.http.post(url, data);
+    return await this.http.post(url, data).toPromise();
   }
 
-  update(data) {
+  async update(data) {
     const url = this.util.getUrl(`trainer/aluno-update`);
 
-    return this.http.post(url, data);
+    return await this.http.post(url, data).toPromise();
   }
 
-  checkLogin(id, login) {
+  async checkLogin(id, login) {
     const url = this.util.getUrl(`trainer/aluno-check-login?id=${id}&login=${login}`);
 
-    return this.http.get(url);
+    return await this.http.get(url).toPromise();
   }
 
-  delete(id) {
+  async delete(id) {
     const url = this.util.getUrl(`trainer/aluno-delete?id=${id}`);
 
-    return this.http.get(url);
+    return await this.http.get(url).toPromise();
   }
 
 }

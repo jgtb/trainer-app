@@ -13,8 +13,6 @@ export class AlunoPipe implements PipeTransform {
       return items.filter((item, i) => i <= count);
     }
 
-    return items.filter(item =>
-        item.nome.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
-    );
+    return items.filter(item => item.nome.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
   }
 }

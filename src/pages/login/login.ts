@@ -60,14 +60,14 @@ export class LoginPage {
     });
   }
 
-  login(data) {
-    this.authProvider.login(data).subscribe(res => {
+  async login(data) {
+    await this.authProvider.login(data).then(async res => {
       if (res == -1) {
         this.util.showAlert('Atenção', 'Login ou senha estão incorretos');
         return;
       }
       this.util.showLoading();
-      this.handleLoginSuccess(res);
+      await this.handleLoginSuccess(res);
     }, err => this.util.handleServerError(err));
   }
 
@@ -77,7 +77,7 @@ export class LoginPage {
     this.util.setLogged()
     this.util.setStorage('usuarioId', usuarioId);
 
-    await this.alunoProvider.index(usuarioId).then(res => this.alunoPersistence.bulk(res));
+    await this.alunoProvider.index(usuarioId).then(res => this.alunoPersistence.store(res));
     await this.avaliacaoProvider.index(usuarioId).then(res => this.avaliacaoPersistence.store(res));
     await this.exercicioProvider.index(usuarioId).then(res => this.exercicioPersistence.store(res));
     await this.aulaProvider.index(usuarioId).then(res => this.aulaPersistence.store(res));
