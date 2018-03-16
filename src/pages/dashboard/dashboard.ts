@@ -10,6 +10,8 @@ import { AulaPage } from '../../pages/aula/aula';
 import { RankingPage } from '../../pages/ranking/ranking';
 import { ConfiguracaoPage } from '../../pages/configuracao/configuracao';
 
+import { DashboardPersistence } from '../../persistences/dashboard/dashboard';
+
 import { Util } from '../../util';
 
 @Component({
@@ -20,31 +22,43 @@ export class DashboardPage {
 
   menu = [];
 
-  show = true;
+  counts = {
+    aluno: 0,
+    avaliacao: 0,
+    aula: 0,
+    exercicio: 0
+  };
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public dashboardPersistence: DashboardPersistence,
     public util: Util) {
       this.initMenu();
   }
 
-  ionViewDidLoad() {}
+  async ionViewDidLoad() {
+    await this.count('dataAluno').then(res => this.counts.aluno = res);
+    await this.count('dataAvaliacao').then(res => this.counts.avaliacao = res);
+    await this.count('dataAula').then(res => this.counts.aula = res);
+    await this.count('dataExercicio').then(res => this.counts.exercicio = res);
+  }
 
   ionViewDidEnter() {}
 
   initMenu() {
     this.menu = [
-      { title: 'Alunos', component: AlunoPage, icon: 'ios-person', class: '' },
-      { title: 'Avaliações', component: AvaliacaoPage, icon: 'ios-document', class: '' },
-      { title: 'Exercícios', component: ExercicioPage, icon: 'ios-body', class: '' },
-      { title: 'Aulas', component: AulaPage, icon: 'ios-calendar', class: '' },
-      { title: 'Ranking', component: RankingPage, icon: 'md-podium', class: '' },
-      { title: 'Configurações', component: ConfiguracaoPage, icon: 'settings', class: !this.show ? 'odd-last-menu-item' : '' }
+      { title: 'Alunos', component: AlunoPage, icon: 'ios-person'},
+      { title: 'Avaliações', component: AvaliacaoPage, icon: 'ios-document'},
+      { title: 'Exercícios', component: ExercicioPage, icon: 'ios-body'},
+      { title: 'Aulas', component: AulaPage, icon: 'ios-calendar'},
+      { title: 'Ranking', component: RankingPage, icon: 'md-podium'},
+      { title: 'Configurações', component: ConfiguracaoPage, icon: 'settings'}
     ];
+  }
 
-    if (!this.show)
-      this.menu.splice(4, 1);
+  count(key) {
+    return this.dashboardPersistence.count(key);
   }
 
   open(component) {

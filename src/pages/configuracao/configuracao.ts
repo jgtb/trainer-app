@@ -1,7 +1,11 @@
 import { Component, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
+
+import { ConfiguracaoAjudaPage } from './configuracao-ajuda/configuracao-ajuda';
 
 import { ConfiguracaoProvider } from '../../providers/configuracao/configuracao';
+
+import { ConfiguracaoPersistence } from '../../persistences/configuracao/configuracao';
 
 import { Util } from '../../util';
 
@@ -13,7 +17,28 @@ export class ConfiguracaoPage {
 
   @ViewChild('logo') el: ElementRef;
 
-  configuracao: any = [];
+  configuracao: any = {
+    info: {
+      descricao: '',
+      resumo: '',
+      logo: '',
+      intolerancia: '',
+      desativar: ''
+    },
+    colors: [],
+    ranking: {
+      periodo: '',
+      frequencia: '',
+      peso: '',
+      pg: '',
+      massa: ''
+    },
+    notifications: {
+      aniversario: '',
+      treino: ''
+    }
+  };
+
   logo = '';
 
   showRanking = false;
@@ -21,18 +46,20 @@ export class ConfiguracaoPage {
   constructor(
   	public navCtrl: NavController,
   	public navParams: NavParams,
+    public modalCtrl: ModalController,
     public configuracaoProvider: ConfiguracaoProvider,
+    public configuracaoPersistence: ConfiguracaoPersistence,
     public rendered: Renderer2,
-    public util: Util) {
-      this.init();
-    }
+    public util: Util) {}
 
-  ionViewDidLoad() {}
+  async ngOnInit() {
+    await this.store();
+  }
 
-  ionViewDidEnter() {}
+  async ionViewDidEnter() {}
 
-  init() {
-    this.configuracao = this.util.getStorage('dataConfiguracao');
+  async store() {
+    this.configuracao = await this.configuracaoPersistence.list();
     this.showRanking = this.configuracao.ranking.periodo;
   }
 
@@ -42,10 +69,7 @@ export class ConfiguracaoPage {
 
   upload($event) {
     const reader = new FileReader();
-
-    reader.onload = (e) => {
-
-    }
+    reader.onload = (e) => {}
   }
 
   setColor(color) {
@@ -54,20 +78,18 @@ export class ConfiguracaoPage {
     }
   }
 
-  refresh($event) {
-    this.handlerRefresh();
-    setTimeout(() => {
+  async refresh($event) {
+    const usuarioId = await this.util.getStorage('usuarioId');
+    await this.configuracaoProvider.index(usuarioId).then(async res => {
+      await this.configuracaoPersistence.store(res);
+      await this.store();
       $event.complete();
-    }, 1000);
+    }, err => this.util.handleServerError(err));
   }
 
-  handlerRefresh() {
-    const usuarioId = this.util.getStorage('usuarioId');
-
-    this.configuracaoProvider.index(usuarioId).subscribe(res => {
-      this.util.setStorage('dataConfiguracao', res);
-      this.init();
-    }, err => this.util.handleServerError(err));
+  help() {
+    const modal = this.modalCtrl.create(ConfiguracaoAjudaPage);
+    modal.present();
   }
 
   back() {

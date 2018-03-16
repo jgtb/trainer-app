@@ -34,11 +34,11 @@ export class ExercicioFormPage {
       this.initForm();
   }
 
-  ionViewDidLoad() {
+  async ionViewDidLoad() {
     this.setTitle();
     this.setAction();
-    this.getAllTipoEquipamento();
-    this.getAllTipoExercicio();
+    await this.getAllTipoEquipamento();
+    await this.getAllTipoExercicio();
   }
 
   ionViewDidEnter() {}
@@ -74,16 +74,16 @@ export class ExercicioFormPage {
 
   }
 
-  getAllTipoEquipamento() {
-    this.staticProvider.getAllTipoEquipamento().subscribe(res => this.dataTipoEquipamento = res);
+  async getAllTipoEquipamento() {
+    await this.staticProvider.getAllTipoEquipamento().then(res => this.dataTipoEquipamento = res);
   }
 
-  getAllTipoExercicio() {
-    this.staticProvider.getAllTipoExercicio().subscribe(res => this.dataTipoExercicio = res);
+  async getAllTipoExercicio() {
+    await this.staticProvider.getAllTipoExercicio().then(res => this.dataTipoExercicio = res);
   }
 
-  getAllClassificacaoExercicio(idTipoExercicio) {
-    this.staticProvider.getAllClassificacaoExercicio().subscribe(res => this.dataClassificacaoExercicio = res.filter(e => e.id_tipo_exercicio = idTipoExercicio));
+  async getAllClassificacaoExercicio(idTipoExercicio) {
+    await this.staticProvider.getAllClassificacaoExercicio().then(res => this.dataClassificacaoExercicio = res.filter(e => e.id_tipo_exercicio === idTipoExercicio));
   }
 
   setTitle() {

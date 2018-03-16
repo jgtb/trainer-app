@@ -11,12 +11,12 @@ export class ConfiguracaoPersistence {
 
   constructor(public util: Util) {}
 
-  store(res) {
-    this.util.setStorage(this.key, res);
+  async store(res) {
+    await this.util.setStorage(this.key, res);
   }
 
-  list() {
-    return this.util.getStorage(this.key);
+  async list() {
+    return await this.util.getStorage(this.key);
   }
 
 }

@@ -57,12 +57,18 @@ export class AlunoPage {
     public util: Util) {}
 
   async ionViewDidLoad() {
-    this.util.showLoading();
-    await this.store();
-    this.util.endLoading();
+    await this.load();
   }
 
-  ionViewDidEnter() {}
+  async ionViewDidEnter() {
+    if (this.navParams.get('shouldUpdate')) {
+      await this.store();
+    }
+  }
+
+  async load() {
+    await this.store();
+  }
 
   async store() {
     this.alunos = await this.alunoPersistence.list();

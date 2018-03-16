@@ -13,24 +13,24 @@ export class AlunoTreinoPersistence {
 
   constructor(public util: Util) {}
 
-  store(res) {
-    this.util.setStorage(this.key, res);
+  async store(res) {
+    await this.util.setStorage(this.key, res);
   }
 
-  list() {
-    return this.util.getStorage(this.key);
+  async list() {
+    return await this.util.getStorage(this.key);
   }
 
-  save(alunoId, res) {
-    this.store(this.list().map(e => e.id_aluno === alunoId ? {...e, series: _.orderBy(_.unionBy([res], e.series, this.identifier), this.orderBy)} : e));
+  async save(alunoId, res) {
+    await this.list().then(async res => await this.store(res.map(e => e.id_aluno === alunoId ? {...e, series: _.orderBy(_.unionBy([res], e.series, this.identifier), this.orderBy)} : e)));
   }
 
-  saveAll(alunoId, res) {
-    this.store(this.list().map(e => e.id_aluno === alunoId ? {...e, series: res.series} : e));
+  async saveAll(alunoId, res) {
+    await this.list().then(async res => await this.store(res.map(e => e.id_aluno === alunoId ? {...e, series: res.series} : e)));
   }
 
-  delete(alunoId, serieId) {
-    this.store(this.list().map(e => e.id_aluno === alunoId ? {...e, series: _.reject(e.series, {[this.identifier]: serieId})} : e));
+  async delete(alunoId, serieId) {
+    await this.list().then(async res => await this.store(res.map(e => e.id_aluno === alunoId ? {...e, series: _.reject(e.series, {[this.identifier]: serieId})} : e)));
   }
 
 }

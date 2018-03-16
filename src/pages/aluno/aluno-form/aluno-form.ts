@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
+import { AlunoPage } from '../../../pages/aluno/aluno';
+
 import { AlunoProvider } from '../../../providers/aluno/aluno';
 import { StaticProvider } from '../../../providers/static/static';
 
@@ -24,7 +26,7 @@ export class AlunoFormPage {
   messages = {
     create: 'Aluno registrado com sucesso',
     update: 'Aluno alterado com sucesso',
-    loginHasTakenError: 'Login já utilizado',
+    loginHasTaken: 'Login já utilizado',
     error: 'Não foi possível realizar este procedimento, tente mais tarde'
   };
 
@@ -48,7 +50,6 @@ export class AlunoFormPage {
 
   initForm() {
     this.form = this.formBuilder.group({
-      id_usuario: [!this.aluno ? this.util.getStorage('usuarioId') : this.aluno.id_usuario],
       id_aluno: [this.aluno ? this.aluno.id_aluno : ''],
       nome: [this.aluno ? this.aluno.nome : '', Validators.required],
       email: [this.aluno ? this.aluno.email : '', Validators.required],
@@ -72,41 +73,45 @@ export class AlunoFormPage {
     }
   }
 
-  create(data) {
+  async create(data) {
+    const usuarioId = await this.util.getStorage('usuarioId');
     this.util.showLoading();
-    this.alunoProvider.checkLogin(null, data.login).subscribe(res => {
+    await this.alunoProvider.checkLogin(null, data.login).then(async res => {
       if (res === 1) {
-        this.alunoProvider.create(data).subscribe(res => {
+        await this.alunoProvider.create({...data, id_usuario: usuarioId}).then(async res => {
           if (res) {
+            await this.alunoPersistence.save(res);
             this.util.showAlert('Atenção', this.messages.create);
-            this.alunoPersistence.create(res);
-            this.navCtrl.pop();
+            this.navCtrl.getPrevious().data.shouldUpdate = true;
+            this.navCtrl.pop({animate: false});
           } else {
             this.util.showAlert('Atenção', this.messages.error);
           }
         }, err => this.util.handleServerError(err));
       } else {
-        this.util.showAlert('Atenção', this.messages.loginHasTakenError);
+        this.util.showAlert('Atenção', this.messages.loginHasTaken);
       }
       this.util.endLoading();
     }, err => this.util.handleServerError(err));
   }
 
-  update(data) {
+  async update(data) {
+
     this.util.showLoading();
-    this.alunoProvider.checkLogin(this.aluno.idUsuario.id_usuario, data.login).subscribe(res => {
+    await this.alunoProvider.checkLogin(this.aluno.idUsuario.id_usuario, data.login).then(async res => {
       if (res === 1) {
-        this.alunoProvider.update(data).subscribe(res => {
+        await this.alunoProvider.update({...data, id_usuario: this.aluno.idUsuario.id_usuario}).then(async res => {
           if (res) {
+            await this.alunoPersistence.save(res);
             this.util.showAlert('Atenção', this.messages.update);
-            this.alunoPersistence.update({...this.aluno, ...res});
-            this.navCtrl.pop();
+            this.navCtrl.getPrevious().data.shouldUpdate = true;
+            this.navCtrl.pop({animate: false});
           } else {
             this.util.showAlert('Atenção', this.messages.error);
           }
         }, err => this.util.handleServerError(err));
       } else {
-        this.util.showAlert('Atenção', this.messages.loginHasTakenError);
+        this.util.showAlert('Atenção', this.messages.loginHasTaken);
       }
       this.util.endLoading();
     }, err => this.util.handleServerError(err));

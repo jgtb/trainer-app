@@ -52,7 +52,7 @@ export class AlunoTreinoPage {
   }
 
   store() {
-    this.aluno = this.alunoTreinoPersistence.list().find(e => e.id_aluno === this.aluno.id_aluno);
+    // this.aluno = this.alunoTreinoPersistence.list().find(e => e.id_aluno === this.aluno.id_aluno);
   }
 
   assign(item) {

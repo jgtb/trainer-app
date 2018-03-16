@@ -11,46 +11,46 @@ export class StaticProvider {
     public http: HttpClient,
     public util: Util) {}
 
-  getAllTipoRepeticao() {
+  async getAllTipoRepeticao() {
     const url = 'assets/data/tipo-repeticao.json';
 
-    return this.http.get(url);
+    return await this.http.get<any>(url).toPromise();
   }
 
-  getAllTipoPergunta() {
+  async getAllTipoPergunta() {
     const url = 'assets/data/tipo-pergunta.json';
 
-    return this.http.get(url);
+    return await this.http.get<any>(url).toPromise();
   }
 
-  getAllTipoExercicio() {
+  async getAllTipoExercicio() {
     const url = 'assets/data/tipo-exercicio.json';
 
-    return this.http.get(url);
+    return await this.http.get<any>(url).toPromise();
   }
 
-  getAllTipoEquipamento() {
+  async getAllTipoEquipamento() {
     const url = 'assets/data/tipo-equipamento.json';
 
-    return this.http.get(url);
+    return await this.http.get<any>(url).toPromise();
   }
 
-  getAllClassificacaoExercicio() {
+  async getAllClassificacaoExercicio() {
     const url = 'assets/data/classificacao-exercicio.json';
 
-    return this.http.get(url);
+    return await this.http.get<any>(url).toPromise();
   }
 
-  getAllGrupo() {
+  async getAllGrupo() {
     const url = 'assets/data/grupo.json';
 
-    return this.http.get(url);
+    return await this.http.get<any>(url).toPromise();
   }
 
-  getAllRankingPeriodo() {
+  async getAllRankingPeriodo() {
     const url = 'assets/data/ranking-periodo.json';
 
-    return this.http.get(url);
+    return await this.http.get<any>(url).toPromise();
   }
 
 }

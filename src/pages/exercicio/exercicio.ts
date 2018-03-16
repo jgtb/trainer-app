@@ -4,6 +4,8 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { ExercicioFormPage } from './exercicio-form/exercicio-form';
 import { ExercicioViewPage } from './exercicio-view/exercicio-view';
 
+import { ExercicioPersistence } from '../../persistences/exercicio/exercicio';
+
 import { MenuComponent } from '../../components/menu/menu';
 
 import { Util } from '../../util';
@@ -31,13 +33,26 @@ export class ExercicioPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    public util: Util) {
-      this.exercicios = this.util.getStorage('dataExercicio');
+    public exercicioPersistence: ExercicioPersistence,
+    public util: Util) {}
+
+  async ionViewDidLoad() {
+    await this.load();
+  }
+
+  async ionViewDidEnter() {
+    if (this.navParams.get('shouldUpdate')) {
+      await this.store();
     }
+  }
 
-  ionViewDidLoad() {}
+  async load() {
+    await this.store();
+  }
 
-  ionViewDidEnter() {}
+  async store() {
+    this.exercicios = await this.exercicioPersistence.list();
+  }
 
   assign(item) {
     return {...item, center: item.idExercicio.descricao_pt};

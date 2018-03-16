@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 
+import { DashboardPersistence } from '../persistences/dashboard/dashboard';
 import { AlunoPersistence } from '../persistences/aluno/aluno';
 import { AlunoTreinoPersistence } from '../persistences/aluno-treino/aluno-treino';
 import { AvaliacaoPersistence } from '../persistences/avaliacao/avaliacao';
@@ -9,6 +10,7 @@ import { RankingPersistence } from '../persistences/ranking/ranking';
 import { ConfiguracaoPersistence } from '../persistences/configuracao/configuracao';
 
 const PERSISTENCES = [
+	DashboardPersistence,
 	AlunoPersistence,
 	AlunoTreinoPersistence,
 	AvaliacaoPersistence,
