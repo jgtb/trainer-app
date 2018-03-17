@@ -58,9 +58,9 @@ export class AlunoTreinoViewPage {
     return `http://fit.nexur.com.br/exercicios/${treino.idExercicio.id_exercicio}-0.gif`;
   }
 
-  refresh($event) {
-    this.alunoTreinoProvider.view(this.treino.id_serie).subscribe(res => {
-      this.alunoTreinoPersistence.save(this.aluno.id_aluno, res);
+  async refresh($event) {
+    await this.alunoTreinoProvider.view(this.treino.id_serie).then(async res => {
+      await this.alunoTreinoPersistence.save(this.aluno.id_aluno, res);
       this.store(res);
       $event.complete();
     }, err => this.util.handleServerError(err));

@@ -11,34 +11,34 @@ export class AlunoTreinoProvider {
     public http: HttpClient,
     public util: Util) {}
 
-  index(id) {
+  async index(id) {
     const url = this.util.getUrl(`trainer/aluno-treino-index?id=${id}`);
-    
-    return this.http.get(url);
+
+    return await this.http.get(url).toPromise();
   }
 
-  view(id) {
+  async view(id) {
     const url = this.util.getUrl(`trainer/aluno-treino-view?id=${id}`);
-    
-    return this.http.get(url);
+
+    return await this.http.get(url).toPromise();
   }
 
-  create(data) {
+  async create(data) {
     const url = this.util.getUrl(`trainer/aluno-treino-create`);
-    
-    return this.http.post(url, data);
+
+    return await this.http.post(url, data).toPromise();
   }
 
-  update(data) {
+  async update(data) {
     const url = this.util.getUrl(`trainer/aluno-treino-update`);
-    
-    return this.http.post(url, data);
+
+    return await this.http.post(url, data).toPromise();
   }
 
-  delete(id) {
+  async delete(id) {
     const url = this.util.getUrl(`trainer/aluno-treino-delete?id=${id}`);
-    
-    return this.http.get(url);
+
+    return await this.http.get(url).toPromise();
   }
 
 }

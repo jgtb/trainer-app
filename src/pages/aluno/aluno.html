@@ -29,7 +29,7 @@
       *ngFor="let aluno of alunos | alunoFilter : searchTerm : count; let index = index"
       (click)="open(aluno)"></info>
   </ion-list>
-  <empty [show]="util.loadingRunning" [count]="alunos?.length" [message]="emptyMessage"></empty>
+  <empty [count]="alunos?.length" [message]="emptyMessage"></empty>
   <ion-infinite-scroll (ionInfinite)="infinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>

@@ -13,12 +13,12 @@ export class AvaliacaoPersistence {
 
   constructor(public util: Util) {}
 
-  store(res) {
-    this.util.setStorage(this.key, res);
+  async store(res) {
+    await this.util.setStorage(this.key, res);
   }
 
-  list() {
-    return this.util.getStorage(this.key);
+  async list() {
+    return await this.util.getStorage(this.key);
   }
 
   save(res) {
@@ -26,7 +26,7 @@ export class AvaliacaoPersistence {
   }
 
   delete(id) {
-    
+
   }
 
 }

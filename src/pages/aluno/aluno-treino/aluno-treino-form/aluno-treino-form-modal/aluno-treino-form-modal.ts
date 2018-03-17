@@ -33,10 +33,10 @@ export class AlunoTreinoFormModalPage {
       this.initForm();
     }
 
-  ionViewDidLoad() {
+  async ionViewDidLoad() {
     this.setTitle();
     this.setActionName();
-    this.getAllTipoRepeticao();
+    await this.getAllTipoRepeticao();
   }
 
   initForm() {
@@ -84,8 +84,8 @@ export class AlunoTreinoFormModalPage {
     this.actionName = !this.exercicioSerie.id_exercicio_serie ? 'Adicionar' : 'Alterar';
   }
 
-  getAllTipoRepeticao() {
-    this.staticProvider.getAllTipoRepeticao().subscribe(res => this.tiposRepeticao = res);
+  async getAllTipoRepeticao() {
+    await this.staticProvider.getAllTipoRepeticao().then(res => this.tiposRepeticao = res);
   }
 
   dismiss(item = null, action = null) {

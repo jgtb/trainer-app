@@ -13,7 +13,7 @@ export class Util {
   logo: any;
 
   loading: any;
-  loadingRunning: boolean;
+  loadingRunning: boolean = false;
 
   constructor(
     public storage: Storage,

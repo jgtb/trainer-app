@@ -26,10 +26,6 @@
       background-color: map-get($colors, dark);
       border-radius: 5px;
       overflow: hidden;
-      .menu-title {
-        color: map-get($colors, light);
-        text-align: center;
-      }
       .menu-content {
         ion-grid {
           ion-row {

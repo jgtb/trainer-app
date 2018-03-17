@@ -47,12 +47,14 @@ export class AlunoTreinoPage {
 
   ionViewDidLoad() {}
 
-  ionViewDidEnter() {
-    this.store();
+  async ionViewDidEnter() {
+    if (this.navParams.get('shouldUpdate')) {
+      await this.store();
+    }
   }
 
-  store() {
-    // this.aluno = this.alunoTreinoPersistence.list().find(e => e.id_aluno === this.aluno.id_aluno);
+  async store() {
+    await this.alunoTreinoPersistence.list().then(res => this.aluno = res.find(e => e.id_aluno === this.aluno.id_aluno));
   }
 
   assign(item) {
@@ -104,13 +106,13 @@ export class AlunoTreinoPage {
     this.util.showAlert(title, message, null, buttons);
   }
 
-  handleDelete(treino) {
+  async handleDelete(treino) {
     this.util.showLoading();
-    this.alunoTreinoProvider.delete(treino.id_serie).subscribe(res => {
+    await this.alunoTreinoProvider.delete(treino.id_serie).then(async res => {
       if (res) {
+        await this.alunoTreinoPersistence.delete(this.aluno.id_aluno, treino.id_serie);
+        await this.store();
         this.util.showAlert('Atenção', this.messages.delete);
-        this.alunoTreinoPersistence.delete(this.aluno.id_aluno, treino.id_serie);
-        this.store();
       } else {
         this.util.showAlert('Atenção', this.messages.error);
       }
@@ -119,10 +121,10 @@ export class AlunoTreinoPage {
     err => this.util.handleServerError(err));
   }
 
-  refresh($event) {
-    this.alunoTreinoProvider.index(this.aluno.id_aluno).subscribe(res => {
-      this.alunoTreinoPersistence.saveAll(this.aluno.id_aluno, res);
-      this.store();
+  async refresh($event) {
+    await this.alunoTreinoProvider.index(this.aluno.id_aluno).then(async res => {
+      await this.alunoTreinoPersistence.saveAll(this.aluno.id_aluno, res);
+      await this.store();
       $event.complete();
     }, err => this.util.handleServerError(err));
   }

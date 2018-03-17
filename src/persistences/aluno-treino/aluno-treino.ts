@@ -21,12 +21,12 @@ export class AlunoTreinoPersistence {
     return await this.util.getStorage(this.key);
   }
 
-  async save(alunoId, res) {
-    await this.list().then(async res => await this.store(res.map(e => e.id_aluno === alunoId ? {...e, series: _.orderBy(_.unionBy([res], e.series, this.identifier), this.orderBy)} : e)));
+  async save(alunoId, ress) {
+    await this.list().then(async res => await this.store(res.map(e => e.id_aluno === alunoId ? {...e, series: _.orderBy(_.unionBy([ress], e.series, this.identifier), this.orderBy)} : e)));
   }
 
-  async saveAll(alunoId, res) {
-    await this.list().then(async res => await this.store(res.map(e => e.id_aluno === alunoId ? {...e, series: res.series} : e)));
+  async saveAll(alunoId, ress) {
+    await this.list().then(async res => await this.store(res.map(e => e.id_aluno === alunoId ? {...e, series: ress.series} : e)));
   }
 
   async delete(alunoId, serieId) {

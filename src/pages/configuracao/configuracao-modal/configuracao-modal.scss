@@ -1,5 +1,5 @@
 .ios, .md, .wp {
-  configuracao-ajuda {
+  page-configuracao-modal {
     .menu {
       background: transparent !important;
     }
@@ -24,8 +24,7 @@
       border-radius: 5px;
       overflow: hidden;
       .menu-title {
-        color: map-get($colors, light);
-        text-align: center;
+        color: lighten(map-get($colors, darklight), 18%);
       }
       .menu-content {
       }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AuthProvider } from '../providers/auth/auth';
 import { AlunoProvider } from '../providers/aluno/aluno';
+import { AlunoMensagemProvider } from '../providers/aluno-mensagem/aluno-mensagem';
 import { AlunoTreinoProvider } from '../providers/aluno-treino/aluno-treino';
 import { AlunoAvaliacaoProvider } from '../providers/aluno-avaliacao/aluno-avaliacao';
 import { AlunoCalendarioProvider } from '../providers/aluno-calendario/aluno-calendario';
@@ -17,6 +18,7 @@ import { StaticProvider } from '../providers/static/static';
 const PROVIDERS = [
 	AuthProvider,
 	AlunoProvider,
+	AlunoMensagemProvider,
 	AlunoTreinoProvider,
 	AlunoAvaliacaoProvider,
 	AlunoCalendarioProvider,

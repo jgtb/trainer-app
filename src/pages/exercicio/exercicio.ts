@@ -4,6 +4,8 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { ExercicioFormPage } from './exercicio-form/exercicio-form';
 import { ExercicioViewPage } from './exercicio-view/exercicio-view';
 
+import { ExercicioProvider } from '../../providers/exercicio/exercicio';
+
 import { ExercicioPersistence } from '../../persistences/exercicio/exercicio';
 
 import { MenuComponent } from '../../components/menu/menu';
@@ -33,6 +35,7 @@ export class ExercicioPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
+    public exercicioProvider: ExercicioProvider,
     public exercicioPersistence: ExercicioPersistence,
     public util: Util) {}
 
@@ -84,8 +87,13 @@ export class ExercicioPage {
     this.searchTerm = $event.target.value;
   }
 
-  refresh($event) {
-
+  async refresh($event) {
+    const usuarioId = await this.util.getStorage('usuarioId');
+    await this.exercicioProvider.index(usuarioId).then(async res => {
+      await this.exercicioPersistence.store(res);
+      await this.store();
+      $event.complete();
+    }, err => this.util.handleServerError(err));
   }
 
   infinite($event) {

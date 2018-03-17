@@ -5,25 +5,35 @@
 </ion-header>
 
 <ion-content padding>
-
   <form [formGroup]="form" (ngSubmit)="create(form.value)">
     <ion-list>
+      <ng-container *ngIf="!form.value.allHasBeenSelected">
+        <ion-item>
+          <ion-icon item-left name="person"></ion-icon>
+          <ion-label>Alunos</ion-label>
+          <ion-select multiple formControlName="ids" okText="Confirmar" cancelText="Cancelar">
+            <ion-option item-end *ngFor="let aluno of alunos" [value]="aluno.id_aluno">{{ aluno.nome }}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ng-container>
       <ion-item>
-        <ion-icon item-left name="person"></ion-icon>
-        <ion-label>Alunos</ion-label>
-        <ion-select multiple formControlName="ids" (ionChange)="handlerOptionChange()">
-          <ion-option value="0">Todos</ion-option>
-          <ion-option item-end *ngFor="let aluno of alunos" value="{{ aluno.id_aluno }}">{{ aluno.nome }}</ion-option>
-        </ion-select>
+        <ion-icon item-left name="bookmark"></ion-icon>
+        <ion-label>Título</ion-label>
+        <ion-input rows="9" formControlName="titulo"></ion-input>
       </ion-item>
       <ion-item>
         <ion-icon item-left name="create"></ion-icon>
-        <ion-label>Descrição...</ion-label>
-        <ion-textarea rows="9" formControlName="mensagem"></ion-textarea>
+        <ion-label>Texto</ion-label>
+        <ion-textarea rows="9" formControlName="texto"></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-icon item-left name="camera"></ion-icon>
         <ion-label>Imagem</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-left name="share"></ion-icon>
+        <ion-label>Para todos</ion-label>
+        <ion-toggle color="secondary" formControlName="allHasBeenSelected"></ion-toggle>
       </ion-item>
       <div text-center>
         <button ion-button color="secondary" round [disabled]="!form.valid">
@@ -32,5 +42,4 @@
       </div>
     </ion-list>
   </form>
-
 </ion-content>

@@ -37,14 +37,12 @@ export class DashboardPage {
       this.initMenu();
   }
 
-  async ionViewDidLoad() {
+  async ionViewDidEnter() {
     await this.count('dataAluno').then(res => this.counts.aluno = res);
     await this.count('dataAvaliacao').then(res => this.counts.avaliacao = res);
     await this.count('dataAula').then(res => this.counts.aula = res);
     await this.count('dataExercicio').then(res => this.counts.exercicio = res);
   }
-
-  ionViewDidEnter() {}
 
   initMenu() {
     this.menu = [
@@ -57,8 +55,8 @@ export class DashboardPage {
     ];
   }
 
-  count(key) {
-    return this.dashboardPersistence.count(key);
+  async count(key) {
+    return await this.dashboardPersistence.count(key);
   }
 
   open(component) {

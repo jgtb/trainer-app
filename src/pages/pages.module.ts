@@ -32,7 +32,7 @@ import { AulaFormPage } from '../pages/aula/aula-form/aula-form';
 import { AulaViewPage } from '../pages/aula/aula-view/aula-view';
 import { RankingPage } from '../pages/ranking/ranking';
 import { ConfiguracaoPage } from '../pages/configuracao/configuracao';
-import { ConfiguracaoAjudaPage } from '../pages/configuracao/configuracao-ajuda/configuracao-ajuda';
+import { ConfiguracaoModalPage } from '../pages/configuracao/configuracao-modal/configuracao-modal';
 
 const PAGES = [
 	LoginPage,
@@ -65,7 +65,7 @@ const PAGES = [
 	AulaViewPage,
 	RankingPage,
 	ConfiguracaoPage,
-	ConfiguracaoAjudaPage
+	ConfiguracaoModalPage
 ];
 
 import { Ng2FileInputModule } from 'ng2-file-input';

@@ -47,14 +47,15 @@ export class AlunoTreinoFormPage {
     public util: Util) {
       this.treino = this.navParams.get('item');
   	  this.aluno = this.navParams.get('aluno');
-      this.exercicios = this.util.getStorage('dataExercicio');
       this.setTitle();
       this.setActionName();
       this.initForm();
       this.initTreino();
   }
 
-  ionViewDidLoad() {}
+  async ionViewDidLoad() {
+    this.exercicios = await this.util.getStorage('dataExercicio');
+  }
 
   ionViewDidEnter() {}
 
@@ -100,12 +101,13 @@ export class AlunoTreinoFormPage {
     }
   }
 
-  create(data) {
+  async create(data) {
     this.util.showLoading();
-    this.alunoTreinoProvider.create({...this.treino, descricao: data.descricao}).subscribe(res => {
+    await this.alunoTreinoProvider.create({...this.treino, descricao: data.descricao}).then(async res => {
       if (res) {
-        this.alunoTreinoPersistence.save(this.aluno.id_aluno, res);
+        await this.alunoTreinoPersistence.save(this.aluno.id_aluno, res);
         this.util.showAlert('Atenção', this.messages.create);
+        this.navCtrl.getPrevious().data.shouldUpdate = true;
         this.navCtrl.pop();
       } else {
         this.util.showAlert('Atenção', this.messages.error);
@@ -114,12 +116,13 @@ export class AlunoTreinoFormPage {
     }, err => this.util.handleServerError(err));
   }
 
-  update(data) {
+  async update(data) {
     this.util.showLoading();
-    this.alunoTreinoProvider.update({...this.treino, descricao: data.descricao}).subscribe(res => {
+    await this.alunoTreinoProvider.update({...this.treino, descricao: data.descricao}).then(async res => {
       if (res) {
-        this.alunoTreinoPersistence.save(this.aluno.id_aluno, res);
+        await this.alunoTreinoPersistence.save(this.aluno.id_aluno, res);
         this.util.showAlert('Atenção', this.messages.update);
+        this.navCtrl.getPrevious().data.shouldUpdate = true;
         this.navCtrl.pop();
       } else {
         this.util.showAlert('Atenção', this.messages.error);

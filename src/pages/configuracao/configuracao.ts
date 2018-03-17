@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
-import { ConfiguracaoAjudaPage } from './configuracao-ajuda/configuracao-ajuda';
+import { ConfiguracaoModalPage } from './configuracao-modal/configuracao-modal';
 
 import { ConfiguracaoProvider } from '../../providers/configuracao/configuracao';
 
@@ -63,7 +63,7 @@ export class ConfiguracaoPage {
     this.showRanking = this.configuracao.ranking.periodo;
   }
 
-  open() {
+  openUpload() {
     this.el.nativeElement.click();
   }
 
@@ -87,8 +87,8 @@ export class ConfiguracaoPage {
     }, err => this.util.handleServerError(err));
   }
 
-  help() {
-    const modal = this.modalCtrl.create(ConfiguracaoAjudaPage);
+  open() {
+    const modal = this.modalCtrl.create(ConfiguracaoModalPage);
     modal.present();
   }
 

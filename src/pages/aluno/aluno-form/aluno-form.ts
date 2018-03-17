@@ -126,7 +126,7 @@ export class AlunoFormPage {
   }
 
   getAllGrupo() {
-    this.staticProvider.getAllGrupo().subscribe(res => this.grupos = res);
+    this.staticProvider.getAllGrupo().then(res => this.grupos = res);
   }
 
 }

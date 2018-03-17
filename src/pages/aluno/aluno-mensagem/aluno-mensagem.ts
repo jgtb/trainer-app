@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
+import { AlunoMensagemProvider } from '../../../providers/aluno-mensagem/aluno-mensagem';
+
 import { Util } from '../../../util';
 
 @Component({
@@ -15,12 +17,18 @@ export class AlunoMensagemPage {
 
   alunos: any = [];
 
+  messages = {
+    create: 'Mensagem enviada com sucesso!',
+    error: 'Não foi possível realizar este procedimento, tente mais tarde'
+  };
+
   constructor(
   	public navCtrl: NavController,
   	public navParams: NavParams,
     public formBuilder: FormBuilder,
+    public alunoMensagemProvider: AlunoMensagemProvider,
     public util: Util) {
-      this.alunos = this.util.getStorage('dataAluno');
+      this.alunos = this.navParams.get('alunos');
       this.initForm();
     }
 
@@ -30,23 +38,31 @@ export class AlunoMensagemPage {
 
   initForm() {
     this.form = this.formBuilder.group({
-      ids: ['', Validators.required],
-      mensagem: ['', Validators.required]
+      ids: [[]],
+      titulo: [null, Validators.required],
+      texto: [null, Validators.required],
+      allHasBeenSelected: [true]
     });
   }
 
-  create(data) {
-    console.log(data);
-  }
+  async create(data) {
+    const usuarioId = await this.util.getStorage('usuarioId');
+    data = {...data, id_usuario: usuarioId}
 
-  handlerOptionChange($event) {
-    const ids = this.form.value.ids;
-
-    const hasForAll = ids.some(e => e === '0');
-
-    if (hasForAll) {
-      this.form.controls['ids'].setValue(0);
+    if (data.allHasBeenSelected) {
+      data = {...data, ids: 0}
     }
+
+    this.util.showLoading();
+    await this.alunoMensagemProvider.create(data).then(res => {
+      if (res) {
+        this.util.showAlert('Atenção', this.messages.create);
+        this.navCtrl.pop();
+      } else {
+        this.util.showAlert('Atenção', this.messages.error);
+      }
+      this.util.endLoading();
+    }, err => this.util.handleServerError(err));
   }
 
 }

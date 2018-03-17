@@ -4,6 +4,8 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { AvaliacaoFormPage } from './avaliacao-form/avaliacao-form';
 import { AvaliacaoViewPage } from './avaliacao-view/avaliacao-view';
 
+import { AvaliacaoPersistence } from '../../persistences/avaliacao/avaliacao';
+
 import { MenuComponent } from '../../components/menu/menu';
 
 import { Util } from '../../util';
@@ -26,13 +28,26 @@ export class AvaliacaoPage {
   	public navCtrl: NavController,
   	public navParams: NavParams,
     public modalCtrl: ModalController,
-    public util: Util) {
-      this.avaliacoes = this.util.getStorage('dataAvaliacao');
+    public avaliacaoPersistence: AvaliacaoPersistence,
+    public util: Util) {}
+
+  async ionViewDidLoad() {
+    await this.load();
+  }
+
+  async ionViewDidEnter() {
+    if (this.navParams.get('shouldUpdate')) {
+      await this.store();
     }
+  }
 
-  ionViewDidLoad() {}
+  async load() {
+    await this.store();
+  }
 
-  ionViewDidEnter() {}
+  async store() {
+    this.avaliacoes = await this.avaliacaoPersistence.list();
+  }
 
   assign(item) {
     return {...item, center: item.descricao};

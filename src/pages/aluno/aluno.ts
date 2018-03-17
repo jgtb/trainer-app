@@ -112,7 +112,7 @@ export class AlunoPage {
   }
 
   createMensagem() {
-    this.navCtrl.push(AlunoMensagemPage, {}, {animate: false});
+    this.navCtrl.push(AlunoMensagemPage, {alunos: this.alunos}, {animate: false});
   }
 
   changePassword(aluno) {
